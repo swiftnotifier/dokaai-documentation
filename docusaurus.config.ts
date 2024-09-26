@@ -1,6 +1,7 @@
 import { themes as prismThemes } from "prism-react-renderer";
 import type { Config } from "@docusaurus/types";
 import type * as Preset from "@docusaurus/preset-classic";
+import type * as Redocusaurus from "redocusaurus";
 
 const config: Config = {
   title: "Dokkai Docs",
@@ -56,6 +57,29 @@ const config: Config = {
         },
       } satisfies Preset.Options,
     ],
+    // Redocusaurus config
+    [
+      "redocusaurus",
+      {
+        specs: [
+          {
+            spec: "api/index.yaml",
+            route: "/api/",
+          },
+          {
+            spec: "https://redocly.github.io/redoc/openapi.yaml",
+            route: "/openapi/",
+          },
+          {
+            spec: "api/openai.yaml",
+            route: "/rest-api",
+          },
+        ],
+        theme: {
+          primaryColor: "#1890ff",
+        },
+      },
+    ] satisfies Redocusaurus.PresetEntry,
   ],
 
   themeConfig: {
@@ -66,17 +90,22 @@ const config: Config = {
         src: "img/dokkai.svg",
       },
       items: [
-        { to: "/docs/intro", label: "Home", position: "left" },
+        { to: "/docs/", label: "Home", position: "left" },
         { to: "/rest-api", label: "Rest API", position: "left" },
         {
           to: "/api/",
           label: "API Playground",
           position: "left",
         },
-        { to: "/docs/sdk-libraries", label: "SDK Libraries", position: "left" },
+        { to: "/sdk-libraries", label: "SDK Libraries", position: "left" },
         { to: "/changelog", label: "Changelog", position: "left" },
         { to: "/blog", label: "Blog", position: "left" },
       ],
+    },
+    algolia: {
+      appId: "S0HH3FC2SS",
+      apiKey: "f0eec5cc8676f09b5674a56977e6bd11",
+      indexName: "movie",
     },
     prism: {
       theme: prismThemes.github,

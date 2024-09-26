@@ -1,0 +1,115 @@
+---
+sidebar_label: Home
+description: Use some key words here to help users find this post
+sidebar_position: 1
+id: docs
+slug: /
+---
+
+import Card from "@site/src/components/Card";
+
+# Welcome to the Dokkai Docs
+
+Find all the tutorials and resources you need to build product notifications with Dokkai.
+
+## Getting Started
+
+<div className="grid md:grid-cols-2 grid-cols-1 gap-6">
+
+<Card
+  title="Getting Started"
+  description="Understand the essentials of Dokkai, starting from basics to your first integration."
+  link="#"
+  bgColor="#FAFAFA"
+  icon="true"
+/>
+
+<Card
+  title="UI Components"
+  description="Explore reusable components like forms, modals, and tables built using Dokkai UI library."
+  link="#"
+  bgColor="#FAFAFA"
+  icon="true"
+/>
+
+<Card
+  title="API Reference"
+  description="Dokkai REST API and webhook services for sending notifications and tracking events."
+  link="#"
+  bgColor="#FAFAFA"
+  icon="true"
+/>
+<Card
+  title="API Reference"
+  description="The Courier REST API has predictable resource-oriented URLs, accepts JSON-encoded request bodies, returns JSON-encoded responses, and uses standard HTTP response codes, authentication, and verbs."
+  link="#"
+  bgColor="#FAFAFA"
+  icon="true"
+/>
+
+</div>
+
+## Platform
+
+Our platform is designed around a small number of key concepts that make it easy to build powerful notification experiences.
+
+<div className="grid md:grid-cols-2 gird-cols-1 gap-6 mt-6">
+
+<Card
+  title="Users"
+  description="Manage your platform users and tailor the notification experience to individual preferences."
+  link="#"
+  bgColor="#FAFAFA"
+/>
+
+<Card
+  title="Content"
+  description="Create, edit, and manage your notifications, ensuring personalization and relevance."
+  link="#"
+  bgColor="#FAFAFA"
+/>
+
+<Card
+  title="Integration"
+  description="Streamline your workflows with seamless integration of external systems and data sources."
+  link="#"
+  bgColor="#FAFAFA"
+/>
+
+<Card
+  title="Sending"
+  description="Efficiently manage and track your notification delivery to ensure high engagement rates."
+  link="#"
+  bgColor="#FAFAFA"
+/>
+<Card
+  title="Sending"
+  description="Efficiently manage and track your notification delivery to ensure high engagement rates."
+  link="#"
+  bgColor="#FAFAFA"
+/>
+<Card
+  title="Sending"
+  description="Efficiently manage and track your notification delivery to ensure high engagement rates."
+  link="#"
+  bgColor="#FAFAFA"
+/>
+
+</div>
+
+## Server SDK Libraries
+
+You can access our REST API and integrate Courier into your application using one of our server SDK libraries.
+
+```js title="Example Node.js Code"
+const send = require("dokzai/send");
+
+send({
+  api_key: process.env.DOKZAI_API_KEY,
+  user: { email: "user@example.com" },
+  content: {
+    subject: "Welcome to Dokzai!",
+    message: "Your account has been created successfully.",
+  },
+});
+```
