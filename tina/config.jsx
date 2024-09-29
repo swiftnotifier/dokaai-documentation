@@ -120,7 +120,7 @@ const DocsCollection = {
     },
     {
       type: "number",
-      name: "sidebarPosition",
+      name: "sidebar_position",
       label: "Sidebar Position",
       placeholder:
         "Defines the order in which the document will appear in the sidebar.",
