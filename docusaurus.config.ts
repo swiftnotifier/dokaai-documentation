@@ -37,8 +37,7 @@ const config: Config = {
       {
         docs: {
           sidebarPath: "./sidebars.ts",
-          editUrl:
-            "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/",
+          editUrl: "http://localhost:3000" + "/admin/#/collections/doc",
         },
         blog: {
           showReadingTime: true,

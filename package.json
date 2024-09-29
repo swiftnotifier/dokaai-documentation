@@ -5,7 +5,8 @@
   "scripts": {
     "docusaurus": "docusaurus",
     "start": "docusaurus start",
-    "build": "docusaurus build",
+    "build": "tinacms build && docusaurus build",
+    "tina": "tinacms dev -c \"npm start\"",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
     "clear": "docusaurus clear",
@@ -18,6 +19,7 @@
     "@docusaurus/core": "3.5.2",
     "@docusaurus/preset-classic": "3.5.2",
     "@mdx-js/react": "^3.0.0",
+    "@tinacms/cli": "^1.6.5",
     "autoprefixer": "^10.4.20",
     "clsx": "^2.0.0",
     "postcss": "^8.4.47",
@@ -25,7 +27,9 @@
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "redocusaurus": "^2.1.2",
-    "tailwindcss": "^3.4.13"
+    "tailwindcss": "^3.4.13",
+    "tinacms": "^2.2.5",
+    "title": "^3.5.3"
   },
   "devDependencies": {
     "@docusaurus/module-type-aliases": "3.5.2",

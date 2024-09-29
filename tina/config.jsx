@@ -1,0 +1,182 @@
+import { defineConfig } from "tinacms";
+import { MDXTemplates } from "../src/theme/template";
+import { docusaurusDate } from "../util";
+
+const branch = process.env.VERCEL_GIT_COMMIT_REF || process.env.HEAD || "main";
+
+const PostCollection = {
+  name: "post",
+  label: "Posts",
+  path: "blog",
+  format: "mdx",
+  ui: {
+    defaultItem: {
+      date: docusaurusDate(new Date()),
+    },
+  },
+  fields: [
+    {
+      type: "string",
+      name: "title",
+      label: "Title",
+      isTitle: true,
+      required: true,
+    },
+    {
+      name: "authors",
+      label: "Authors",
+      type: "object",
+      list: true,
+      ui: {
+        itemProps: (item) => {
+          return { label: item?.name };
+        },
+      },
+      fields: [
+        {
+          name: "name",
+          label: "Name",
+          type: "string",
+          isTitle: true,
+          required: true,
+        },
+        {
+          name: "title",
+          label: "Title",
+          type: "string",
+        },
+        {
+          name: "url",
+          label: "URL",
+          type: "string",
+        },
+        {
+          name: "image_url",
+          label: "Image URL",
+          type: "string",
+        },
+      ],
+    },
+    {
+      name: "date",
+      label: "Date",
+      type: "string",
+      required: true,
+      ui: {
+        dateFormat: "MMM D, yyyy",
+        component: "date",
+        parse: (val) => {
+          return docusaurusDate(val);
+        },
+      },
+    },
+    {
+      label: "Tags",
+      name: "tags",
+      type: "string",
+      list: true,
+      ui: {
+        component: "tags",
+      },
+    },
+    {
+      type: "rich-text",
+      name: "body",
+      label: "Body",
+      isBody: true,
+      templates: [...MDXTemplates],
+    },
+  ],
+};
+
+const DocsCollection = {
+  name: "doc",
+  label: "Docs",
+  path: "docs",
+  format: "mdx",
+  fields: [
+    {
+      type: "string",
+      name: "title",
+      label: "Title",
+      isTitle: true,
+      required: true,
+    },
+    {
+      type: "string",
+      name: "description",
+      label: "Description",
+    },
+    {
+      label: "Tags",
+      name: "tags",
+      type: "string",
+      list: true,
+      ui: {
+        component: "tags",
+      },
+    },
+    {
+      type: "rich-text",
+      name: "body",
+      label: "Body",
+      isBody: true,
+      templates: [...MDXTemplates],
+    },
+  ],
+};
+
+const PagesCollection = {
+  name: "pages",
+  label: "Pages",
+  path: "src/pages",
+  format: "mdx",
+  fields: [
+    {
+      type: "string",
+      name: "title",
+      label: "Title",
+      isTitle: true,
+      required: true,
+    },
+    {
+      type: "string",
+      name: "description",
+      label: "Description",
+    },
+    {
+      type: "rich-text",
+      name: "body",
+      label: "Body",
+      isBody: true,
+      templates: [...MDXTemplates],
+    },
+  ],
+};
+
+export default defineConfig({
+  branch,
+  clientId: process.env.NEXT_PUBLIC_TINA_CLIENT_ID,
+  token: process.env.TINA_TOKEN,
+  build: {
+    outputFolder: "admin",
+    publicFolder: "static",
+  },
+  media: {
+    tina: {
+      mediaRoot: "img",
+      publicFolder: "static",
+    },
+  },
+  schema: {
+    collections: [DocsCollection, PostCollection, PagesCollection],
+  },
+  search: {
+    tina: {
+      indexerToken: process.env.SEARCH_TOKEN,
+      stopwordLanguages: ["eng"],
+    },
+    indexBatchSize: 100,
+    maxSearchIndexFieldLength: 100,
+  },
+});
