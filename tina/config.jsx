@@ -104,6 +104,30 @@ const DocsCollection = {
     },
     {
       type: "string",
+      name: "sidebar_label",
+      label: "Sidebar Label",
+      placeholder:
+        "The label that will appear in the sidebar navigation for this document.",
+      required: true,
+    },
+    {
+      type: "string",
+      name: "slug",
+      label: "Slug",
+      placeholder:
+        "Defines the URL path for the document. For example, setting slug: /custom-path makes the document available at /docs/custom-path",
+      required: true,
+    },
+    {
+      type: "number",
+      name: "sidebarPosition",
+      label: "Sidebar Position",
+      placeholder:
+        "Defines the order in which the document will appear in the sidebar.",
+      required: true,
+    },
+    {
+      type: "string",
       name: "description",
       label: "Description",
     },
@@ -121,7 +145,6 @@ const DocsCollection = {
       name: "body",
       label: "Body",
       isBody: true,
-      templates: [...MDXTemplates],
     },
   ],
 };
