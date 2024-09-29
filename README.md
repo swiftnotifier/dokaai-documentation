@@ -1,41 +1,43 @@
-# Website
+# Dokkai Docs
 
-This website is built using [Docusaurus](https://docusaurus.io/), a modern static website generator.
+This repository contains the documentation for the Dokkai project, built using [Docusaurus](https://docusaurus.io/) and integrated with [TinaCMS](https://tina.io/) for content editing. Below are the instructions on how to set up, run, and build the project locally.
 
-### Installation
+## Prerequisites
 
-```
-$ yarn
-```
+Make sure you have the following installed before proceeding:
 
-### Local Development
+- **Node.js**: Version 18 or above.
+- **npm**: Comes with Node.js.
 
-```
-$ yarn start
-```
+## Setup Instructions
 
-This command starts a local development server and opens up a browser window. Most changes are reflected live without having to restart the server.
+### 1. Clone the Repository
 
-### Build
-
-```
-$ yarn build
+```bash
+git clone https://github.com/swiftnotifier/dokaai-documentation.git
+cd dokaai-documentation
 ```
 
-This command generates static content into the `build` directory and can be served using any static contents hosting service.
-
-### Deployment
-
-Using SSH:
+## install all dependency
 
 ```
-$ USE_SSH=true yarn deploy
+npm i
 ```
 
-Not using SSH:
+## run locally
 
 ```
-$ GIT_USER=<Your GitHub username> yarn deploy
+npm run tina
 ```
 
-If you are using GitHub pages for hosting, this command is a convenient way to build the website and push to the `gh-pages` branch.
+## for build use
+
+```
+npm run build
+
+make sure to add .env file
+
+TINA_TOKEN=<your_tina_token_here>
+NEXT_PUBLIC_TINA_CLIENT_ID=<your_tina_client_id_here>
+SEARCH_TOKEN=<your_search_token_here>
+```
