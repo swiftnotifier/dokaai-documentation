@@ -1,0 +1,34 @@
+name: Development Code Improvement
+description: Create a detailed development issue for implementing a change, code improvement and refactoring
+title: '[ ✨ Refactor ] : '
+labels: ['code-improvement', 'enhancement']
+projects: ['swiftnotifier/1']
+body:
+- type: textarea
+  id: description
+  attributes:
+    label: 📝 Description
+    description: A clear and concise description of the feature or change to be implemented
+  validations:
+    required: true
+- type: textarea
+  id: acceptance-criteria
+  attributes:
+    label: ✅ Acceptance Criteria
+    description: Outline the specific criteria that need to be met for this task to be considered complete.
+  validations:
+    required: true
+- type: input
+  id: epic-link
+  attributes:
+    label: Epic Link
+    description: Link to the epic this development issue is associated with (if applicable)
+  validations:
+    required: true
+- type: input
+  id: related-issues
+  attributes:
+    label: Related Issues
+    description: Any related issues or dependencies for this development issue (if applicable)
+  validations:
+    required: false

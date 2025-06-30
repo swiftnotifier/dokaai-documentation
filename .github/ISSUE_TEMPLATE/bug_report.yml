@@ -1,0 +1,104 @@
+name: Bug report
+description: Create a detailed bug with proper replication and error message
+title: '[ 🦂 Bug ] : '
+labels: ['bug']
+projects: ['swiftnotifier/1']
+body:
+- type: textarea
+  id: description
+  attributes:
+    label: 📝 Describe the bug
+    description: A clear and concise description of what the bug is
+  validations:
+    required: true
+- type: textarea
+  id: steps-to-reproduce
+  validations:
+    required: true
+  attributes:
+    label: "🪜Steps for reproduction of bug "
+    description: "What had happened and how did you reproduced the error, please add the proper screenshot also"
+    placeholder: "1. Go to '...' 2. Click on '....' 3. Scroll down to '....' 4. See the error or 1. Go to '...' 2. Check this api '....' 3. Scroll down to '....' 4. See the error"
+- type: textarea
+  id: expected-behavior
+  validations:
+    required: false
+  attributes:
+    label: "👍 Expected behavior"
+    description: "What did you think should happen?"
+    placeholder: "It should ..."
+- type: textarea
+  id: logs
+  validations:
+    required: true
+  attributes:
+    label: "📑 Relevant log output"
+    description: Please copy and paste any relevant log output. This will be automatically formatted into code, so no need for backticks.
+    render: shell
+- type: textarea
+  id: additional-context
+  validations:
+    required: false
+  attributes:
+    label: "📃 Provide any additional context for the Bug or upload screenshot if any"
+    description: "Add any other context about the problem here."
+    placeholder: "It actually ..."
+- type: dropdown
+  id: frequency
+  attributes:
+    label: Frequency
+    description: How often does this issue occur?
+    options:
+    - One-time occurrence
+    - Occasional
+    - Frequent
+  validations:
+    required: true
+- type: dropdown
+  id: service-type
+  attributes:
+    label: Select scope
+    description: How often does this issue occur?
+    options:
+    - Frontend
+    - Backend
+    - Build
+    - Infra
+  validations:
+    required: true
+- type: dropdown
+  id: browsers
+  attributes:
+    label: "[FRONTEND] ]Browser environment"
+    description: 'If frontend: What browsers are you seeing the problem on?'
+    multiple: true
+    options:
+    - Firefox
+    - Chrome
+    - Safari
+    - Microsoft Edge
+  validations:
+    required: false
+- type: dropdown
+  id: backend
+  attributes:
+    label: "[BACKEND] Select areas"
+    description: If backend what areas are impacted
+    multiple: true
+    options:
+    - Auth
+    - External Vendor
+    - CI-CD
+    - API Services
+    - Database
+    - Redis
+    - Workers
+  validations:
+    required: false
+- type: input
+  id: related-issue
+  attributes:
+    label: Related Issue
+    description: Is this issue related to any other existing issue? If yes, please provide the issue number or a brief description.
+  validations:
+    required: false
