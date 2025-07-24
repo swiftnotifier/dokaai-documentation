@@ -29,11 +29,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Install dependencies
-        run: yarn
+        run: npm
       # - name: Generate docs directory
       #   run: ./scripts/syncdocs
       - name: Build
-        run: yarn build
+        run: npm build
       # - name: Setup Pages
       #   uses: actions/configure-pages@v4
       - name: Build with Jekyll
