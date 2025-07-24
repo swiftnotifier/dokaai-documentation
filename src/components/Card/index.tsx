@@ -20,7 +20,7 @@ const Card: React.FC<CardProps> = ({
     <div className={`border p-6 rounded-lg shadow-md bg-[${bgColor}]`}>
       {icon && (
         <img
-          src="/img/commonIcon.svg"
+          src="/dokaai-documentation/img/commonIcon.svg"
           alt="Common Icon"
           className="w-8 h-8 mb-3"
         />

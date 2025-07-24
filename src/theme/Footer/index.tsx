@@ -22,8 +22,8 @@ export default function FooterWrapper(props: Props): JSX.Element {
                 <img
                   src={
                     colorMode == "dark"
-                      ? "/img/dokkai-smile-light.svg"
-                      : "/img/dokkai-smile-dark.svg"
+                      ? "/dokaai-documentation/img/dokkai-smile-light.svg"
+                      : "/dokaai-documentation/img/dokkai-smile-dark.svg"
                   }
                   alt="Smile Icon"
                 />
@@ -134,16 +134,16 @@ export default function FooterWrapper(props: Props): JSX.Element {
               </span>
               <div className="flex mt-4 space-x-4 sm:justify-center lg:mt-0 ">
                 <div className="w-9 h-9 rounded-full  flex justify-center items-center hover:bg-[#ceffef] hover:cursor-pointer">
-                  <img src="/img/X-icon.svg" alt="X Icon" />
+                  <img src="/dokaai-documentation/img/X-icon.svg" alt="X Icon" />
                 </div>
                 <div className="w-9 h-9 rounded-full  flex justify-center items-center hover:bg-[#ceffef] hover:cursor-pointer">
-                  <img src="/img/YT-icon.svg" alt="Linkdin Icon" />
+                  <img src="/dokaai-documentation/img/YT-icon.svg" alt="Linkdin Icon" />
                 </div>
                 <div className="w-9 h-9 rounded-full  flex justify-center items-center hover:bg-[#ceffef] hover:cursor-pointer">
-                  <img src="/img/InstaIcon.svg" alt="Linkdin Icon" />
+                  <img src="/dokaai-documentation/img/InstaIcon.svg" alt="Linkdin Icon" />
                 </div>
                 <div className="w-9 h-9 rounded-full flex justify-center items-center hover:bg-[#ceffef] hover:cursor-pointer">
-                  <img src="/img/Linkdin.svg" alt="Linkdin Icon" />
+                  <img src="/dokaai-documentation/img/Linkdin.svg" alt="Linkdin Icon" />
                 </div>
               </div>
             </div>
