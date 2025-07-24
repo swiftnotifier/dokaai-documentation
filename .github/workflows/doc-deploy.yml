@@ -30,7 +30,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Install dependencies
-        run: npm
+        run: npm install
       - name: Create .env file from DOKAAI_DOC_SECRET
         run: echo "${{ secrets.DOKAAI_DOC_ENV }}" > .env
       - name: Build
