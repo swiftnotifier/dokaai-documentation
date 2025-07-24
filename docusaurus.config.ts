@@ -38,7 +38,7 @@ const config: Config = {
       {
         docs: {
           sidebarPath: "./sidebars.ts",
-          editUrl: "http://localhost:3000" + "/admin/#/collections/doc",
+          editUrl: "http://localhost:4001" + "/admin/#/collections/doc",
         },
         blog: {
           showReadingTime: true,
