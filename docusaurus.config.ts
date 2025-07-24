@@ -7,10 +7,10 @@ const config: Config = {
   title: "Dokkai Docs",
   tagline: "Dinosaurs are cool",
   favicon: "img/dokkai.svg",
-  url: "https://swiftnotifier.github.io/",
+  url: 'https://swiftnotifier.github.io',
   baseUrl: "/dokaai-documentation",
-  organizationName: "DOKAAI",
-  projectName: "Docs",
+  organizationName: "swiftnotifier",
+  projectName: "dokaai-documentation",
   onBrokenLinks: "warn",
   onBrokenMarkdownLinks: "warn",
   i18n: {
