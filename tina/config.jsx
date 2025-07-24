@@ -185,11 +185,11 @@ export default defineConfig({
     outputFolder: "admin",
     publicFolder: "static",
   },
-  admin: {
-    auth: {
-      useLocalAuth: process.env.TINA_PUBLIC_IS_LOCAL === 'true',
-    },
-  },
+  //  admin: {
+  //   auth: {
+  //     useLocalAuth: process.env.TINA_PUBLIC_IS_LOCAL === 'true',
+  //   },
+  // },
   media: {
     tina: {
       mediaRoot: "img",
