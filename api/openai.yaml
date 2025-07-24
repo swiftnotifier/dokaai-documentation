@@ -1,59 +1,121 @@
-openapi: 3.0.3
+openapi: 3.0.0
 info:
-  title: OpenAI API
-  description: This is the OpenAI API that provides access to language models for generating text completions.
+  title: Dokaai Multi Service Application
+  description: ''
   version: 1.0.0
-  contact:
-    name: OpenAI Support
-    url: https://openai.com
-    email: support@openai.com
-servers:
-  - url: https://api.openai.com/v1
-    description: OpenAI API server
-
-components:
-  securitySchemes:
-    ApiKeyAuth:
-      type: apiKey
-      in: header
-      name: Authorization
-      description: "Bearer {your_api_key}"
-
-security:
-  - ApiKeyAuth: []
-
+tags:
+- name: Member
+  description: ''
+- name: OPM Service
+  description: ''
 paths:
-  /completions:
-    post:
-      summary: Create a text completion
-      description: Generates a text completion using the specified model.
-      operationId: createCompletion
-      requestBody:
+  '{{members-module}}/me/orgs':
+    get:
+      summary: Get all organization of members
+      description: This gives the list of all the organization the account user is part of.
+      tags:
+      - Members
+      parameters:
+      - name: x-access-token
+        in: header
+        description: ''
         required: true
+        schema:
+          type: string
+      requestBody:
         content:
           application/json:
             schema:
               type: object
-              properties:
-                model:
-                  type: string
-                  description: The model to use for generating the completion.
-                  example: gpt-4
-                prompt:
-                  type: string
-                  description: The input text prompt for generating a completion.
-                  example: "Translate the following English text to French."
-                max_tokens:
-                  type: integer
-                  description: The maximum number of tokens to generate in the completion.
-                  example: 100
-                temperature:
-                  type: number
-                  description: Sampling temperature to use, between 0 and 1. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic.
-                  example: 0.7
+              properties: {}
       responses:
-        "200":
-          description: Successful response, returns a completion.
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - status
+                - message
+                - data
+                - metaData
+                - error
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  message:
+                    type: string
+                    example: Organization list fetched successfully
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      required:
+                      - id
+                      - name
+                      - description
+                      - workspaceId
+                      properties:
+                        id:
+                          type: string
+                          example: 0d60ff40-6501-4a05-af5e-bfc9f19896d5
+                        name:
+                          type: string
+                          example: Nthgram
+                        description:
+                          type: string
+                          example: nthgram
+                        workspaceId:
+                          type: string
+                          example: 1R5SDEMR
+                  metaData:
+                    type: object
+                    required:
+                    - page
+                    - hasMore
+                    - pageSize
+                    - count
+                    properties:
+                      page:
+                        type: integer
+                        example: 1
+                      hasMore:
+                        type: boolean
+                        example: false
+                      pageSize:
+                        type: integer
+                        example: 100
+                      count:
+                        type: integer
+                        example: 5
+                  error:
+                    type: 'null'
+        '404':
+          description: Failure
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+
+  '{{members-module}}/me/profile':
+    get:
+      summary: Get profile of current member
+      description: Returns basic profile information of the authenticated user.
+      tags:
+      - Members
+      parameters:
+      - name: x-access-token
+        in: header
+        description: Authentication token
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: User profile
           content:
             application/json:
               schema:
@@ -61,48 +123,10 @@ paths:
                 properties:
                   id:
                     type: string
-                    description: Unique ID of the completion response.
-                  object:
+                    example: user-123
+                  email:
                     type: string
-                    description: The object type, e.g., "text_completion".
-                  created:
-                    type: integer
-                    description: Timestamp of the completion creation.
-                  model:
+                    example: user@example.com
+                  name:
                     type: string
-                    description: The model used for the completion.
-                  choices:
-                    type: array
-                    items:
-                      type: object
-                      properties:
-                        text:
-                          type: string
-                          description: The generated completion text.
-                        index:
-                          type: integer
-                          description: The index of the completion.
-                        logprobs:
-                          type: object
-                          description: Log probabilities of the completion tokens.
-                        finish_reason:
-                          type: string
-                          description: The reason the completion finished, e.g., "length".
-                  usage:
-                    type: object
-                    properties:
-                      prompt_tokens:
-                        type: integer
-                        description: The number of tokens used for the input prompt.
-                      completion_tokens:
-                        type: integer
-                        description: The number of tokens used in the generated completion.
-                      total_tokens:
-                        type: integer
-                        description: The total number of tokens used (prompt + completion).
-        "400":
-          description: Invalid request
-        "401":
-          description: Unauthorized, invalid API key
-        "500":
-          description: Internal server error
+                    example: John Doe

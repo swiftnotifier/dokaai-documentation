@@ -2,7 +2,7 @@ import { defineConfig } from "tinacms";
 import { MDXTemplates } from "../src/theme/template";
 import { docusaurusDate } from "../util";
 
-const branch = process.env.VERCEL_GIT_COMMIT_REF || process.env.HEAD || "main";
+const branch = process.env.VERCEL_GIT_COMMIT_REF || process.env.HEAD || "dev";
 
 const PostCollection = {
   name: "post",
