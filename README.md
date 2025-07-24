@@ -41,3 +41,6 @@ TINA_TOKEN=<your_tina_token_here>
 NEXT_PUBLIC_TINA_CLIENT_ID=<your_tina_client_id_here>
 SEARCH_TOKEN=<your_search_token_here>
 ```
+
+
+// test
