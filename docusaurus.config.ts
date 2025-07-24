@@ -38,7 +38,7 @@ const config: Config = {
       {
         docs: {
           sidebarPath: "./sidebars.ts",
-          editUrl: "https://swiftnotifier.github.io/dokaai-documentation/admin/#/collections/doc",
+          editUrl: "https://swiftnotifier.github.io/dokaai-documentation/admin",
         },
         blog: {
           showReadingTime: true,
@@ -47,7 +47,7 @@ const config: Config = {
             xslt: true,
           },
           editUrl:
-            "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/",
+            "https://swiftnotifier.github.io/dokaai-documentation/admin",
           onInlineTags: "warn",
           onInlineAuthors: "warn",
           onUntruncatedBlogPosts: "warn",
