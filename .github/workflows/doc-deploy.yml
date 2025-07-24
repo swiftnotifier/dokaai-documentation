@@ -4,7 +4,7 @@ name: Deploy Jekyll with GitHub Pages dependencies preinstalled
 on:
   # Runs on pushes targeting the default branch
   push:
-    branches: ["master"]
+    branches: ["main"]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -14,6 +14,7 @@ permissions:
   contents: read
   pages: write
   id-token: write
+
 
 # Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
 # However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
@@ -30,10 +31,10 @@ jobs:
         uses: actions/checkout@v4
       - name: Install dependencies
         run: npm
-      # - name: Generate docs directory
-      #   run: ./scripts/syncdocs
+      - name: Create .env file from DOKAAI_DOC_SECRET
+        run: echo "${{ secrets.DOKAAI_DOC_ENV }}" > .env
       - name: Build
-        run: npm build
+        run: npm run build
       # - name: Setup Pages
       #   uses: actions/configure-pages@v4
       - name: Build with Jekyll
