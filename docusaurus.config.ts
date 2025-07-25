@@ -7,10 +7,10 @@ const config: Config = {
   title: "Dokkai Docs",
   tagline: "Dinosaurs are cool",
   favicon: "img/dokkai.svg",
-  url: "https://your-docusaurus-site.example.com",
-  baseUrl: "/",
-  organizationName: "Dokkai",
-  projectName: "Docs",
+  url: 'https://swiftnotifier.github.io',
+  baseUrl: "/dokaai-documentation",
+  organizationName: "swiftnotifier",
+  projectName: "dokaai-documentation",
   onBrokenLinks: "warn",
   onBrokenMarkdownLinks: "warn",
   i18n: {
@@ -38,7 +38,7 @@ const config: Config = {
       {
         docs: {
           sidebarPath: "./sidebars.ts",
-          editUrl: "http://localhost:4001" + "/admin/#/collections/doc",
+          editUrl: "https://swiftnotifier.github.io/dokaai-documentation/admin",
         },
         blog: {
           showReadingTime: true,
@@ -47,7 +47,7 @@ const config: Config = {
             xslt: true,
           },
           editUrl:
-            "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/",
+            "https://swiftnotifier.github.io/dokaai-documentation/admin",
           onInlineTags: "warn",
           onInlineAuthors: "warn",
           onUntruncatedBlogPosts: "warn",

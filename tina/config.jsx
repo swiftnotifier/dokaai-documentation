@@ -2,7 +2,7 @@ import { defineConfig } from "tinacms";
 import { MDXTemplates } from "../src/theme/template";
 import { docusaurusDate } from "../util";
 
-const branch = process.env.VERCEL_GIT_COMMIT_REF || process.env.HEAD || "dev";
+const branch = process.env.GITHUB_BRANCH || process.env.VERCEL_GIT_COMMIT_REF || process.env.HEAD || "dev";
 
 const PostCollection = {
   name: "post",
@@ -182,10 +182,11 @@ export default defineConfig({
   clientId: process.env.NEXT_PUBLIC_TINA_CLIENT_ID,
   token: process.env.TINA_TOKEN,
   build: {
+    basePath: "dokaai-documentation",
     outputFolder: "admin",
     publicFolder: "static",
   },
-  admin: {
+   admin: {
     auth: {
       useLocalAuth: process.env.TINA_PUBLIC_IS_LOCAL === 'true',
     },
