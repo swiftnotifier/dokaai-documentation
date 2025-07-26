@@ -176,7 +176,33 @@ const PagesCollection = {
     },
   ],
 };
-
+const IntegrationCollection = {
+  name: "integrations",
+  label: "Integrations",
+  path: "integrations",
+  format: "mdx",
+ fields: [
+    {
+      type: "string",
+      name: "title",
+      label: "Title",
+      isTitle: true,
+      required: true,
+    },
+    {
+      type: "string",
+      name: "description",
+      label: "Description",
+    },
+    {
+      type: "rich-text",
+      name: "body",
+      label: "Body",
+      isBody: true,
+      templates: [...MDXTemplates],
+    },
+  ],
+};
 export default defineConfig({
   branch,
   clientId: process.env.NEXT_PUBLIC_TINA_CLIENT_ID,
@@ -198,7 +224,7 @@ export default defineConfig({
     },
   },
   schema: {
-    collections: [DocsCollection, PostCollection, PagesCollection],
+    collections: [DocsCollection, PostCollection, PagesCollection,IntegrationCollection],
   },
   search: {
     tina: {

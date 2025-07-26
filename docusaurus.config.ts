@@ -29,6 +29,16 @@ const config: Config = {
         },
       };
     },
+    [
+    '@docusaurus/plugin-content-docs',
+    {
+      id: 'integrations', 
+      path: 'integrations',
+      routeBasePath: 'integrations',
+      sidebarPath: require.resolve('./sidebarsIntegration.ts'),
+      editUrl: 'https://swiftnotifier.github.io/dokaai-documentation/admin',
+    },
+  ],
   ],
 
   presets: [
@@ -69,11 +79,7 @@ const config: Config = {
           {
             spec: "https://redocly.github.io/redoc/openapi.yaml",
             route: "/openapi/",
-          },
-          {
-            spec: "api/openai.yaml",
-            route: "/rest-api",
-          },
+          }
         ],
         theme: {
           primaryColor: "#1890ff",
@@ -87,18 +93,13 @@ const config: Config = {
     navbar: {
       logo: {
         alt: "My Site Logo",
-        src: "img/dokkai.svg",
+        src: "img/Logo.png",
       },
       items: [
-        { to: "/docs/", label: "Home", position: "left" },
-        { to: "/rest-api", label: "Rest API", position: "left" },
-        {
-          to: "/api/",
-          label: "API Playground",
-          position: "left",
+        { to: "/docs/", label: "Documentation", position: "left" },
+        { to: "/integrations", label: "Integrations", position: "left" },
+        { to: "/api/", label: "API Reference", position: "left",
         },
-        { to: "/sdk-libraries", label: "SDK Libraries", position: "left" },
-        { to: "/changelog", label: "Changelog", position: "left" },
         { to: "/blog", label: "Blog", position: "left" },
       ],
     },
