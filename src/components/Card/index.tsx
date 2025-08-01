@@ -28,9 +28,9 @@ const Card: React.FC<CardProps> = ({
       <div>
         <h3 className="text-lg font-bold text-black">{title}</h3>
         <p className="text-black">{description}</p>
-        <button className="border border-[#389F7F] p-1 w-32 h-8 rounded-lg  hover:bg-gray-400 mt-1 bg-transparent">
-          <Link href={link} className="hover:no-underline text-[#389F7F]">
-            Learn More →
+        <button className="border border-[#389F7F] p-1 w-32 h-8 rounded-lg hover:bg-[#E2F3EF] mt-1 bg-transparent">
+          <Link href={link} className="hover:no-underline text-[#389F7F] flex items-center gap-1 ml-4">
+            <span className="font-medium">Learn More</span><img src="/dokaai-documentation/img/arrow-right.svg" alt="ArrowIcon" className="w-4 h-4"/>
           </Link>
         </button>
       </div>
