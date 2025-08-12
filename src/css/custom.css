@@ -93,3 +93,29 @@
   --ifm-color-primary-lightest: #4fddbf;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 }
+.DocSearch-Button {
+  width: 500px !important;
+  max-width: none !important;
+  justify-content: flex-start !important; 
+}
+.table-of-contents__left-border {
+  border-left: 1px solid var(--ifm-toc-border-color);
+}
+
+.table-of-contents__link--active {
+  color: #00b36b !important; 
+  font-weight: 600;
+  position: relative;
+}
+
+.table-of-contents__link--active::before {
+  content: '';
+  position: absolute;
+  left: -16px; 
+  height: calc(100% + 6px); 
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background-color: #00b36b;
+}
+
