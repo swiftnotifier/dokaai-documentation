@@ -108,6 +108,10 @@ const config: Config = {
         },
         { to: "/blog", label: "Blog", position: "left" },
         {
+        type: 'search',
+        position: 'left', // or 'left'
+       },
+        {
         type: 'html',
         position: 'right',
         value: `
