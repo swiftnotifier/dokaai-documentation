@@ -1,6 +1,73 @@
+/* Base styles */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@import './navigation.css';
+
+
+/* Content area - this will contain your actual content */
+.main-wrapper > div {
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 1rem;
+  box-sizing: border-box;
+}
+
+/* Navbar - Full width with contained content */
+.navbar {
+  position: sticky;
+  width: 100%;
+  z-index: 1000;
+  background: var(--ifm-navbar-background-color);
+}
+
+
+/* Main content */
+.main-wrapper {
+  padding: 1rem 0;
+}
+
+/* Sidebar */
+.docs-wrapper {
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+/* Footer */
+.footer {
+  background: var(--ifm-footer-background-color);
+  color: var(--ifm-footer-color);
+  padding: 2rem 0;
+  margin-top: auto;
+  width: 100%;
+  position: relative;
+  left: 0;
+  right: 0;
+}
+
+.footer .container {
+  max-width: 1440px;
+  width: 100%;
+}
+
+/* Responsive adjustments */
+@media (max-width: 996px) {
+  .main-wrapper {
+    padding: 2rem 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .main-wrapper {
+    padding: 1.5rem 1rem;
+  }
+}
+
+/* Ensure no horizontal scroll */
+* {
+  box-sizing: border-box;
+}
 
 :root {
   --ifm-color-primary: #2e8555;
@@ -25,3 +92,29 @@
   --ifm-color-primary-lightest: #4fddbf;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 }
+.DocSearch-Button {
+  width: 500px !important;
+  max-width: none !important;
+  justify-content: flex-start !important; 
+}
+.table-of-contents__left-border {
+  border-left: 1px solid var(--ifm-toc-border-color);
+}
+
+.table-of-contents__link--active {
+  color: #00b36b !important; 
+  font-weight: 600;
+  position: relative;
+}
+
+.table-of-contents__link--active::before {
+  content: '';
+  position: absolute;
+  left: -16px; 
+  height: calc(100% + 6px); 
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background-color: #00b36b;
+}
+

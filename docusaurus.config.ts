@@ -2,6 +2,10 @@ import { themes as prismThemes } from "prism-react-renderer";
 import type { Config } from "@docusaurus/types";
 import type * as Preset from "@docusaurus/preset-classic";
 import type * as Redocusaurus from "redocusaurus";
+import dotenv from 'dotenv';
+dotenv.config();
+const MAIN_URL = process.env.NEXT_PUBLIC_MAIN_WEBSITE_URL;
+const MARKETING_URL = process.env.NEXT_PUBLIC_MARKETING_WEBSITE_URL;
 
 const config: Config = {
   title: "Dokkai Docs",
@@ -29,6 +33,16 @@ const config: Config = {
         },
       };
     },
+    [
+    '@docusaurus/plugin-content-docs',
+    {
+      id: 'integrations', 
+      path: 'integrations',
+      routeBasePath: 'integrations',
+      sidebarPath: require.resolve('./sidebarsIntegration.ts'),
+      editUrl: 'https://swiftnotifier.github.io/dokaai-documentation/admin',
+    },
+  ],
   ],
 
   presets: [
@@ -37,6 +51,8 @@ const config: Config = {
       /** @type {import('@docusaurus/preset-classic').Options} */
       {
         docs: {
+          path: 'docs',
+          routeBasePath: "/",
           sidebarPath: "./sidebars.ts",
           editUrl: "https://swiftnotifier.github.io/dokaai-documentation/admin",
         },
@@ -69,11 +85,7 @@ const config: Config = {
           {
             spec: "https://redocly.github.io/redoc/openapi.yaml",
             route: "/openapi/",
-          },
-          {
-            spec: "api/openai.yaml",
-            route: "/rest-api",
-          },
+          }
         ],
         theme: {
           primaryColor: "#1890ff",
@@ -87,19 +99,34 @@ const config: Config = {
     navbar: {
       logo: {
         alt: "My Site Logo",
-        src: "img/dokkai.svg",
+        src: "img/Logo.png",
       },
       items: [
-        { to: "/docs/", label: "Home", position: "left" },
-        { to: "/rest-api", label: "Rest API", position: "left" },
-        {
-          to: "/api/",
-          label: "API Playground",
-          position: "left",
+        { to: "/", label: "Documentation", position: "left" },
+        { to: "/integrations", label: "Integrations", position: "left" },
+        { to: "/api/", label: "API Reference", position: "left",
         },
-        { to: "/sdk-libraries", label: "SDK Libraries", position: "left" },
-        { to: "/changelog", label: "Changelog", position: "left" },
         { to: "/blog", label: "Blog", position: "left" },
+        {
+        type: 'search',
+        position: 'left', // or 'left'
+       },
+        {
+        type: 'html',
+        position: 'right',
+        value: `
+        <a href="${MARKETING_URL}/contact" 
+          target="_blank" rel="noopener noreferrer"
+          style="padding: 6px 12px; border: 1px solid #000; border-radius: 6px; background: white; color: black; text-decoration: none; font-weight: 500;">
+          Request a Demo
+        </a>
+        <a href="${MAIN_URL}" 
+          target="_blank" rel="noopener noreferrer"
+          style="padding: 6px 12px; border-radius: 6px; background: black; color: white; text-decoration: none; font-weight: 500; margin-left: 10px;">
+          Try for Free
+        </a>
+        `,
+      },
       ],
     },
     algolia: {
