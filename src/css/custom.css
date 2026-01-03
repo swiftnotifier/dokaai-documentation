@@ -299,6 +299,14 @@ a:hover {
   margin: 0 auto;
 }
 
+@media (min-width: 997px) {
+  [class*="docItemContainer"] {
+    max-width: 780px;
+    margin: 0 auto;
+    width: 100%;
+  }
+}
+
 .theme-doc-sidebar-container {
   border-right: 1px solid var(--clean-border);
   background: var(--ifm-background-color);
