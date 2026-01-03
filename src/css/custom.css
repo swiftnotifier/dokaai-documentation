@@ -308,6 +308,9 @@ a:hover {
   padding: 0.8rem 0.5rem;
   --doka-menu-nested-indent: 0.65rem;
   --doka-menu-link-padding-x: 0.9rem;
+  --doka-menu-line-width: 1px;
+  --doka-menu-line-inset: 0.35rem;
+  --doka-menu-active-line-inset: 0.45rem;
 }
 
 .menu__link {
@@ -328,11 +331,6 @@ a:hover {
   background: transparent;
   border-left: 0;
   padding-left: var(--doka-menu-link-padding-x);
-}
-
-.menu__link--active[aria-current="page"] {
-  color: var(--ifm-color-primary);
-  font-weight: 500;
 }
 
 .menu__link[aria-current="page"] {
@@ -359,45 +357,59 @@ a:hover {
   content: "";
   position: absolute;
   left: 0;
-  top: 0.35rem;
-  bottom: 0.35rem;
-  width: 1px;
+  top: var(--doka-menu-line-inset);
+  bottom: var(--doka-menu-line-inset);
+  width: var(--doka-menu-line-width);
   background: var(--clean-border);
   border-radius: 999px;
 }
 
-.theme-doc-sidebar-item-link-level-2,
-.theme-doc-sidebar-item-category-level-2 {
+:is(
+    .theme-doc-sidebar-item-link-level-2,
+    .theme-doc-sidebar-item-category-level-2
+  ) {
   --doka-menu-indent-from-line: calc(1 * var(--doka-menu-nested-indent));
 }
 
-.theme-doc-sidebar-item-link-level-3,
-.theme-doc-sidebar-item-category-level-3 {
+:is(
+    .theme-doc-sidebar-item-link-level-3,
+    .theme-doc-sidebar-item-category-level-3
+  ) {
   --doka-menu-indent-from-line: calc(2 * var(--doka-menu-nested-indent));
 }
 
-.theme-doc-sidebar-item-link-level-4,
-.theme-doc-sidebar-item-category-level-4 {
+:is(
+    .theme-doc-sidebar-item-link-level-4,
+    .theme-doc-sidebar-item-category-level-4
+  ) {
   --doka-menu-indent-from-line: calc(3 * var(--doka-menu-nested-indent));
 }
 
-.theme-doc-sidebar-item-link-level-5,
-.theme-doc-sidebar-item-category-level-5 {
+:is(
+    .theme-doc-sidebar-item-link-level-5,
+    .theme-doc-sidebar-item-category-level-5
+  ) {
   --doka-menu-indent-from-line: calc(4 * var(--doka-menu-nested-indent));
 }
 
-.theme-doc-sidebar-item-link-level-6,
-.theme-doc-sidebar-item-category-level-6 {
+:is(
+    .theme-doc-sidebar-item-link-level-6,
+    .theme-doc-sidebar-item-category-level-6
+  ) {
   --doka-menu-indent-from-line: calc(5 * var(--doka-menu-nested-indent));
 }
 
-.theme-doc-sidebar-item-link-level-7,
-.theme-doc-sidebar-item-category-level-7 {
+:is(
+    .theme-doc-sidebar-item-link-level-7,
+    .theme-doc-sidebar-item-category-level-7
+  ) {
   --doka-menu-indent-from-line: calc(6 * var(--doka-menu-nested-indent));
 }
 
-.theme-doc-sidebar-item-link-level-8,
-.theme-doc-sidebar-item-category-level-8 {
+:is(
+    .theme-doc-sidebar-item-link-level-8,
+    .theme-doc-sidebar-item-category-level-8
+  ) {
   --doka-menu-indent-from-line: calc(7 * var(--doka-menu-nested-indent));
 }
 
@@ -405,9 +417,9 @@ a:hover {
   content: "";
   position: absolute;
   left: calc(-1 * var(--doka-menu-indent-from-line, 0rem));
-  top: 0.45rem;
-  bottom: 0.45rem;
-  width: 1px;
+  top: var(--doka-menu-active-line-inset);
+  bottom: var(--doka-menu-active-line-inset);
+  width: var(--doka-menu-line-width);
   background: var(--ifm-color-primary);
   border-radius: 999px;
 }
@@ -442,7 +454,7 @@ a:hover {
 }
 
 .menu__caret {
-  padding: 0.55rem 0.9rem;
+  padding: 0.55rem var(--doka-menu-link-padding-x);
 }
 
 .menu__caret::before {
@@ -674,6 +686,14 @@ textarea:focus {
 }
 
 /* DocSearch */
+.DocSearch-Container {
+  z-index: 2000 !important;
+}
+
+.DocSearch-Modal {
+  z-index: 2001 !important;
+}
+
 .DocSearch-Button {
   width: 100% !important;
   max-width: 100% !important;
