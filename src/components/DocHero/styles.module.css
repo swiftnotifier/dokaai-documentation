@@ -1,0 +1,35 @@
+.hero {
+  background: linear-gradient(135deg, rgba(15, 157, 118, 0.08), rgba(14, 116, 144, 0.08));
+  border: 1px solid var(--clean-border);
+  border-radius: var(--clean-radius-lg);
+  padding: 2rem;
+  margin: 1.5rem 0 2rem;
+}
+
+.eyebrow {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--clean-muted);
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.title {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--ifm-heading-color);
+  margin: 0 0 0.75rem;
+}
+
+.text {
+  font-size: 1.05rem;
+  color: var(--clean-muted-strong);
+  margin: 0 0 1.25rem;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}

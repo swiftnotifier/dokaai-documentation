@@ -9,4 +9,341 @@ tags:
   - tutorials
 ---
 
-# Tutorials Page
+import Button from "@site/src/components/Button";
+import Card from "@site/src/components/Card";
+import Tag from "@site/src/components/Tag";
+import DocHero from "@site/src/components/DocHero";
+import DocGrid from "@site/src/components/DocGrid";
+import DocCard from "@site/src/components/DocCard";
+import DocMedia from "@site/src/components/DocMedia";
+import CodeSandbox from "@site/src/components/CodeSandbox";
+import VideoEmbed from "@site/src/components/VideoEmbed";
+import CodeBlockPanel from "@site/src/components/CodeBlockPanel";
+import DocColumns from "@site/src/components/DocColumns";
+import {
+  Table,
+  TableHeader,
+  TableBody,
+  TableRow,
+  TableHead,
+  TableCell,
+} from "@site/src/components/ui/table";
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+# Tutorials Reference Page
+
+Use this page as a live reference for writing docs. It shows the building blocks, the styles, and how to combine components.
+
+---
+
+## Hero
+
+<DocHero
+  eyebrow="Getting Started"
+  title="Build your first notification flow"
+  text="Learn how to send a message, render it in-app, and track delivery in minutes."
+>
+  <Button tone="primary" variant="contained">Start the tutorial</Button>
+  <Button tone="secondary" variant="outlined">View API reference</Button>
+</DocHero>
+
+---
+
+## Typography (Global Classes)
+
+<div className="doc-body">
+  <div className="doc-h1">.doc-h1 — Page title example</div>
+  <div className="doc-h2">.doc-h2 — Section title example</div>
+  <div className="doc-h3">.doc-h3 — Subsection title example</div>
+  <div className="doc-h4">.doc-h4 — Minor heading example</div>
+  <p className="doc-p">
+    .doc-p — This is a paragraph style used for standard body copy. It balances
+    readability, line height, and color for documentation text.
+  </p>
+</div>
+
+---
+
+## Buttons
+
+<DocGrid columns={2}>
+  <div>
+    <Button tone="primary" variant="contained">Primary Contained</Button>
+  </div>
+  <div>
+    <Button tone="primary" variant="outlined">Primary Outlined</Button>
+  </div>
+  <div>
+    <Button tone="secondary" variant="contained">Secondary Contained</Button>
+  </div>
+  <div>
+    <Button tone="secondary" variant="outlined">Secondary Outlined</Button>
+  </div>
+</DocGrid>
+
+---
+
+## Chips / Tags
+
+<DocGrid columns={2}>
+  <div>
+    <Tag label="stable" />
+    <Tag label="beta" className="ml-2" />
+  </div>
+  <div>
+    <Tag label="clickable" href="/tags/dokaai" />
+  </div>
+</DocGrid>
+
+---
+
+## Multi-Tab Code Blocks
+
+<Tabs>
+  <TabItem value="node" label="Node.js">
+
+<CodeBlockPanel title="send.js" language="js">
+{`const dokaai = require("@dokaai/sdk");
+
+dokaai.send({
+  subscriberId: "user_123",
+  workflowId: "welcome",
+  payload: { name: "Ava" },
+});`}
+</CodeBlockPanel>
+
+  </TabItem>
+  <TabItem value="python" label="Python">
+
+<CodeBlockPanel title="send.py" language="python">
+{`from dokaai import client
+
+client.send(
+    subscriber_id="user_123",
+    workflow_id="welcome",
+    payload={"name": "Ava"}
+)`}
+</CodeBlockPanel>
+
+  </TabItem>
+  <TabItem value="curl" label="cURL">
+
+<CodeBlockPanel title="send.sh" language="bash">
+{`curl -X POST https://api.dokaai.com/v1/send \\
+  -H "Authorization: Bearer $DOKAAI_API_KEY" \\
+  -H "Content-Type: application/json" \\
+  -d '{"subscriberId":"user_123","workflowId":"welcome","payload":{"name":"Ava"}}'`}
+</CodeBlockPanel>
+
+  </TabItem>
+</Tabs>
+
+---
+
+## Code Blocks
+
+<CodeBlockPanel title="types.ts" language="ts">
+{`interface Subscriber {
+  id: string;
+  email: string;
+  timezone?: string;
+}`}
+</CodeBlockPanel>
+
+<CodeBlockPanel title="payload.json" language="json">
+{`{
+  "subscriberId": "user_123",
+  "workflowId": "welcome",
+  "payload": {
+    "name": "Ava",
+    "plan": "pro"
+  }
+}`}
+</CodeBlockPanel>
+
+---
+
+## Code Sandbox (Online-style Snippet)
+
+<CodeSandbox
+  title="Try it in the Playground"
+  action={<Button tone="secondary" variant="outlined" size="sm">Run</Button>}
+>
+
+<CodeBlockPanel title="playground.js" language="js">
+{`const inbox = await dokaai.inbox.get({
+  subscriberId: "user_123",
+  environment: "dev"
+});
+
+console.log(inbox.unreadCount);`}
+</CodeBlockPanel>
+
+</CodeSandbox>
+
+---
+
+## Columns / Grid Layout
+
+<DocColumns>
+  <div>
+    ### Left column
+    Use this for step-by-step guides, lists, or explainer text.
+  </div>
+  <div>
+    ### Right column
+    Use this for code, tips, or supporting visuals.
+  </div>
+</DocColumns>
+
+---
+
+## Cards with Images
+
+<DocGrid columns={3}>
+  <DocCard
+    title="Getting Started"
+    text="Set up your first workflow in minutes."
+    imageSrc="/img/undraw_docusaurus_mountain.svg"
+    imageAlt="Docs thumbnail"
+    actions={<Button tone="primary" variant="outlined">Learn more</Button>}
+  />
+  <DocCard
+    title="Inbox UI"
+    text="Embed the Inbox component in your app."
+    imageSrc="/img/undraw_docusaurus_react.svg"
+    imageAlt="Product thumbnail"
+    actions={<Button tone="primary" variant="outlined">View component</Button>}
+  />
+  <DocCard
+    title="Integrations"
+    text="Connect providers for delivery."
+    imageSrc="/img/undraw_docusaurus_tree.svg"
+    imageAlt="Integrations thumbnail"
+    actions={<Button tone="primary" variant="outlined">Browse providers</Button>}
+  />
+</DocGrid>
+
+---
+
+## Image Handling
+
+Markdown image:
+
+![Dokaai illustration](/img/undraw_docusaurus_mountain.svg)
+
+Figure with caption:
+
+<DocMedia
+  src="/img/undraw_docusaurus_tree.svg"
+  alt="Hero preview"
+  caption="A full-width image with a caption."
+/>
+
+---
+
+## Tables
+
+Markdown table:
+
+| Feature | Description | Status |
+| --- | --- | --- |
+| Inbox | In-app delivery | Stable |
+| SMS | SMS messaging | Beta |
+| Digest | Batch delivery | Stable |
+
+HTML table with custom styling:
+
+<Table>
+  <TableHeader>
+    <TableRow>
+      <TableHead>Plan</TableHead>
+      <TableHead>Limit</TableHead>
+      <TableHead>Notes</TableHead>
+    </TableRow>
+  </TableHeader>
+  <TableBody>
+    <TableRow>
+      <TableCell>Free</TableCell>
+      <TableCell>1,000 events</TableCell>
+      <TableCell>Best for testing</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>Pro</TableCell>
+      <TableCell>100,000 events</TableCell>
+      <TableCell>Advanced routing</TableCell>
+    </TableRow>
+  </TableBody>
+</Table>
+
+---
+
+## Blockquote
+
+> Use blockquotes for callouts, warnings, or small emphasis without turning it into a full alert.
+
+---
+
+## Inbox Component Snippet
+
+The <Method href="/platform/inbox/react/components/inbox">{`<Inbox />`}</Method> component is Dokaai's in-app delivery endpoint. It connects to your environment, listens for new messages, and renders notifications inside your product.
+
+---
+
+## YouTube Embed
+
+<VideoEmbed title="Dokaai demo" src="https://www.youtube.com/embed/dQw4w9WgXcQ" />
+
+---
+
+## Simple Cards (Existing Component)
+
+<DocGrid columns={2}>
+  <Card
+    title="Getting Started"
+    description="Understand the essentials of Dokaai and send your first notification."
+    link="#"
+    bgColor="#FAFAFA"
+    icon="true"
+  />
+  <Card
+    title="API Reference"
+    description="Explore endpoints, payloads, and response formats."
+    link="#"
+    bgColor="#FAFAFA"
+    icon="true"
+  />
+</DocGrid>
+
+---
+
+## Notes and Admonitions
+
+:::note
+Use **Admonitions** for callouts that need a colored box.
+:::
+
+:::tip
+Use Tips for best practices.
+:::
+
+:::caution
+Warn the reader about breaking changes or risky steps.
+:::
+
+---
+
+## Checklist Example
+
+- [x] API key created
+- [x] Test notification sent
+- [ ] Inbox embedded in UI
+
+---
+
+## Next Steps
+
+- Copy sections from this page into new docs
+- Swap the content and links for your feature
+- Keep the components consistent for a clean system

@@ -1,0 +1,16 @@
+.media {
+  margin: 1.5rem 0;
+}
+
+.image {
+  width: 100%;
+  border-radius: 12px;
+  border: 1px solid var(--clean-border);
+}
+
+.caption {
+  font-size: 0.9rem;
+  color: var(--clean-muted);
+  margin-top: 0.5rem;
+  text-align: center;
+}

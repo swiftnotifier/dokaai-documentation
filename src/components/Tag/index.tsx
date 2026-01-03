@@ -1,5 +1,7 @@
 import Link from "@docusaurus/Link";
 import React from "react";
+import { badgeVariants } from "@site/src/components/ui/badge";
+import { cn } from "@site/src/lib/utils";
 
 interface TagProps {
   label: string;
@@ -9,16 +11,16 @@ interface TagProps {
 }
 
 const Tag: React.FC<TagProps> = ({ label, href, count, className = "" }) => {
-  const classes = ["clean-tag", href ? "clean-tag--link" : "", className]
-    .filter(Boolean)
-    .join(" ");
+  const classes = cn(badgeVariants({ variant: "outline" }), className);
 
   if (href) {
     return (
       <Link href={href} className={classes}>
         <span>{label}</span>
         {typeof count === "number" && (
-          <span className="clean-tag__count">{count}</span>
+          <span className="ml-2 rounded-full bg-slate-100 px-2 text-xs text-slate-600 dark:bg-slate-800 dark:text-slate-200">
+            {count}
+          </span>
         )}
       </Link>
     );
@@ -28,7 +30,9 @@ const Tag: React.FC<TagProps> = ({ label, href, count, className = "" }) => {
     <span className={classes}>
       <span>{label}</span>
       {typeof count === "number" && (
-        <span className="clean-tag__count">{count}</span>
+        <span className="ml-2 rounded-full bg-slate-100 px-2 text-xs text-slate-600 dark:bg-slate-800 dark:text-slate-200">
+          {count}
+        </span>
       )}
     </span>
   );
