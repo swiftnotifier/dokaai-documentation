@@ -1,0 +1,10 @@
+.tags {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  list-style: none;
+}
+
+.tag {
+  display: inline-flex;
+}
