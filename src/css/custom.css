@@ -306,11 +306,13 @@ a:hover {
 
 .menu {
   padding: 0.8rem 0.5rem;
+  --doka-menu-nested-indent: 0.65rem;
+  --doka-menu-link-padding-x: 0.9rem;
 }
 
 .menu__link {
   border-radius: 0;
-  padding: 0.55rem 0.9rem;
+  padding: 0.55rem var(--doka-menu-link-padding-x);
   font-weight: 400;
   color: var(--clean-muted-strong);
 }
@@ -325,7 +327,7 @@ a:hover {
   font-weight: 400;
   background: transparent;
   border-left: 0;
-  padding-left: 0.9rem;
+  padding-left: var(--doka-menu-link-padding-x);
 }
 
 .menu__link--active[aria-current="page"] {
@@ -343,10 +345,66 @@ a:hover {
   position: relative;
 }
 
+.menu__list .menu__list {
+  margin-left: 0;
+  padding-left: var(--doka-menu-nested-indent);
+  border-left: 0;
+}
+
+.menu > .menu__list > .menu__list-item > .menu__list {
+  position: relative;
+}
+
+.menu > .menu__list > .menu__list-item > .menu__list::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.35rem;
+  bottom: 0.35rem;
+  width: 1px;
+  background: var(--clean-border);
+  border-radius: 999px;
+}
+
+.theme-doc-sidebar-item-link-level-2,
+.theme-doc-sidebar-item-category-level-2 {
+  --doka-menu-indent-from-line: calc(1 * var(--doka-menu-nested-indent));
+}
+
+.theme-doc-sidebar-item-link-level-3,
+.theme-doc-sidebar-item-category-level-3 {
+  --doka-menu-indent-from-line: calc(2 * var(--doka-menu-nested-indent));
+}
+
+.theme-doc-sidebar-item-link-level-4,
+.theme-doc-sidebar-item-category-level-4 {
+  --doka-menu-indent-from-line: calc(3 * var(--doka-menu-nested-indent));
+}
+
+.theme-doc-sidebar-item-link-level-5,
+.theme-doc-sidebar-item-category-level-5 {
+  --doka-menu-indent-from-line: calc(4 * var(--doka-menu-nested-indent));
+}
+
+.theme-doc-sidebar-item-link-level-6,
+.theme-doc-sidebar-item-category-level-6 {
+  --doka-menu-indent-from-line: calc(5 * var(--doka-menu-nested-indent));
+}
+
+.theme-doc-sidebar-item-link-level-7,
+.theme-doc-sidebar-item-category-level-7 {
+  --doka-menu-indent-from-line: calc(6 * var(--doka-menu-nested-indent));
+}
+
+.theme-doc-sidebar-item-link-level-8,
+.theme-doc-sidebar-item-category-level-8 {
+  --doka-menu-indent-from-line: calc(7 * var(--doka-menu-nested-indent));
+}
+
 .menu__list .menu__list .menu__link[aria-current="page"]::before {
   content: "";
   position: absolute;
-  left: calc(-1 * var(--ifm-menu-link-padding-horizontal));
+  left: calc(-1 * var(--doka-menu-indent-from-line, 0rem));
   top: 0.45rem;
   bottom: 0.45rem;
   width: 1px;
