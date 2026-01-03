@@ -324,6 +324,17 @@ a:hover {
 }
 
 @media (min-width: 997px) {
+   .docs-wrapper .row > [class*="docItemCol_"] {
+    flex: 0 0 80%;
+    max-width: 80% !important;
+  }
+
+  .docs-wrapper .container > .row > .col.col--3 {
+    --ifm-col-width: 20%;
+    flex: 0 0 20%;
+    max-width: 20%;
+  }
+
   [class*="docItemContainer"] {
     max-width: 720px;
     margin: 0 auto;
