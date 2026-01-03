@@ -10,7 +10,7 @@ const MARKETING_URL = process.env.NEXT_PUBLIC_MARKETING_WEBSITE_URL;
 const config: Config = {
   title: "Dokkai Docs",
   tagline: "Dinosaurs are cool",
-  favicon: "img/dokkai.svg",
+  favicon: "favicon.ico",
   url: 'https://swiftnotifier.github.io',
   baseUrl: "/dokaai-documentation",
   organizationName: "swiftnotifier",
@@ -40,7 +40,7 @@ const config: Config = {
       path: 'integrations',
       routeBasePath: 'integrations',
       sidebarPath: require.resolve('./sidebarsIntegration.ts'),
-      editUrl: 'https://swiftnotifier.github.io/dokaai-documentation/admin',
+      editUrl: 'https://github.com/swiftnotifier/dokaai-documentation/edit/dev/',
     },
   ],
   ],
@@ -54,7 +54,7 @@ const config: Config = {
           path: 'docs',
           routeBasePath: "/",
           sidebarPath: "./sidebars.ts",
-          editUrl: "https://swiftnotifier.github.io/dokaai-documentation/admin",
+          editUrl: "https://github.com/swiftnotifier/dokaai-documentation/edit/dev/",
         },
         blog: {
           showReadingTime: true,
@@ -63,7 +63,7 @@ const config: Config = {
             xslt: true,
           },
           editUrl:
-            "https://swiftnotifier.github.io/dokaai-documentation/admin",
+            "https://github.com/swiftnotifier/dokaai-documentation/edit/dev/",
           onInlineTags: "warn",
           onInlineAuthors: "warn",
           onUntruncatedBlogPosts: "warn",
