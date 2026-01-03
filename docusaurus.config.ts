@@ -10,7 +10,7 @@ const MARKETING_URL = process.env.NEXT_PUBLIC_MARKETING_WEBSITE_URL;
 const config: Config = {
   title: "Dokkai Docs",
   tagline: "Dinosaurs are cool",
-  favicon: "img/dokkai.svg",
+  favicon: "favicon.ico",
   url: 'https://swiftnotifier.github.io',
   baseUrl: "/dokaai-documentation",
   organizationName: "swiftnotifier",
