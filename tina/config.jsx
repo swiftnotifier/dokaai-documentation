@@ -2,7 +2,7 @@ import { defineConfig } from "tinacms";
 import { MDXTemplates } from "../src/theme/template";
 import { docusaurusDate } from "../util";
 
-const branch = process.env.GITHUB_BRANCH || process.env.HEAD  || "dev" | "tina-cms";
+const branch = process.env.GITHUB_BRANCH || process.env.HEAD  || "dev";
 
 const PostCollection = {
   name: "post",
