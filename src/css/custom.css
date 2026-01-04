@@ -169,21 +169,24 @@ a:hover {
   max-width: 100%;
   margin: 0 auto;
   padding: 0 2rem;
+  min-width: 0;
 }
 
 .clean-navbar__inner {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  min-width: 0;
 }
 
 .clean-navbar__top {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 752.708px minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 720px) minmax(0, 1fr);
   align-items: center;
   gap: 10px;
   padding: 20px 0;
   height: auto;
+  min-width: 0;
 }
 
 .clean-navbar__top-left {
@@ -195,10 +198,11 @@ a:hover {
 .clean-navbar__search {
   display: flex;
   justify-content: center;
-  width: 752.708px;
-  max-width: 752.708px;
-  flex: 0 0 752.708px;
+  width: 100%;
+  max-width: 720px;
+  flex: 1 1 720px;
   justify-self: center;
+  min-width: 0;
 }
 
 .clean-navbar__search .navbar__item--search {
@@ -206,19 +210,23 @@ a:hover {
   display: flex;
   justify-content: center;
   padding: 0;
+  min-width: 0;
 }
 
 .clean-navbar__search-item {
-  width: 752.708px;
-  max-width: 752.708px;
+  width: 100%;
+  max-width: 100%;
   padding: 0;
   display: flex;
   justify-content: center;
+  min-width: 0;
 }
 
 .clean-navbar__search-item .DocSearch-Button {
   width: 100% !important;
   max-width: 100% !important;
+  min-width: 0 !important;
+  overflow: hidden;
 }
 
 .clean-navbar__top-right {
@@ -367,6 +375,9 @@ a:hover {
   padding: 0.55rem var(--doka-menu-link-padding-x);
   font-weight: 400;
   color: var(--clean-muted-strong);
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 0;
 }
 
 .menu__link:hover {
@@ -799,6 +810,7 @@ textarea:focus {
   height: 40px !important;
   padding: 10px 16px 10px 12px !important;
   gap: 8px !important;
+  margin: 0 !important;
 }
 
 [data-theme="dark"] .DocSearch-Button {
@@ -1149,12 +1161,27 @@ details summary {
   }
 
   .clean-navbar__top {
-    grid-template-columns: auto 1fr auto;
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-rows: auto auto;
+    row-gap: 0.75rem;
     padding: 12px 0;
     height: auto;
   }
 
+  .clean-navbar__top-left {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .clean-navbar__top-right {
+    grid-column: 2;
+    grid-row: 1;
+    justify-self: end;
+  }
+
   .clean-navbar__search {
+    grid-column: 1 / -1;
+    grid-row: 2;
     width: 100%;
     max-width: none;
     flex: 1 1 auto;
@@ -1176,6 +1203,13 @@ details summary {
   .clean-navbar__color-toggle {
     display: none;
   }
+
+  [class^="navbarSearchContainer_"],
+  [class*=" navbarSearchContainer_"] {
+    position: absolute;
+    padding: .5rem;
+    width:90%
+  }
 }
 
 @media (max-width: 768px) {
@@ -1183,9 +1217,36 @@ details summary {
     background-attachment: scroll;
   }
 
+  .clean-navbar__top {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto;
+  }
+
+  .clean-navbar__top-left {
+    grid-row: 1;
+  }
+
+  .clean-navbar__search {
+    grid-row: 2;
+    width: 100%;
+    max-width: 100%;
+    flex: 1 1 100%;
+    justify-content: stretch;
+  }
+
+  .clean-navbar__top-right {
+    grid-row: 3;
+    grid-column: 1 / -1;
+    justify-self: center;
+    justify-content: center;
+    width: 100%;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
   .main-wrapper > div,
   .navbar__inner {
-    padding: 0 1rem;
+    padding: 0 0.75rem;
   }
 
   .main-wrapper {
@@ -1194,5 +1255,21 @@ details summary {
 
   .DocSearch-Button {
     width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box;
+    flex: 1 1 auto;
+  }
+
+  .DocSearch-Button-Placeholder {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .DocSearch-Button-Keys,
+  .DocSearch-Button-Key {
+    display: none !important;
   }
 }
