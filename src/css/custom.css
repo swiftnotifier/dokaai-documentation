@@ -66,8 +66,8 @@
   --clean-button-disabled-text: var(--clean-muted);
   --clean-button-disabled-border: var(--clean-border);
   --clean-button-disabled-bg: transparent;
-  --clean-code-bg: #f7f7f8;
-  --clean-code-header-bg: #f5f5f5;
+  --clean-code-bg: #FAFAFA;
+  --clean-code-header-bg: #F3F4F6;
   --clean-code-border: #e3e6ea;
   --clean-code-badge-bg: #ffffff;
   --clean-code-shadow: 0 1px 2px rgba(15, 23, 42, 0.06);
@@ -1011,19 +1011,33 @@ textarea:focus {
 
 .theme-code-block {
   position: relative;
-  background: var(--clean-code-bg);
-  border: 1px solid var(--clean-code-border);
-  border-radius: 12px;
-  box-shadow: var(--clean-code-shadow);
+  background: var(--clean-code-bg) !important;
+  background-color: var(--clean-code-bg) !important;
+  border: none !important;
+  border-radius: 12px !important;
+  box-shadow: none !important;
   overflow: hidden;
 }
 
 .theme-code-block pre {
   margin: 0;
   padding: 0.95rem 1.1rem 1.05rem;
-  background: transparent;
+  background: var(--clean-code-bg) !important;
+  background-color: var(--clean-code-bg) !important;
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
   font-size: 0.95rem;
   line-height: 1.65;
+}
+
+.theme-code-block pre[class*="language-"],
+.theme-code-block .prism-code,
+.theme-code-block code {
+  background: var(--clean-code-bg) !important;
+  background-color: var(--clean-code-bg) !important;
+  border: none !important;
+  box-shadow: none !important;
 }
 
 .theme-code-block div[class*="codeBlockTitle"] {
@@ -1031,8 +1045,9 @@ textarea:focus {
   align-items: center;
   gap: 0.5rem;
   padding: 0.5rem 3rem 0.5rem 0.9rem;
-  background: var(--clean-code-header-bg);
-  border-bottom: 1px solid var(--clean-code-border);
+  background: var(--clean-code-header-bg) !important;
+  background-color: var(--clean-code-header-bg) !important;
+  border-bottom: 1px solid var(--clean-code-border) !important;
   font-size: 0.82rem;
   font-weight: 500;
   color: var(--clean-muted-strong);
@@ -1107,6 +1122,8 @@ textarea:focus {
 
 .theme-code-block div[class*="codeBlockContent"] {
   position: relative;
+  background: var(--clean-code-bg) !important;
+  background-color: var(--clean-code-bg) !important;
 }
 
 .theme-code-block [class*="buttonGroup"] {
