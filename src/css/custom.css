@@ -748,7 +748,7 @@ a:hover {
 }
 
 .clean-card {
-  border: 1px solid var(--clean-card-border);
+
   border-radius: var(--clean-radius-lg);
   padding: 1.5rem;
   background: var(--clean-card-bg);
@@ -790,7 +790,6 @@ a:hover {
 .clean-card__icon {
   width: 32px;
   height: 32px;
-  margin-bottom: 0.75rem;
 }
 
 .clean-card__body {
@@ -850,7 +849,8 @@ textarea:focus {
   border-radius: 999px !important;
   box-shadow: none !important;
   background: #fafafa !important;
-  height: 40px !important;
+  box-sizing: border-box;
+  height: 20px !important;
   padding: 10px 16px 10px 12px !important;
   gap: 8px !important;
   margin: 0 !important;
