@@ -389,6 +389,7 @@ a:hover {
 .menu__link--active {
   color: var(--Text-Neutral-Strong, #1f1f1f);
   font-weight: 400;
+  position: relative;
   background: transparent;
   border-left: 0;
   padding-left: var(--doka-menu-link-padding-x);
@@ -396,13 +397,25 @@ a:hover {
 
 .menu__link[aria-current="page"] {
   font-family: "Inter", sans-serif;
-  font-weight: 600;
+  font-weight: 600 !important;
   font-size: 14px;
   line-height: 20px;
   letter-spacing: 0;
   text-align: center;
-  color: var(--Text-Primary, #389f7f);
+  color: var(--Text-Primary, #389f7f) !important;
   background: transparent;
+}
+
+.menu > .menu__list > .menu__list-item > .menu__link[aria-current="page"]::before,
+.menu > .menu__list > .menu__list-item > .menu__list-item-collapsible > .menu__link[aria-current="page"]::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: var(--doka-menu-active-line-inset);
+  bottom: var(--doka-menu-active-line-inset);
+  width: var(--doka-menu-line-width);
+  background: var(--Text-Primary, #389f7f);
+  border-radius: 999px;
 }
 
 .menu > .menu__list > .menu__list-item > .menu__link,
