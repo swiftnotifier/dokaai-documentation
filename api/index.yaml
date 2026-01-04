@@ -1635,9 +1635,12 @@ paths:
                         - type: object
                           properties:
                             deviceId:
-                              type: array
-                              items:
-                                type: string
+                              anyOf:
+                              - type: array
+                                items:
+                                  type: string
+                              - type: string
+                                nullable: true
                           required:
                           - deviceId
                       - type: object
