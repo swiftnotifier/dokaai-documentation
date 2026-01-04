@@ -66,6 +66,11 @@
   --clean-button-disabled-text: var(--clean-muted);
   --clean-button-disabled-border: var(--clean-border);
   --clean-button-disabled-bg: transparent;
+  --clean-code-bg: #f7f7f8;
+  --clean-code-header-bg: #f5f5f5;
+  --clean-code-border: #e3e6ea;
+  --clean-code-badge-bg: #ffffff;
+  --clean-code-shadow: 0 1px 2px rgba(15, 23, 42, 0.06);
 }
 
 [data-theme="dark"] {
@@ -104,6 +109,11 @@
   --clean-button-disabled-text: var(--clean-muted);
   --clean-button-disabled-border: var(--clean-border);
   --clean-button-disabled-bg: transparent;
+  --clean-code-bg: #0f172a;
+  --clean-code-header-bg: #0b1220;
+  --clean-code-border: #1f2937;
+  --clean-code-badge-bg: #111827;
+  --clean-code-shadow: none;
 }
 
 * {
@@ -904,7 +914,7 @@ textarea:focus {
   border: 1px solid var(--clean-border);
   background: var(--clean-border-subtle);
   border-radius: 6px;
-  padding: 0.1rem 0.35rem;
+  padding: 0.1rem 0.2rem;
   font-size: 0.9em;
 }
 
@@ -994,9 +1004,132 @@ textarea:focus {
 }
 
 .markdown pre {
-  border: 1px solid var(--clean-border);
-  border-radius: var(--clean-radius-md);
-  box-shadow: var(--ifm-global-shadow-lw);
+  border: none;
+  background: transparent;
+  box-shadow: none;
+}
+
+.theme-code-block {
+  position: relative;
+  background: var(--clean-code-bg);
+  border: 1px solid var(--clean-code-border);
+  border-radius: 12px;
+  box-shadow: var(--clean-code-shadow);
+  overflow: hidden;
+}
+
+.theme-code-block pre {
+  margin: 0;
+  padding: 0.95rem 1.1rem 1.05rem;
+  background: transparent;
+  font-size: 0.95rem;
+  line-height: 1.65;
+}
+
+.theme-code-block div[class*="codeBlockTitle"] {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 3rem 0.5rem 0.9rem;
+  background: var(--clean-code-header-bg);
+  border-bottom: 1px solid var(--clean-code-border);
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--clean-muted-strong);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.theme-code-block[class*="language-"] div[class*="codeBlockTitle"]::before {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 1.25rem;
+  padding: 0 0.4rem;
+  border-radius: 5px;
+  border: 1px solid var(--clean-code-border);
+  background: var(--clean-code-badge-bg);
+  font-size: 0.68rem;
+  letter-spacing: 0.04em;
+  color: var(--clean-muted-strong);
+  text-transform: uppercase;
+  flex-shrink: 0;
+}
+
+.theme-code-block.language-js div[class*="codeBlockTitle"]::before,
+.theme-code-block.language-javascript div[class*="codeBlockTitle"]::before {
+  content: "JS";
+}
+
+.theme-code-block.language-ts div[class*="codeBlockTitle"]::before,
+.theme-code-block.language-typescript div[class*="codeBlockTitle"]::before {
+  content: "TS";
+}
+
+.theme-code-block.language-jsx div[class*="codeBlockTitle"]::before {
+  content: "JSX";
+}
+
+.theme-code-block.language-tsx div[class*="codeBlockTitle"]::before {
+  content: "TSX";
+}
+
+.theme-code-block.language-json div[class*="codeBlockTitle"]::before {
+  content: "JSON";
+}
+
+.theme-code-block.language-yaml div[class*="codeBlockTitle"]::before,
+.theme-code-block.language-yml div[class*="codeBlockTitle"]::before {
+  content: "YAML";
+}
+
+.theme-code-block.language-bash div[class*="codeBlockTitle"]::before,
+.theme-code-block.language-sh div[class*="codeBlockTitle"]::before,
+.theme-code-block.language-shell div[class*="codeBlockTitle"]::before,
+.theme-code-block.language-zsh div[class*="codeBlockTitle"]::before {
+  content: "SH";
+}
+
+.theme-code-block.language-html div[class*="codeBlockTitle"]::before {
+  content: "HTML";
+}
+
+.theme-code-block.language-css div[class*="codeBlockTitle"]::before,
+.theme-code-block.language-scss div[class*="codeBlockTitle"]::before {
+  content: "CSS";
+}
+
+.theme-code-block.language-md div[class*="codeBlockTitle"]::before,
+.theme-code-block.language-markdown div[class*="codeBlockTitle"]::before {
+  content: "MD";
+}
+
+.theme-code-block div[class*="codeBlockContent"] {
+  position: relative;
+}
+
+.theme-code-block [class*="buttonGroup"] {
+  top: 0.5rem;
+  right: 0.6rem;
+}
+
+.theme-code-block div[class*="codeBlockTitle"] + div[class*="codeBlockContent"] [class*="buttonGroup"] {
+  top: -1.95rem;
+}
+
+.theme-code-block [class*="buttonGroup"] button {
+  opacity: 1;
+  background: var(--clean-code-badge-bg);
+  border-color: var(--clean-code-border);
+  border-radius: 8px;
+  padding: 0.32rem;
+  box-shadow: none;
+}
+
+.theme-code-block [class*="buttonGroup"] button:hover {
+  opacity: 1;
+  border-color: var(--ifm-color-primary);
 }
 
 .markdown blockquote {
