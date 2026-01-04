@@ -850,7 +850,8 @@ textarea:focus {
   border-radius: 999px !important;
   box-shadow: none !important;
   background: #fafafa !important;
-  height: 40px !important;
+  box-sizing: border-box;
+  height: 20px !important;
   padding: 10px 16px 10px 12px !important;
   gap: 8px !important;
   margin: 0 !important;

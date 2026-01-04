@@ -1,31 +1,39 @@
 ---
-sidebar_label: Platform
-description: Use some key words here to help users find this post
+sidebar_label: Welcome
+description: Dokaai docs for product notifications, in-app inboxes, templates, SDKs, APIs, and integrations.
 sidebar_position: 1
 slug: /
 ---
 
 import Card from "@site/src/components/Card";
 
-# Welcome to the Dokkai Docs
+# Dokaai Documentation
 
-Find all the tutorials and resources you need to build product notifications with Dokkai.
+Dokaai helps you deliver product notifications across email, in-app, SMS, and push. Use these docs to ship faster with secure APIs, server SDKs, and UI components.
 
-## Getting Started
+## Start in Minutes
 
 <div className="grid md:grid-cols-2 grid-cols-1 gap-6">
 
 <Card
-  title="Getting Started"
-  description="Understand the essentials of Dokkai, starting from basics to your first integration."
+  title="Quickstart"
+  description="Create an API key, send your first message, and verify delivery."
   link="#"
   bgColor="#FAFAFA"
-  icon="wrong"
+  icon="true"
 />
 
 <Card
-  title="UI Components"
-  description="Explore reusable components like forms, modals, and tables built using Dokkai UI library."
+  title="Authentication"
+  description="Set up secure access with API keys, environment variables, and SDKs."
+  link="#"
+  bgColor="#FAFAFA"
+  icon="true"
+/>
+
+<Card
+  title="First Notification"
+  description="Learn the request structure and send a basic notification."
   link="#"
   bgColor="#FAFAFA"
   icon="true"
@@ -33,14 +41,7 @@ Find all the tutorials and resources you need to build product notifications wit
 
 <Card
   title="API Reference"
-  description="Dokkai REST API and webhook services for sending notifications and tracking events."
-  link="#"
-  bgColor="#FAFAFA"
-  icon="true"
-/>
-<Card
-  title="API Reference"
-  description="The Courier REST API has predictable resource-oriented URLs, accepts JSON-encoded request bodies, returns JSON-encoded responses, and uses standard HTTP response codes, authentication, and verbs."
+  description="Explore endpoints for sending, users, content, and webhooks."
   link="#"
   bgColor="#FAFAFA"
   icon="true"
@@ -48,67 +49,75 @@ Find all the tutorials and resources you need to build product notifications wit
 
 </div>
 
-## Platform
+## Build With Dokaai
 
-Our platform is designed around a small number of key concepts that make it easy to build powerful notification experiences.
-
-<div className="grid md:grid-cols-2 gird-cols-1 gap-6 mt-6">
+<div className="grid md:grid-cols-2 grid-cols-1 gap-6 mt-6">
 
 <Card
-  title="Users"
-  description="Manage your platform users and tailor the notification experience to individual preferences."
+  title="Users & Preferences"
+  description="Store recipients, segment audiences, and manage opt-in rules."
   link="#"
   bgColor="#FAFAFA"
 />
 
 <Card
-  title="Content"
-  description="Create, edit, and manage your notifications, ensuring personalization and relevance."
+  title="Templates & Variables"
+  description="Create reusable templates with dynamic content and localization."
   link="#"
   bgColor="#FAFAFA"
 />
 
 <Card
-  title="Integration"
-  description="Streamline your workflows with seamless integration of external systems and data sources."
+  title="Channels & Routing"
+  description="Configure email, in-app, SMS, and push with fallbacks."
   link="#"
   bgColor="#FAFAFA"
 />
 
 <Card
-  title="Sending"
-  description="Efficiently manage and track your notification delivery to ensure high engagement rates."
+  title="In-App Inbox"
+  description="Embed a notification feed with read state and counts."
   link="#"
   bgColor="#FAFAFA"
 />
+
 <Card
-  title="Sending"
-  description="Efficiently manage and track your notification delivery to ensure high engagement rates."
+  title="Integrations & Webhooks"
+  description="Trigger messages from your stack and sync delivery events."
   link="#"
   bgColor="#FAFAFA"
 />
+
 <Card
-  title="Sending"
-  description="Efficiently manage and track your notification delivery to ensure high engagement rates."
+  title="Analytics"
+  description="Track delivery, opens, and clicks to improve performance."
   link="#"
   bgColor="#FAFAFA"
 />
 
 </div>
 
-## Server SDK Libraries
+## Choose a Path
 
-You can access our REST API and integrate Courier into your application using one of our server SDK libraries.
+- Product teams: build notification UX, preferences, and in-app inboxes.
+- Engineering teams: integrate APIs, SDKs, and webhooks.
+- Growth teams: analyze delivery and engagement across channels.
+
+## Example: Send a Notification
 
 ```js title="Example Node.js Code"
-const send = require("dokzai/send");
+const send = require("dokaai/send");
 
 send({
-  api_key: process.env.DOKZAI_API_KEY,
+  api_key: process.env.DOKAAI_API_KEY,
   user: { email: "user@example.com" },
   content: {
-    subject: "Welcome to Dokzai!",
+    subject: "Welcome to Dokaai!",
     message: "Your account has been created successfully.",
   },
 });
 ```
+
+## Need Help?
+
+Browse the guides for integrations and UI components, or jump straight to the API reference for exact request and response details.
