@@ -2,7 +2,7 @@ import { defineConfig } from "tinacms";
 import { MDXTemplates } from "../src/theme/template";
 import { docusaurusDate } from "../util";
 
-const branch = process.env.GITHUB_BRANCH || process.env.VERCEL_GIT_COMMIT_REF || process.env.HEAD  || "dev";
+const branch = process.env.GITHUB_BRANCH || process.env.HEAD  || "dev" | "tina-cms";
 
 const PostCollection = {
   name: "post",
@@ -203,6 +203,7 @@ const IntegrationCollection = {
     },
   ],
 };
+
 export default defineConfig({
   branch,
   clientId: process.env.NEXT_PUBLIC_TINA_CLIENT_ID,
@@ -224,7 +225,7 @@ export default defineConfig({
     },
   },
   schema: {
-    collections: [DocsCollection, PostCollection, PagesCollection,IntegrationCollection],
+    collections: [DocsCollection, IntegrationCollection],
   },
   search: {
     tina: {
