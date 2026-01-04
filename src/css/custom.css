@@ -748,7 +748,7 @@ a:hover {
 }
 
 .clean-card {
-  border: 1px solid var(--clean-card-border);
+
   border-radius: var(--clean-radius-lg);
   padding: 1.5rem;
   background: var(--clean-card-bg);
@@ -790,7 +790,6 @@ a:hover {
 .clean-card__icon {
   width: 32px;
   height: 32px;
-  margin-bottom: 0.75rem;
 }
 
 .clean-card__body {
