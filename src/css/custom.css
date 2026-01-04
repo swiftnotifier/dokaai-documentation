@@ -1171,7 +1171,12 @@ details summary {
 
 
 .table-of-contents__link {
-  color: var(--clean-muted);
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 20px;
+  letter-spacing: 0;
+  color: var(--Text-Neutral-Medium, #727272);
 }
 
 .table-of-contents__link:hover {
@@ -1179,8 +1184,12 @@ details summary {
 }
 
 .table-of-contents__link--active {
-  color: var(--ifm-color-primary) !important;
-  font-weight: 600;
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 20px;
+  letter-spacing: 0;
+  color: var(--Text-Neutral-Strong, #1f1f1f) !important;
   position: relative;
 }
 
