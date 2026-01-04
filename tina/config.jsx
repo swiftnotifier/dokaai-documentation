@@ -203,6 +203,7 @@ const IntegrationCollection = {
     },
   ],
 };
+
 export default defineConfig({
   branch,
   clientId: process.env.NEXT_PUBLIC_TINA_CLIENT_ID,
@@ -224,7 +225,7 @@ export default defineConfig({
     },
   },
   schema: {
-    collections: [DocsCollection, PostCollection, PagesCollection,IntegrationCollection],
+    collections: [DocsCollection, IntegrationCollection],
   },
   search: {
     tina: {
