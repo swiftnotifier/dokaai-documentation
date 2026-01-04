@@ -26,6 +26,72 @@ The platform is composed of a few core building blocks that work together:
 - **Inbox**: deliver in-app messages directly in your UI.
 - **Observability**: track delivery, errors, and engagement in one place.
 
+## Core capabilities
+
+### Event-driven orchestration
+
+Dokaai listens for product events and maps them to notification workflows. This keeps delivery logic centralized and consistent across channels.
+
+#### Trigger sources
+
+##### Product events
+
+Use your existing event stream to drive notification workflows.
+
+##### Scheduled runs
+
+Schedule recurring notifications for digests or maintenance updates.
+
+#### Workflow resolution
+
+##### Audience rules
+
+Match subscribers based on attributes, topics, or environment-specific rules.
+
+##### Priority ordering
+
+Resolve conflicts between workflows with explicit priority tiers.
+
+### Delivery guarantees
+
+Retries, fallback providers, and failure tracking help ensure important messages are not silently dropped.
+
+#### Retry windows
+
+##### Progressive backoff
+
+Retries are spaced to reduce provider throttling and improve deliverability.
+
+##### Max attempts
+
+Stop after a configured number of failures to avoid noisy loops.
+
+### Rate limits and throttling
+
+You can throttle high-volume events and control burst behavior per channel.
+
+### Template rendering
+
+Templates are compiled at send time with the event payload so each message stays accurate and personalized.
+
+#### Content blocks
+
+##### Shared partials
+
+Reuse shared content across multiple notifications without duplicating text.
+
+##### Localization variants
+
+Serve language-specific content based on subscriber locale.
+
+### Channel routing
+
+Routing rules decide which channels to use based on user preferences, message context, and availability of providers.
+
+### Delivery tracking
+
+Every step records outcomes so you can audit delivery, measure engagement, and debug failures quickly.
+
 ## Workspaces and environments
 
 Each workspace can contain multiple environments so you can develop safely and release confidently. Environments control:
@@ -42,6 +108,52 @@ Typical structure:
 - **Production**: live traffic and reporting
 
 This separation keeps testing data out of production and makes rollbacks or migrations less risky.
+
+### Environment promotion
+
+Promote workflows from dev to staging to production with versioned changes.
+
+#### Promotion checks
+
+##### Validation rules
+
+Verify template variables and routing logic before promotion.
+
+##### Rollback plans
+
+Keep a previous version ready for quick recovery.
+
+### Access boundaries
+
+Restrict who can edit production workflows while keeping read access open for reporting.
+
+## Data model at a glance
+
+### Notification definition
+
+A notification defines steps, templates, and routing rules. It is versioned so you can iterate safely.
+
+### Subscriber profile
+
+Subscribers include identifiers, metadata, and preferences that guide routing and personalization.
+
+### Topic membership
+
+Topics let you target many subscribers at once without loading individual profiles.
+
+### Message instance
+
+Each delivery attempt is stored with timestamps, provider responses, and engagement events.
+
+#### Engagement events
+
+##### Open and click
+
+Track standard interaction signals across providers.
+
+##### Inbox actions
+
+Capture in-app interaction events for richer analytics.
 
 ## Notifications and workflow steps
 
@@ -159,5 +271,3 @@ If you want to try the platform end to end:
 5. Add the <Method href="/platform/inbox/react/components/inbox">{`<Inbox />`}</Method> component for in-app delivery.
 
 From there you can scale out to additional channels, workflows, and advanced routing.
-
-
