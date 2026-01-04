@@ -10,7 +10,7 @@ const MARKETING_URL = process.env.NEXT_PUBLIC_MARKETING_WEBSITE_URL;
 const config: Config = {
   title: "Dokkai Docs",
   tagline: "Dinosaurs are cool",
-  favicon: "img/dokkai.svg",
+  favicon: "favicon.ico",
   url: 'https://swiftnotifier.github.io',
   baseUrl: "/dokaai-documentation",
   organizationName: "swiftnotifier",
@@ -40,7 +40,7 @@ const config: Config = {
       path: 'integrations',
       routeBasePath: 'integrations',
       sidebarPath: require.resolve('./sidebarsIntegration.ts'),
-      editUrl: 'https://swiftnotifier.github.io/dokaai-documentation/admin',
+      editUrl: 'https://github.com/swiftnotifier/dokaai-documentation/edit/dev/',
     },
   ],
   ],
@@ -54,7 +54,7 @@ const config: Config = {
           path: 'docs',
           routeBasePath: "/",
           sidebarPath: "./sidebars.ts",
-          editUrl: "https://swiftnotifier.github.io/dokaai-documentation/admin",
+          editUrl: "https://github.com/swiftnotifier/dokaai-documentation/edit/dev/",
         },
         blog: {
           showReadingTime: true,
@@ -63,7 +63,7 @@ const config: Config = {
             xslt: true,
           },
           editUrl:
-            "https://swiftnotifier.github.io/dokaai-documentation/admin",
+            "https://github.com/swiftnotifier/dokaai-documentation/edit/dev/",
           onInlineTags: "warn",
           onInlineAuthors: "warn",
           onUntruncatedBlogPosts: "warn",
@@ -97,32 +97,40 @@ const config: Config = {
   themeConfig: {
     image: "img/docusaurus-social-card.jpg",
     navbar: {
+      hideOnScroll: false,
       logo: {
         alt: "My Site Logo",
         src: "img/Logo.png",
       },
       items: [
-        { to: "/", label: "Documentation", position: "left" },
+        {
+          to: "/",
+          label: "Documentation",
+          position: "left",
+          activeBaseRegex:
+            "^(?:/dokaai-documentation/(?!integrations|api|blog|openapi).*|/(?!dokaai-documentation/)(?!integrations|api|blog|openapi).*)",
+        },
         { to: "/integrations", label: "Integrations", position: "left" },
         { to: "/api/", label: "API Reference", position: "left",
         },
-        { to: "/blog", label: "Blog", position: "left" },
+        
         {
         type: 'search',
         position: 'left', // or 'left'
+        className: 'clean-navbar__search-item',
        },
         {
         type: 'html',
         position: 'right',
         value: `
-        <a href="${MARKETING_URL}/contact" 
+        <a href="${MARKETING_URL}/contact"
           target="_blank" rel="noopener noreferrer"
-          style="padding: 6px 12px; border: 1px solid #000; border-radius: 6px; background: white; color: black; text-decoration: none; font-weight: 500;">
+          class="clean-cta clean-cta--ghost">
           Request a Demo
         </a>
-        <a href="${MAIN_URL}" 
+        <a href="${MAIN_URL}"
           target="_blank" rel="noopener noreferrer"
-          style="padding: 6px 12px; border-radius: 6px; background: black; color: white; text-decoration: none; font-weight: 500; margin-left: 10px;">
+          class="clean-cta clean-cta--primary">
           Try for Free
         </a>
         `,

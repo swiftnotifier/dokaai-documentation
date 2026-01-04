@@ -1,14 +1,10 @@
 /* Custom styles for navigation buttons */
 .pagination-nav {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1rem;
-  margin: 2rem 0;
-  max-width: 1200px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin: 2.5rem auto;
+  max-width: 1240px;
   width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 0 1rem;
 }
 
 .pagination-nav__item {
@@ -18,62 +14,143 @@
 
 .pagination-nav__link {
   display: flex;
-  flex-direction: column;
-  padding: 1.25rem;
-  border-radius: 0.5rem;
-  border: 1px solid var(--ifm-color-emphasis-200);
-  transition: all 0.2s ease;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 16px 24px;
+  border-radius: 8px;
+  border: 1px solid var(--Border-Neutral-Weak, #dedede);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
   text-decoration: none !important;
   color: var(--ifm-font-color-base);
   background-color: var(--ifm-card-background-color);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  box-shadow: none;
   width: 100%;
-  height: 100%;
+  max-width: 471px;
+  min-height: 72px;
   box-sizing: border-box;
 }
 
 .pagination-nav__link:hover {
   border-color: var(--ifm-color-primary);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  transform: translateY(-2px);
-  color: var(--ifm-color-primary);
+  box-shadow: var(--clean-shadow-hover);
+  transform: translateY(-1px);
+  color: var(--ifm-heading-color);
+    box-shadow: none;
 }
 
 .pagination-nav__link--next {
   text-align: right;
-  align-items: flex-end;
-  margin-left: 0;
+  justify-content: flex-end;
+  margin-left: auto;
 }
 
 .pagination-nav__sublabel {
-  font-size: 0.8rem;
-  color: var(--ifm-color-emphasis-600);
-  margin-bottom: 0.5rem;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  font-family: Inter;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 500;
+  letter-spacing: 0px;
+  color: var(--Text-Neutral-Medium, #727272);
+  margin-bottom: 0;
+  white-space: nowrap;
+}
+
+.pagination-nav__sublabel + .pagination-nav__label::before {
+  content: "|";
+  margin: 0 12px;
+  color: var(--Border-Neutral-Weak, #dedede);
+}
+
+.pagination-nav__link--next .pagination-nav__label::before {
+  content: none;
+}
+
+.pagination-nav__link--next .pagination-nav__label {
+  order: 1;
+}
+
+.pagination-nav__link--next .pagination-nav__sublabel {
+  order: 2;
+}
+
+.pagination-nav__link--prev .pagination-nav__sublabel::before {
+  content: "\2039";
+  margin-right: 8px;
+  color: var(--Text-Neutral-Medium, #727272);
+}
+
+.pagination-nav__link--next .pagination-nav__sublabel::before {
+  content: "|";
+  margin: 0 12px;
+  color: var(--Border-Neutral-Weak, #dedede);
+}
+
+.pagination-nav__link--next .pagination-nav__sublabel::after {
+  content: "\203a";
+  margin-left: 8px;
+  color: var(--Text-Neutral-Medium, #727272);
 }
 
 .pagination-nav__label {
-  font-size: 1.1rem;
+  display: inline-flex;
+  align-items: center;
+  font-family: Inter;
+  font-size: 16px;
+  line-height: 24px;
   font-weight: 600;
+  letter-spacing: 0px;
   color: var(--ifm-heading-color);
-  line-height: 1.4;
+}
+
+.pagination-nav__link--next .pagination-nav__label::after {
+  content: none;
 }
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .pagination-nav {
-    grid-template-columns: 1fr;
-    gap: 0.75rem;
-    padding: 0 1rem;
+   
+    gap: 6px;
+    padding: 0 !important;
+    margin: 0.75rem 0 !important;
+    width: 100%;
   }
   
   .pagination-nav__link {
-    padding: 1rem;
+    padding: 10px 12px;
+    max-width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
   }
-  
+
+  .pagination-nav__link--next {
+    align-items: flex-end;
+    text-align: right;
+  }
+
   .pagination-nav__label {
-    font-size: 1rem;
+    display: block;
+    white-space: normal;
+  }
+
+  .pagination-nav__sublabel + .pagination-nav__label::before,
+  .pagination-nav__link--next .pagination-nav__sublabel::before {
+    content: none;
+  }
+
+  .pagination-nav__link--prev .pagination-nav__sublabel::before {
+    content: "\2039";
+    margin-right: 6px;
+    color: var(--Text-Neutral-Medium, #727272);
+  }
+
+  .pagination-nav__link--next .pagination-nav__sublabel::after {
+    content: "\203a";
+    margin-left: 6px;
+    color: var(--Text-Neutral-Medium, #727272);
   }
 }
