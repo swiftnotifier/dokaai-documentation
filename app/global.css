@@ -1,12 +1,140 @@
 @import 'tailwindcss';
 @import 'fumadocs-ui/css/neutral.css';
 @import 'fumadocs-ui/css/preset.css';
+@import 'fumadocs-openapi/css/preset.css';
+
+:root {
+  --color-fd-primary: hsl(158, 72%, 36%);
+  --color-fd-primary-foreground: hsl(0, 0%, 100%);
+}
+
+.dark {
+  --color-fd-primary: hsl(158, 76%, 48%);
+  --color-fd-primary-foreground: hsl(160, 70%, 8%);
+}
 
 html {
   scrollbar-gutter: stable;
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+}
+
+html:hover {
+  scrollbar-color: color-mix(in oklab, var(--fd-muted-foreground) 35%, transparent) transparent;
+}
+
+html::-webkit-scrollbar {
+  width: 8px;
+}
+
+html::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+html::-webkit-scrollbar-thumb {
+  background-color: transparent;
+  border: 2px solid transparent;
+  border-radius: 999px;
+  background-clip: content-box;
+}
+
+html:hover::-webkit-scrollbar-thumb {
+  background-color: color-mix(in oklab, var(--fd-muted-foreground) 35%, transparent);
 }
 
 html > body[data-scroll-locked] {
   margin-right: 0px !important;
   --removed-body-scroll-bar-size: 0px !important;
+}
+
+#nd-page[data-full='true'] {
+  max-width: none;
+  margin-inline: 0;
+}
+
+#nd-page.dokaai-api-page {
+  grid-column: 3 / 5;
+  width: 100%;
+  max-width: min(1320px, calc(100vw - var(--fd-sidebar-width) - 2rem));
+  margin-inline: 0;
+}
+
+#nd-page[data-full='true'] form.not-prose > div.flex.flex-row.items-center:has(> button[type='submit']) {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: start;
+}
+
+#nd-page[data-full='true'] form.not-prose > div.flex.flex-row.items-center:has(> button[type='submit']) > span {
+  grid-column: 1;
+  grid-row: 1;
+  width: fit-content;
+}
+
+#nd-page[data-full='true'] form.not-prose > div.flex.flex-row.items-center:has(> button[type='submit']) > button[type='submit'] {
+  grid-column: 2;
+  grid-row: 1;
+  margin-left: 0.75rem;
+}
+
+#nd-page[data-full='true'] form.not-prose > div.flex.flex-row.items-center:has(> button[type='submit']) > div.flex-1 {
+  grid-column: 1 / -1;
+  grid-row: 2;
+  min-width: 0;
+  overflow: visible;
+  white-space: normal;
+  flex-wrap: wrap;
+  padding-top: 0.5rem;
+}
+
+#nd-page[data-full='true'] form.not-prose > div.flex.flex-row.items-center:has(> button[type='submit']) > div.flex-1 code,
+#nd-page[data-full='true'] form.not-prose > div.flex.flex-row.items-center:has(> button[type='submit']) > div.flex-1 span {
+  white-space: normal;
+  overflow-wrap: anywhere;
+  line-height: 1.6;
+}
+
+#nd-page[data-full='true'] form.not-prose > div.border-y figure,
+#nd-page[data-full='true'] form.not-prose > div.border-y figure > div[role='region'] {
+  overflow: visible;
+}
+
+#nd-page[data-full='true'] form.not-prose > div.border-y figure > div[role='region'] {
+  max-height: none;
+}
+
+#nd-page[data-full='true'] form.not-prose > div.border-y pre {
+  min-width: 0;
+  width: 100%;
+  white-space: pre-wrap;
+}
+
+#nd-page[data-full='true'] form.not-prose > div.border-y pre code,
+#nd-page[data-full='true'] form.not-prose > div.border-y pre span {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+#nd-sidebar a,
+#nd-sidebar button {
+  color: var(--color-fd-muted-foreground);
+}
+
+#nd-sidebar a:hover,
+#nd-sidebar button:hover {
+  background-color: transparent;
+  color: var(--color-fd-foreground);
+}
+
+#nd-sidebar a[data-active='true'],
+#nd-sidebar button[data-active='true'] {
+  background-color: transparent;
+  color: var(--color-fd-primary);
+}
+
+#nd-sidebar a[data-active='true']:hover,
+#nd-sidebar button[data-active='true']:hover {
+  background-color: transparent;
+  color: var(--color-fd-primary);
 }

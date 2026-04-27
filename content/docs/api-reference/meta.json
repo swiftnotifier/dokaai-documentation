@@ -1,0 +1,13 @@
+{
+  "title": "API Reference",
+  "root": true,
+  "icon": "Code",
+  "pages": [
+    "index",
+    "---Developer---",
+    "authentication",
+    "endpoints",
+    "...",
+    "!meta"
+  ]
+}
