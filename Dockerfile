@@ -9,7 +9,7 @@ WORKDIR /app
 FROM base AS deps
 
 COPY package.json pnpm-lock.yaml ./
-RUN pnpm install --frozen-lockfile
+RUN pnpm install --frozen-lockfile --ignore-scripts
 
 FROM base AS builder
 
@@ -19,7 +19,7 @@ COPY . .
 ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
 
-RUN pnpm build
+RUN pnpm exec fumadocs-mdx && pnpm build
 
 FROM node:20-alpine AS runner
 
@@ -33,6 +33,8 @@ ENV HOSTNAME=0.0.0.0
 COPY --from=builder /app/public ./public
 COPY --from=builder /app/.next/standalone ./
 COPY --from=builder /app/.next/static ./.next/static
+COPY --from=builder /app/.source ./.source
+COPY --from=builder /app/source.config.ts ./source.config.ts
 
 EXPOSE 8080
 

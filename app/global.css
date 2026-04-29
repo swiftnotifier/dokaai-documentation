@@ -4,9 +4,10 @@
 @import 'fumadocs-openapi/css/preset.css';
 
 :root {
+  --color-fd-background: #fafafa;
+  --color-fd-muted: #f3f4f6;
   --color-fd-primary: hsl(158, 72%, 36%);
   --color-fd-primary-foreground: hsl(0, 0%, 100%);
-  --color-fd-background: #fff;
 }
 
 .dark {
@@ -57,7 +58,7 @@ html > body[data-scroll-locked] {
 
 #nd-sidebar,
 #nd-sidebar-mobile {
-  background-color: #fafafa;
+  background-color: var(--color-fd-background);
 }
 
 #nd-docs-layout {

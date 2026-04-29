@@ -9,17 +9,17 @@ import { cn } from '@/lib/cn';
 const tabs = [
   {
     title: 'Documentation',
-    href: '/docs/documentation',
+    href: '/documentation',
     icon: BookOpen,
   },
   {
     title: 'Integration',
-    href: '/docs/integration',
+    href: '/integration',
     icon: Plug,
   },
   {
     title: 'API Reference',
-    href: '/docs/api-reference',
+    href: '/api-reference',
     icon: Code,
   },
 ];
@@ -63,7 +63,7 @@ export function DocsTopTabs({ className, ...props }: ComponentProps<'header'>) {
           </button>
           <button
             type="button"
-            className="inline-flex h-8 items-center justify-center rounded-md bg-[#0f172a] px-3 text-xs font-semibold text-white transition-colors hover:bg-[#1e293b]"
+            className="inline-flex h-8 items-center justify-center rounded-md bg-fd-primary px-3 text-xs font-semibold text-fd-primary-foreground transition-colors hover:opacity-90"
           >
             Try for Free
           </button>
