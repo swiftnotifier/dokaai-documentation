@@ -5,7 +5,7 @@ import { openapi } from '../lib/openapi';
 async function main() {
   await generateFiles({
     input: openapi,
-    output: './content/docs/api-reference',
+    output: './content/api-reference',
     per: 'operation',
     groupBy: 'tag',
     meta: false,
@@ -13,7 +13,7 @@ async function main() {
   });
 
   writeFileSync(
-    './content/docs/api-reference/index.mdx',
+    './content/api-reference/index.mdx',
     `---
 title: API Reference
 description: Dokaai API endpoints
