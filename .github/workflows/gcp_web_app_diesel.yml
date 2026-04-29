@@ -3,7 +3,7 @@ name: Frontend Web App Deployment New
 on:
   pull_request:
     branches:
-    - develop
+    - dev
     types:
     - closed
   workflow_dispatch:
@@ -38,10 +38,6 @@ jobs:
       with:
         node-version: ${{ env.NODE_VERSION }}
         cache: 'pnpm'
-
-    - name: Create .env.production
-      run: |
-        echo "${{ secrets.WEB_APP_ENV_SECRET_DIESEL }}" > .env.production
 
     - name: Install, build, and test
       run: |
@@ -84,7 +80,6 @@ jobs:
         service: ${{ env.SERVICE }}
         region: ${{ env.REGION }}
         image: "${{ env.GAR_LOCATION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.GAR_NAME }}/${{ env.GAR_SERVICE }}:${{ github.sha }}"
-        env_vars: ${{ secrets.WEB_APP_ENV_SECRET_DIESEL }}
 
     - name: Show Output
       run: echo ${{ steps.deploy.outputs.url }}
