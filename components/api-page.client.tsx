@@ -31,26 +31,9 @@ function PrettyJsonResultDisplay(props: ResultDisplayProps) {
     return <DefaultResultDisplay {...props} />;
   }
 
-  return (
-    <div {...props} className="mt-2 flex flex-col gap-2 border-y bg-fd-secondary px-3 py-2 text-fd-secondary-foreground">
-      <div className="flex items-center gap-1.5">
-        <p className="me-auto text-sm font-medium">{props.data.status}</p>
-        <code className="text-xs text-fd-muted-foreground">
-          {getContentType(props.data.headers) ?? 'application/json'}
-        </code>
-        <button
-          type="button"
-          className="rounded-md border bg-fd-background px-2 py-1 text-xs font-medium"
-          onClick={props.reset}
-        >
-          Close
-        </button>
-      </div>
-      <pre className="rounded-lg border bg-fd-card p-3 text-[0.8125rem] leading-6 text-fd-card-foreground whitespace-pre-wrap break-words">
-        <code>{formattedJson}</code>
-      </pre>
-    </div>
-  );
+  const body = new TextEncoder().encode(formattedJson).buffer;
+
+  return <DefaultResultDisplay {...props} data={{ ...props.data, body }} />;
 }
 
 export default defineClientConfig({

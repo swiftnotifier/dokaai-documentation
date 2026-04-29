@@ -35,7 +35,7 @@ export function DocsTopTabs({ className, ...props }: ComponentProps<'header'>) {
         className,
       )}
     >
-      <div className="flex h-14 items-center gap-6 overflow-x-auto px-4 md:px-8">
+      <div className="relative flex h-14 items-center gap-6 overflow-x-auto px-4 md:px-8 md:pr-72">
         {tabs.map((tab) => {
           const Icon = tab.icon;
           const active = pathname === tab.href || pathname.startsWith(`${tab.href}/`);
@@ -54,6 +54,20 @@ export function DocsTopTabs({ className, ...props }: ComponentProps<'header'>) {
             </Link>
           );
         })}
+        <div className="absolute right-8 top-1/2 hidden -translate-y-1/2 items-center gap-3 md:flex">
+          <button
+            type="button"
+            className="inline-flex h-8 items-center justify-center rounded-md border border-[#0f172a] bg-white px-3 text-xs font-semibold text-[#0f172a] transition-colors hover:bg-slate-50"
+          >
+            Request a Demo
+          </button>
+          <button
+            type="button"
+            className="inline-flex h-8 items-center justify-center rounded-md bg-[#0f172a] px-3 text-xs font-semibold text-white transition-colors hover:bg-[#1e293b]"
+          >
+            Try for Free
+          </button>
+        </div>
       </div>
     </header>
   );

@@ -6,6 +6,7 @@
 :root {
   --color-fd-primary: hsl(158, 72%, 36%);
   --color-fd-primary-foreground: hsl(0, 0%, 100%);
+  --color-fd-background: #fff;
 }
 
 .dark {
@@ -47,9 +48,32 @@ html > body[data-scroll-locked] {
   --removed-body-scroll-bar-size: 0px !important;
 }
 
+#nd-home-layout,
+#nd-docs-layout,
+#nd-notebook-layout,
+#nd-flux-layout {
+  background-color: #fff;
+}
+
+#nd-sidebar,
+#nd-sidebar-mobile {
+  background-color: #fafafa;
+}
+
+#nd-docs-layout {
+  background-color: #fff;
+}
+
+#nd-docs-layout > header,
+#nd-toc,
+#nd-docs-layout [data-toc-popover] {
+  background-color: #fff;
+}
+
 #nd-page[data-full='true'] {
   max-width: none;
   margin-inline: 0;
+  background-color: #fff;
 }
 
 #nd-page.dokaai-api-page {
@@ -81,39 +105,40 @@ html > body[data-scroll-locked] {
   grid-column: 1 / -1;
   grid-row: 2;
   min-width: 0;
-  overflow: visible;
-  white-space: normal;
-  flex-wrap: wrap;
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
   padding-top: 0.5rem;
 }
 
 #nd-page[data-full='true'] form.not-prose > div.flex.flex-row.items-center:has(> button[type='submit']) > div.flex-1 code,
 #nd-page[data-full='true'] form.not-prose > div.flex.flex-row.items-center:has(> button[type='submit']) > div.flex-1 span {
-  white-space: normal;
-  overflow-wrap: anywhere;
+  white-space: nowrap;
   line-height: 1.6;
 }
 
-#nd-page[data-full='true'] form.not-prose > div.border-y figure,
-#nd-page[data-full='true'] form.not-prose > div.border-y figure > div[role='region'] {
-  overflow: visible;
+#nd-page[data-full='true'] form.not-prose > div.border-y figure {
+  overflow-x: auto;
+  overflow-y: hidden;
 }
 
 #nd-page[data-full='true'] form.not-prose > div.border-y figure > div[role='region'] {
+  overflow-x: auto;
+  overflow-y: auto;
   max-height: none;
 }
 
 #nd-page[data-full='true'] form.not-prose > div.border-y pre {
-  min-width: 0;
-  width: 100%;
-  white-space: pre-wrap;
+  min-width: max-content;
+  width: max-content;
+  white-space: pre;
 }
 
 #nd-page[data-full='true'] form.not-prose > div.border-y pre code,
 #nd-page[data-full='true'] form.not-prose > div.border-y pre span {
-  white-space: pre-wrap;
-  overflow-wrap: anywhere;
-  word-break: break-word;
+  white-space: pre;
+  overflow-wrap: normal;
+  word-break: normal;
 }
 
 #nd-sidebar a,
