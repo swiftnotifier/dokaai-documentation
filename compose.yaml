@@ -1,0 +1,11 @@
+services:
+  docs:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: dokaai-documentation:local
+    ports:
+      - "3010:8080"
+    environment:
+      PORT: 8080
+      HOSTNAME: 0.0.0.0
