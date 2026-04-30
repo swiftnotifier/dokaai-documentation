@@ -57,6 +57,12 @@ html > body[data-scroll-locked] {
   background-color: #fff;
 }
 
+@media (min-width: 768px) {
+  #nd-notebook-layout {
+    --fd-sidebar-width: 360px;
+  }
+}
+
 #nd-sidebar,
 #nd-sidebar-mobile {
   background-color: var(--color-fd-background);
@@ -66,10 +72,35 @@ html > body[data-scroll-locked] {
   background-color: #fff;
 }
 
-#nd-docs-layout > header,
+#nd-subnav,
+#nd-sidebar,
+#nd-sidebar-mobile {
+  background-color: var(--color-fd-background);
+}
+
+#nd-subnav [data-header-body],
+#nd-subnav [data-header-tabs] {
+  padding-inline: 5vw;
+}
+
+#nd-subnav [data-header-body] {
+  border-bottom: 0;
+}
+
+#nd-sidebar > div:first-child,
+#nd-sidebar [data-radix-scroll-area-viewport] {
+  padding-inline-start: 5vw;
+}
+
 #nd-toc,
 #nd-docs-layout [data-toc-popover] {
   background-color: #fff;
+}
+
+@media (min-width: 1280px) {
+  #nd-toc {
+    padding-inline-end: 5vw;
+  }
 }
 
 #nd-page[data-full='true'] {
@@ -81,8 +112,13 @@ html > body[data-scroll-locked] {
 #nd-page.dokaai-api-page {
   grid-column: 3 / 5;
   width: 100%;
-  max-width: min(1320px, calc(100vw - var(--fd-sidebar-width) - 2rem));
   margin-inline: 0;
+}
+
+@media (min-width: 768px) {
+  #nd-page.dokaai-api-page {
+    max-width: min(1440px, calc(100vw - var(--fd-sidebar-width) - 5vw));
+  }
 }
 
 #nd-page[data-full='true'] form.not-prose > div.flex.flex-row.items-center:has(> button[type='submit']) {
