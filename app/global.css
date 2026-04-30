@@ -186,22 +186,23 @@ html > body[data-scroll-locked] {
 #nd-sidebar a,
 #nd-sidebar button {
   color: var(--color-fd-muted-foreground);
+  border-radius: 10px;
 }
 
 #nd-sidebar a:hover,
 #nd-sidebar button:hover {
-  background-color: transparent;
+  background-color: rgba(15, 23, 42, 0.05);
   color: var(--color-fd-foreground);
 }
 
 #nd-sidebar a[data-active='true'],
 #nd-sidebar button[data-active='true'] {
-  background-color: transparent;
+  background-color: color-mix(in oklab, var(--color-fd-primary) 14%, white);
   color: var(--color-fd-primary);
 }
 
 #nd-sidebar a[data-active='true']:hover,
 #nd-sidebar button[data-active='true']:hover {
-  background-color: transparent;
+  background-color: color-mix(in oklab, var(--color-fd-primary) 18%, white);
   color: var(--color-fd-primary);
 }
