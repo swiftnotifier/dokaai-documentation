@@ -159,6 +159,10 @@ html > body[data-scroll-locked] {
   line-height: 1.6;
 }
 
+#nd-page[data-full='true'] form.not-prose [data-type='authorization'] {
+  border-top: 1px solid rgba(15, 23, 42, 0.08);
+}
+
 #nd-page[data-full='true'] form.not-prose > div.border-y figure {
   overflow-x: auto;
   overflow-y: hidden;
