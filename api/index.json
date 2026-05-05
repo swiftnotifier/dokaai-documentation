@@ -16955,7 +16955,16 @@
         ],
         "operationId": "createCohortSegment",
         "summary": "Create Cohort Segment",
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "projectId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "Request was successful",
