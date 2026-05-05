@@ -88,6 +88,15 @@ function PrettyJsonResultDisplay(props: ResultDisplayProps) {
 
 export default defineClientConfig({
   playground: {
+    fetchOptions: {
+      onRequestInit(requestInit) {
+        return {
+          ...requestInit,
+          method: requestInit.method?.toUpperCase(),
+          cache: 'no-store',
+        };
+      },
+    },
     components: {
       ResultDisplay: PrettyJsonResultDisplay,
     },
