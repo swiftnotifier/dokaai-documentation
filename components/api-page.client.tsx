@@ -76,7 +76,9 @@ function PrettyJsonResultDisplay(props: ResultDisplayProps) {
         codeblock={{
           className: 'my-0',
           viewportProps: {
-            className: 'max-h-[32rem]',
+            style: {
+              maxHeight: '40rem',
+            },
           },
         }}
       />
