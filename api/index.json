@@ -731,20 +731,17 @@
       }
     },
     "securitySchemes": {
-      "orgId": {
+      "clientIdentifierHeader": {
         "type": "apiKey",
         "in": "header",
-        "name": "x-org-id"
+        "name": "x-client-id",
+        "description": "Client API key identifier header."
       },
-      "clientId": {
+      "clientTokenHeader": {
         "type": "apiKey",
         "in": "header",
-        "name": "x-client-id"
-      },
-      "clientToken": {
-        "type": "apiKey",
-        "in": "header",
-        "name": "x-client-token"
+        "name": "x-client-token",
+        "description": "Client API token header."
       }
     }
   },
@@ -22712,9 +22709,8 @@
   },
   "security": [
     {
-      "orgId": [],
-      "clientId": [],
-      "clientToken": []
+      "clientIdentifierHeader": [],
+      "clientTokenHeader": []
     }
   ],
   "servers": [
