@@ -2095,6 +2095,14 @@
         "summary": "List Notification Handlers",
         "parameters": [
           {
+            "name": "projectId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "search",
             "in": "query",
             "required": false,
@@ -2649,6 +2657,14 @@
         "summary": "Add Channel Configuration To Notification Handler",
         "parameters": [
           {
+            "name": "projectId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "notificationHandlerId",
             "in": "path",
             "required": true,
@@ -2846,6 +2862,14 @@
         "summary": "Manage Channel Configuration",
         "parameters": [
           {
+            "name": "projectId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "notificationHandlerId",
             "in": "path",
             "required": true,
@@ -3040,6 +3064,14 @@
         "summary": "Manage Integration Provider",
         "parameters": [
           {
+            "name": "projectId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "notificationHandlerId",
             "in": "path",
             "required": true,
@@ -3232,6 +3264,14 @@
         "operationId": "addTemplateToNotificationChannel",
         "summary": "Add Template To Notification Channel",
         "parameters": [
+          {
+            "name": "projectId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
           {
             "name": "notificationHandlerId",
             "in": "path",
@@ -3877,6 +3917,14 @@
         "operationId": "saveTemplateToNotificationChannel",
         "summary": "Save Template To Notification Channel",
         "parameters": [
+          {
+            "name": "projectId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
           {
             "name": "notificationHandlerId",
             "in": "path",
@@ -5190,6 +5238,14 @@
         "summary": "Publish Notification Handler",
         "parameters": [
           {
+            "name": "projectId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "notificationHandlerId",
             "in": "path",
             "required": true,
@@ -5990,6 +6046,14 @@
         "summary": "Get Notification Handler",
         "parameters": [
           {
+            "name": "projectId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "notificationHandlerId",
             "in": "path",
             "required": true,
@@ -6142,6 +6206,14 @@
         "operationId": "getChannelTemplateById",
         "summary": "Get Channel Template By Id",
         "parameters": [
+          {
+            "name": "projectId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
           {
             "name": "notificationHandlerId",
             "in": "path",
@@ -6816,6 +6888,22 @@
         "summary": "WhatsApp Meta Template Management",
         "parameters": [
           {
+            "name": "notificationHandlerId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "projectId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "channelConfigurationId",
             "in": "path",
             "required": true,
@@ -7017,6 +7105,22 @@
         "operationId": "syncUpdateWhatsappMetaTemplate",
         "summary": "Sync Update WhatsApp Meta Template",
         "parameters": [
+          {
+            "name": "notificationHandlerId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "projectId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
           {
             "name": "channelConfigurationId",
             "in": "path",
