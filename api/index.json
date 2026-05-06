@@ -12544,7 +12544,6 @@
           "content": {
             "application/json": {
               "schema": {
-                "additionalProperties": false,
                 "type": "object",
                 "required": [
                   "assignedPoolId",
@@ -12559,9 +12558,13 @@
                     "type": "string"
                   },
                   "name": {
+                    "minLength": 5,
+                    "maxLength": 30,
+                    "pattern": "^(?=.*[A-Za-z0-9])[A-Za-z0-9 ._-]+$",
                     "type": "string"
                   }
-                }
+                },
+                "additionalProperties": false
               }
             }
           }
@@ -12663,6 +12666,9 @@
                             "type": "string"
                           },
                           "name": {
+                            "minLength": 5,
+                            "maxLength": 30,
+                            "pattern": "^(?=.*[A-Za-z0-9])[A-Za-z0-9 ._-]+$",
                             "type": "string"
                           },
                           "description": {
@@ -13042,7 +13048,6 @@
           "content": {
             "application/json": {
               "schema": {
-                "additionalProperties": false,
                 "type": "object",
                 "required": [
                   "name",
@@ -13050,12 +13055,16 @@
                 ],
                 "properties": {
                   "name": {
+                    "minLength": 5,
+                    "maxLength": 30,
+                    "pattern": "^(?=.*[A-Za-z0-9])[A-Za-z0-9 ._-]+$",
                     "type": "string"
                   },
                   "description": {
                     "type": "string"
                   }
-                }
+                },
+                "additionalProperties": false
               }
             }
           }
@@ -13236,15 +13245,15 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "array",
-                "items": {
-                  "additionalProperties": false,
-                  "type": "object",
-                  "required": [
-                    "id"
-                  ],
-                  "properties": {
-                    "id": {
+                "additionalProperties": false,
+                "type": "object",
+                "required": [
+                  "customerIds"
+                ],
+                "properties": {
+                  "customerIds": {
+                    "type": "array",
+                    "items": {
                       "type": "string"
                     }
                   }
@@ -13263,6 +13272,14 @@
         "parameters": [
           {
             "name": "targetAudienceListId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "projectId",
             "in": "path",
             "required": true,
             "schema": {
@@ -13577,6 +13594,14 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "projectId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -13723,196 +13748,6 @@
           }
         },
         "description": "Remove a customer from a target audience list."
-      }
-    },
-    "/nudge/projects/{projectId}/target-audience-lists/{targetAudienceListId}/customers/query": {
-      "post": {
-        "tags": [
-          "Target Audience Lists"
-        ],
-        "operationId": "addCustomerByQuery",
-        "summary": "Add Customers By Query",
-        "parameters": [
-          {
-            "name": "targetAudienceListId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "projectId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "serviceId",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Request was successful",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "required": [
-                    "status",
-                    "message",
-                    "data",
-                    "metaData",
-                    "error"
-                  ],
-                  "properties": {
-                    "status": {
-                      "type": "string",
-                      "enum": [
-                        "success"
-                      ]
-                    },
-                    "message": {
-                      "type": "string"
-                    },
-                    "data": {
-                      "type": "object",
-                      "required": [
-                        "clientJobId"
-                      ],
-                      "properties": {
-                        "clientJobId": {
-                          "type": "string"
-                        }
-                      }
-                    },
-                    "metaData": {
-                      "type": "null"
-                    },
-                    "error": {
-                      "type": "null"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string",
-                      "enum": [
-                        "error"
-                      ]
-                    },
-                    "message": {
-                      "type": "string"
-                    },
-                    "data": {},
-                    "metaData": {},
-                    "error": {}
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string",
-                      "enum": [
-                        "error"
-                      ]
-                    },
-                    "message": {
-                      "type": "string"
-                    },
-                    "data": {},
-                    "metaData": {},
-                    "error": {}
-                  }
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string",
-                      "enum": [
-                        "error"
-                      ]
-                    },
-                    "message": {
-                      "type": "string"
-                    },
-                    "data": {},
-                    "metaData": {},
-                    "error": {}
-                  }
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal Server Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string",
-                      "enum": [
-                        "error"
-                      ]
-                    },
-                    "message": {
-                      "type": "string"
-                    },
-                    "data": {},
-                    "metaData": {},
-                    "error": {}
-                  }
-                }
-              }
-            }
-          }
-        },
-        "description": "Add customers to a target audience list using a cohort query.",
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {}
-              }
-            }
-          }
-        }
       }
     },
     "/nudge/projects/{projectId}/target-audience-lists/{targetAudienceListId}/status": {
@@ -14109,6 +13944,14 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "projectId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -14157,6 +14000,9 @@
                           "type": "string"
                         },
                         "name": {
+                          "minLength": 5,
+                          "maxLength": 30,
+                          "pattern": "^(?=.*[A-Za-z0-9])[A-Za-z0-9 ._-]+$",
                           "type": "string"
                         },
                         "description": {
@@ -14501,6 +14347,11 @@
             "application/json": {
               "schema": {
                 "additionalProperties": false,
+                "example": {
+                  "name": "Marketing Updates",
+                  "description": "Customer-facing marketing notifications",
+                  "channels": []
+                },
                 "type": "object",
                 "required": [
                   "name",
@@ -14515,6 +14366,7 @@
                     "type": "string"
                   },
                   "channels": {
+                    "uniqueItems": true,
                     "type": "array",
                     "items": {
                       "type": "string",
@@ -14964,6 +14816,11 @@
             "application/json": {
               "schema": {
                 "additionalProperties": false,
+                "example": {
+                  "name": "Marketing Updates",
+                  "description": "Customer-facing marketing notifications",
+                  "channels": []
+                },
                 "type": "object",
                 "required": [
                   "name",
@@ -15174,6 +15031,11 @@
             "application/json": {
               "schema": {
                 "additionalProperties": false,
+                "example": {
+                  "name": "Order Shipped",
+                  "description": "Notifications sent when an order is shipped",
+                  "channels": []
+                },
                 "type": "object",
                 "required": [
                   "name",
@@ -15188,6 +15050,7 @@
                     "type": "string"
                   },
                   "channels": {
+                    "uniqueItems": true,
                     "type": "array",
                     "items": {
                       "type": "string",
@@ -15692,14 +15555,26 @@
             "application/json": {
               "schema": {
                 "additionalProperties": false,
+                "example": {
+                  "name": "Order Shipped",
+                  "description": "Notifications sent when an order is shipped",
+                  "channels": []
+                },
                 "type": "object",
                 "required": [
-                  "channels",
                   "name",
-                  "description"
+                  "description",
+                  "channels"
                 ],
                 "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
                   "channels": {
+                    "uniqueItems": true,
                     "type": "array",
                     "items": {
                       "type": "string",
@@ -15712,12 +15587,6 @@
                         "whatsApp"
                       ]
                     }
-                  },
-                  "name": {
-                    "type": "string"
-                  },
-                  "description": {
-                    "type": "string"
                   }
                 }
               }
@@ -16903,36 +16772,91 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
-                "properties": {
-                  "isTopicNotificationOff": {
-                    "type": "boolean"
+                "examples": [
+                  {
+                    "isTopicNotificationOff": true
                   },
-                  "topicChannelLevelPreference": {
-                    "additionalProperties": false,
+                  {
+                    "topicChannelLevelPreference": {
+                      "email": false,
+                      "in_app": true
+                    }
+                  }
+                ],
+                "anyOf": [
+                  {
                     "type": "object",
+                    "required": [
+                      "isTopicNotificationOff"
+                    ],
                     "properties": {
-                      "in_app": {
+                      "isTopicNotificationOff": {
                         "type": "boolean"
                       },
-                      "email": {
+                      "topicChannelLevelPreference": {
+                        "additionalProperties": false,
+                        "minProperties": 1,
+                        "type": "object",
+                        "properties": {
+                          "in_app": {
+                            "type": "boolean"
+                          },
+                          "email": {
+                            "type": "boolean"
+                          },
+                          "sms": {
+                            "type": "boolean"
+                          },
+                          "chat": {
+                            "type": "boolean"
+                          },
+                          "push": {
+                            "type": "boolean"
+                          },
+                          "whatsApp": {
+                            "type": "boolean"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "type": "object",
+                    "required": [
+                      "topicChannelLevelPreference"
+                    ],
+                    "properties": {
+                      "isTopicNotificationOff": {
                         "type": "boolean"
                       },
-                      "sms": {
-                        "type": "boolean"
-                      },
-                      "chat": {
-                        "type": "boolean"
-                      },
-                      "push": {
-                        "type": "boolean"
-                      },
-                      "whatsApp": {
-                        "type": "boolean"
+                      "topicChannelLevelPreference": {
+                        "additionalProperties": false,
+                        "minProperties": 1,
+                        "type": "object",
+                        "properties": {
+                          "in_app": {
+                            "type": "boolean"
+                          },
+                          "email": {
+                            "type": "boolean"
+                          },
+                          "sms": {
+                            "type": "boolean"
+                          },
+                          "chat": {
+                            "type": "boolean"
+                          },
+                          "push": {
+                            "type": "boolean"
+                          },
+                          "whatsApp": {
+                            "type": "boolean"
+                          }
+                        }
                       }
                     }
                   }
-                }
+                ]
               }
             }
           }
@@ -17121,36 +17045,91 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
-                "properties": {
-                  "isGroupNotificationOff": {
-                    "type": "boolean"
+                "examples": [
+                  {
+                    "isGroupNotificationOff": true
                   },
-                  "groupChannelLevelPreference": {
-                    "additionalProperties": false,
+                  {
+                    "groupChannelLevelPreference": {
+                      "email": false,
+                      "in_app": true
+                    }
+                  }
+                ],
+                "anyOf": [
+                  {
                     "type": "object",
+                    "required": [
+                      "isGroupNotificationOff"
+                    ],
                     "properties": {
-                      "in_app": {
+                      "isGroupNotificationOff": {
                         "type": "boolean"
                       },
-                      "email": {
+                      "groupChannelLevelPreference": {
+                        "additionalProperties": false,
+                        "minProperties": 1,
+                        "type": "object",
+                        "properties": {
+                          "in_app": {
+                            "type": "boolean"
+                          },
+                          "email": {
+                            "type": "boolean"
+                          },
+                          "sms": {
+                            "type": "boolean"
+                          },
+                          "chat": {
+                            "type": "boolean"
+                          },
+                          "push": {
+                            "type": "boolean"
+                          },
+                          "whatsApp": {
+                            "type": "boolean"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "type": "object",
+                    "required": [
+                      "groupChannelLevelPreference"
+                    ],
+                    "properties": {
+                      "isGroupNotificationOff": {
                         "type": "boolean"
                       },
-                      "sms": {
-                        "type": "boolean"
-                      },
-                      "chat": {
-                        "type": "boolean"
-                      },
-                      "push": {
-                        "type": "boolean"
-                      },
-                      "whatsApp": {
-                        "type": "boolean"
+                      "groupChannelLevelPreference": {
+                        "additionalProperties": false,
+                        "minProperties": 1,
+                        "type": "object",
+                        "properties": {
+                          "in_app": {
+                            "type": "boolean"
+                          },
+                          "email": {
+                            "type": "boolean"
+                          },
+                          "sms": {
+                            "type": "boolean"
+                          },
+                          "chat": {
+                            "type": "boolean"
+                          },
+                          "push": {
+                            "type": "boolean"
+                          },
+                          "whatsApp": {
+                            "type": "boolean"
+                          }
+                        }
                       }
                     }
                   }
-                }
+                ]
               }
             }
           }
