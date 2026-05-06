@@ -6,6 +6,7 @@ const ALLOWED_ORIGINS = new Set([
 const METHODS_WITH_BODY = new Set(['POST', 'PUT', 'PATCH', 'DELETE']);
 
 async function handle(request: Request) {
+  const method = request.method.toUpperCase();
   const searchParams = new URL(request.url).searchParams;
   const rawUrl = searchParams.get('url');
 
@@ -40,19 +41,26 @@ async function handle(request: Request) {
     headers.set('cookie', cookie);
   }
 
-  const hasBody =
-    METHODS_WITH_BODY.has(request.method.toUpperCase()) &&
-    Number(headers.get('content-length') ?? '0') > 0;
+  let body: ArrayBuffer | undefined;
 
-  if (!hasBody) {
+  if (METHODS_WITH_BODY.has(method)) {
+    const bodyBuffer = await request.arrayBuffer();
+
+    if (bodyBuffer.byteLength > 0) {
+      body = bodyBuffer;
+      headers.set('content-length', String(bodyBuffer.byteLength));
+    }
+  }
+
+  if (!body) {
     headers.delete('content-length');
   }
 
   try {
     const response = await fetch(targetUrl, {
-      method: request.method,
+      method,
       headers,
-      body: hasBody ? await request.arrayBuffer() : undefined,
+      body,
       cache: 'no-cache',
     });
 
@@ -76,7 +84,7 @@ async function handle(request: Request) {
     const message = error instanceof Error ? error.message : 'Unknown proxy failure';
 
     console.error('[docs proxy] request failed', {
-      method: request.method,
+      method,
       targetUrl: targetUrl.toString(),
       message,
     });
