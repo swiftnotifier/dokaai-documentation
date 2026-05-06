@@ -771,14 +771,6 @@
             }
           },
           {
-            "name": "additionalResourceType",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "page",
             "in": "query",
             "required": true,
@@ -1227,14 +1219,6 @@
           },
           {
             "name": "sort",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "additionalResourceType",
             "in": "query",
             "required": false,
             "schema": {
@@ -2120,14 +2104,6 @@
           },
           {
             "name": "sort",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "additionalResourceType",
             "in": "query",
             "required": false,
             "schema": {
@@ -7686,14 +7662,6 @@
             }
           },
           {
-            "name": "additionalResourceType",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "page",
             "in": "query",
             "required": true,
@@ -11606,19 +11574,7 @@
             }
           }
         },
-        "description": "Remove a shared pool from the project.",
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "additionalProperties": false,
-                "type": "object",
-                "properties": {}
-              }
-            }
-          }
-        }
+        "description": "Remove a shared pool from the project."
       }
     },
     "/customer/projects/{projectId}/customer-pools/": {
@@ -14610,14 +14566,6 @@
             }
           },
           {
-            "name": "additionalResourceType",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "page",
             "in": "query",
             "required": true,
@@ -15292,14 +15240,6 @@
           },
           {
             "name": "sort",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "additionalResourceType",
             "in": "query",
             "required": false,
             "schema": {
@@ -16028,14 +15968,6 @@
           },
           {
             "name": "sort",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "additionalResourceType",
             "in": "query",
             "required": false,
             "schema": {
@@ -20549,14 +20481,6 @@
             }
           },
           {
-            "name": "additionalResourceType",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "page",
             "in": "query",
             "required": true,
@@ -22636,14 +22560,6 @@
           },
           {
             "name": "sort",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "additionalResourceType",
             "in": "query",
             "required": false,
             "schema": {
