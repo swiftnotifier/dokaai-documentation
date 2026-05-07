@@ -763,14 +763,6 @@
             }
           },
           {
-            "name": "sort",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "page",
             "in": "query",
             "required": true,
@@ -785,7 +777,7 @@
             "in": "query",
             "required": true,
             "schema": {
-              "default": "100",
+              "default": "25",
               "pattern": "^[0-9]+$",
               "type": "string"
             }
@@ -1218,14 +1210,6 @@
             }
           },
           {
-            "name": "sort",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "page",
             "in": "query",
             "required": true,
@@ -1240,7 +1224,7 @@
             "in": "query",
             "required": true,
             "schema": {
-              "default": "100",
+              "default": "25",
               "pattern": "^[0-9]+$",
               "type": "string"
             }
@@ -2111,14 +2095,6 @@
             }
           },
           {
-            "name": "sort",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "page",
             "in": "query",
             "required": true,
@@ -2133,7 +2109,7 @@
             "in": "query",
             "required": true,
             "schema": {
-              "default": "100",
+              "default": "25",
               "pattern": "^[0-9]+$",
               "type": "string"
             }
@@ -7758,14 +7734,6 @@
             }
           },
           {
-            "name": "sort",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "page",
             "in": "query",
             "required": true,
@@ -7780,7 +7748,7 @@
             "in": "query",
             "required": true,
             "schema": {
-              "default": "100",
+              "default": "25",
               "pattern": "^[0-9]+$",
               "type": "string"
             }
@@ -10014,10 +9982,20 @@
             }
           },
           {
+            "name": "filterOutTALId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "page",
             "in": "query",
             "required": true,
             "schema": {
+              "default": "1",
+              "pattern": "^[0-9]+$",
               "type": "string"
             }
           },
@@ -10026,14 +10004,8 @@
             "in": "query",
             "required": true,
             "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "filterOutTALId",
-            "in": "query",
-            "required": false,
-            "schema": {
+              "default": "25",
+              "pattern": "^[0-9]+$",
               "type": "string"
             }
           }
@@ -12204,22 +12176,6 @@
             }
           },
           {
-            "name": "page",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "size",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "attributeTypes",
             "in": "query",
             "required": true,
@@ -12230,6 +12186,26 @@
                 "custom",
                 "app"
               ]
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "default": "1",
+              "pattern": "^[0-9]+$",
+              "type": "string"
+            }
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "default": "25",
+              "pattern": "^[0-9]+$",
+              "type": "string"
             }
           }
         ],
@@ -12698,10 +12674,20 @@
             }
           },
           {
+            "name": "status",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "page",
             "in": "query",
             "required": true,
             "schema": {
+              "default": "1",
+              "pattern": "^[0-9]+$",
               "type": "string"
             }
           },
@@ -12710,14 +12696,8 @@
             "in": "query",
             "required": true,
             "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "status",
-            "in": "query",
-            "required": false,
-            "schema": {
+              "default": "25",
+              "pattern": "^[0-9]+$",
               "type": "string"
             }
           }
@@ -13419,6 +13399,8 @@
             "in": "query",
             "required": true,
             "schema": {
+              "default": "1",
+              "pattern": "^[0-9]+$",
               "type": "string"
             }
           },
@@ -13427,6 +13409,8 @@
             "in": "query",
             "required": true,
             "schema": {
+              "default": "25",
+              "pattern": "^[0-9]+$",
               "type": "string"
             }
           }
@@ -14514,14 +14498,6 @@
             }
           },
           {
-            "name": "sort",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "page",
             "in": "query",
             "required": true,
@@ -14536,7 +14512,7 @@
             "in": "query",
             "required": true,
             "schema": {
-              "default": "100",
+              "default": "25",
               "pattern": "^[0-9]+$",
               "type": "string"
             }
@@ -15206,14 +15182,6 @@
             }
           },
           {
-            "name": "sort",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "page",
             "in": "query",
             "required": true,
@@ -15228,7 +15196,7 @@
             "in": "query",
             "required": true,
             "schema": {
-              "default": "100",
+              "default": "25",
               "pattern": "^[0-9]+$",
               "type": "string"
             }
@@ -15940,14 +15908,6 @@
             }
           },
           {
-            "name": "sort",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "page",
             "in": "query",
             "required": true,
@@ -15962,7 +15922,7 @@
             "in": "query",
             "required": true,
             "schema": {
-              "default": "100",
+              "default": "25",
               "pattern": "^[0-9]+$",
               "type": "string"
             }
@@ -17468,6 +17428,8 @@
             "in": "query",
             "required": true,
             "schema": {
+              "default": "1",
+              "pattern": "^[0-9]+$",
               "type": "string"
             }
           },
@@ -17476,6 +17438,8 @@
             "in": "query",
             "required": true,
             "schema": {
+              "default": "25",
+              "pattern": "^[0-9]+$",
               "type": "string"
             }
           }
@@ -20556,14 +20520,6 @@
             }
           },
           {
-            "name": "sort",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "page",
             "in": "query",
             "required": true,
@@ -20578,7 +20534,7 @@
             "in": "query",
             "required": true,
             "schema": {
-              "default": "100",
+              "default": "25",
               "pattern": "^[0-9]+$",
               "type": "string"
             }
@@ -21216,22 +21172,6 @@
             }
           },
           {
-            "name": "size",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "page",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "isRead",
             "in": "query",
             "required": false,
@@ -21241,6 +21181,26 @@
                 "true",
                 "false"
               ]
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "default": "1",
+              "pattern": "^[0-9]+$",
+              "type": "string"
+            }
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "default": "25",
+              "pattern": "^[0-9]+$",
+              "type": "string"
             }
           }
         ],
@@ -22642,14 +22602,6 @@
             }
           },
           {
-            "name": "sort",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "page",
             "in": "query",
             "required": true,
@@ -22664,7 +22616,7 @@
             "in": "query",
             "required": true,
             "schema": {
-              "default": "100",
+              "default": "25",
               "pattern": "^[0-9]+$",
               "type": "string"
             }
