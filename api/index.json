@@ -1857,557 +1857,6 @@
         "description": "Get organization details by organization id."
       }
     },
-    "/nudge/projects/{projectId}/notification-handlers/": {
-      "post": {
-        "tags": [
-          "Notification Handlers"
-        ],
-        "operationId": "createNotificationHandler",
-        "summary": "Create Notification Handler",
-        "parameters": [
-          {
-            "name": "projectId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Request was successful",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "required": [
-                    "status",
-                    "message",
-                    "data",
-                    "metaData",
-                    "error"
-                  ],
-                  "properties": {
-                    "status": {
-                      "type": "string",
-                      "enum": [
-                        "success"
-                      ]
-                    },
-                    "message": {
-                      "type": "string"
-                    },
-                    "data": {
-                      "type": "object",
-                      "required": [
-                        "id"
-                      ],
-                      "properties": {
-                        "id": {
-                          "type": "string"
-                        }
-                      }
-                    },
-                    "metaData": {
-                      "type": "null"
-                    },
-                    "error": {
-                      "type": "null"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string",
-                      "enum": [
-                        "error"
-                      ]
-                    },
-                    "message": {
-                      "type": "string"
-                    },
-                    "data": {},
-                    "metaData": {},
-                    "error": {}
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string",
-                      "enum": [
-                        "error"
-                      ]
-                    },
-                    "message": {
-                      "type": "string"
-                    },
-                    "data": {},
-                    "metaData": {},
-                    "error": {}
-                  }
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string",
-                      "enum": [
-                        "error"
-                      ]
-                    },
-                    "message": {
-                      "type": "string"
-                    },
-                    "data": {},
-                    "metaData": {},
-                    "error": {}
-                  }
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal Server Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string",
-                      "enum": [
-                        "error"
-                      ]
-                    },
-                    "message": {
-                      "type": "string"
-                    },
-                    "data": {},
-                    "metaData": {},
-                    "error": {}
-                  }
-                }
-              }
-            }
-          }
-        },
-        "description": "Create a notification handler in the current project.",
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "additionalProperties": false,
-                "type": "object",
-                "required": [
-                  "name",
-                  "handlerId",
-                  "description",
-                  "isRealTime",
-                  "notificationTypeId",
-                  "priority"
-                ],
-                "properties": {
-                  "name": {
-                    "type": "string"
-                  },
-                  "handlerId": {
-                    "type": "string"
-                  },
-                  "description": {
-                    "type": "string"
-                  },
-                  "customerPoolId": {
-                    "type": "string"
-                  },
-                  "isRealTime": {
-                    "type": "boolean"
-                  },
-                  "notificationTypeId": {
-                    "type": "string"
-                  },
-                  "notificationSubtypeId": {
-                    "anyOf": [
-                      {
-                        "type": "string"
-                      },
-                      {
-                        "type": "null"
-                      }
-                    ]
-                  },
-                  "priority": {
-                    "type": "number"
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "get": {
-        "tags": [
-          "Notification Handlers"
-        ],
-        "operationId": "getAllNotificationHandlersInProject",
-        "summary": "List Notification Handlers",
-        "parameters": [
-          {
-            "name": "projectId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "search",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "page",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "default": "1",
-              "pattern": "^[0-9]+$",
-              "type": "string"
-            }
-          },
-          {
-            "name": "size",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "default": "25",
-              "pattern": "^[0-9]+$",
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Request was successful",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "required": [
-                    "status",
-                    "message",
-                    "data",
-                    "metaData",
-                    "error"
-                  ],
-                  "properties": {
-                    "status": {
-                      "type": "string",
-                      "enum": [
-                        "success"
-                      ]
-                    },
-                    "message": {
-                      "type": "string"
-                    },
-                    "data": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "required": [
-                          "id",
-                          "handlerId",
-                          "name",
-                          "description",
-                          "isRealTime",
-                          "handlerStatus",
-                          "recipientType",
-                          "notificationType",
-                          "isPublished",
-                          "channels",
-                          "createdBy",
-                          "customerPool"
-                        ],
-                        "properties": {
-                          "id": {
-                            "type": "string"
-                          },
-                          "handlerId": {
-                            "type": "string"
-                          },
-                          "name": {
-                            "type": "string"
-                          },
-                          "description": {
-                            "type": "string"
-                          },
-                          "isRealTime": {
-                            "type": "boolean"
-                          },
-                          "handlerStatus": {
-                            "type": "string",
-                            "enum": [
-                              "draft",
-                              "validated",
-                              "live"
-                            ]
-                          },
-                          "recipientType": {
-                            "anyOf": [
-                              {
-                                "type": "string",
-                                "enum": [
-                                  "Payload",
-                                  "Target Audience List",
-                                  "Cohort Segment"
-                                ]
-                              },
-                              {
-                                "type": "null"
-                              }
-                            ]
-                          },
-                          "notificationType": {
-                            "type": "object",
-                            "required": [
-                              "id",
-                              "name"
-                            ],
-                            "properties": {
-                              "id": {
-                                "type": "string"
-                              },
-                              "name": {
-                                "type": "string",
-                                "enum": [
-                                  "TRANSACTIONAL",
-                                  "SERVICE",
-                                  "MARKETING"
-                                ]
-                              }
-                            }
-                          },
-                          "isPublished": {
-                            "type": "boolean"
-                          },
-                          "channels": {
-                            "type": "array",
-                            "items": {
-                              "type": "object",
-                              "required": [
-                                "channelName",
-                                "isActive"
-                              ],
-                              "properties": {
-                                "channelName": {
-                                  "type": "string",
-                                  "enum": [
-                                    "in_app",
-                                    "email",
-                                    "sms",
-                                    "chat",
-                                    "push",
-                                    "whatsApp"
-                                  ]
-                                },
-                                "isActive": {
-                                  "type": "boolean"
-                                }
-                              }
-                            }
-                          },
-                          "createdBy": {
-                            "type": "string"
-                          },
-                          "customerPool": {
-                            "type": "object",
-                            "required": [
-                              "id",
-                              "name",
-                              "description"
-                            ],
-                            "properties": {
-                              "id": {
-                                "type": "string"
-                              },
-                              "name": {
-                                "type": "string"
-                              },
-                              "description": {
-                                "type": "string"
-                              }
-                            }
-                          }
-                        }
-                      }
-                    },
-                    "metaData": {
-                      "type": "object",
-                      "required": [
-                        "page",
-                        "hasMore",
-                        "pageSize",
-                        "count"
-                      ],
-                      "properties": {
-                        "page": {
-                          "type": "number"
-                        },
-                        "hasMore": {
-                          "type": "boolean"
-                        },
-                        "pageSize": {
-                          "type": "number"
-                        },
-                        "count": {
-                          "anyOf": [
-                            {
-                              "type": "number"
-                            },
-                            {
-                              "type": "null"
-                            }
-                          ]
-                        }
-                      }
-                    },
-                    "error": {
-                      "type": "null"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string",
-                      "enum": [
-                        "error"
-                      ]
-                    },
-                    "message": {
-                      "type": "string"
-                    },
-                    "data": {},
-                    "metaData": {},
-                    "error": {}
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string",
-                      "enum": [
-                        "error"
-                      ]
-                    },
-                    "message": {
-                      "type": "string"
-                    },
-                    "data": {},
-                    "metaData": {},
-                    "error": {}
-                  }
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string",
-                      "enum": [
-                        "error"
-                      ]
-                    },
-                    "message": {
-                      "type": "string"
-                    },
-                    "data": {},
-                    "metaData": {},
-                    "error": {}
-                  }
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal Server Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string",
-                      "enum": [
-                        "error"
-                      ]
-                    },
-                    "message": {
-                      "type": "string"
-                    },
-                    "data": {},
-                    "metaData": {},
-                    "error": {}
-                  }
-                }
-              }
-            }
-          }
-        },
-        "description": "Get all notification handlers in the current project."
-      }
-    },
     "/nudge/projects/{projectId}/notification-handlers/{notificationHandlerId}/info": {
       "put": {
         "tags": [
@@ -2624,211 +2073,6 @@
         }
       }
     },
-    "/nudge/projects/{projectId}/notification-handlers/{notificationHandlerId}/channel-configurations": {
-      "put": {
-        "tags": [
-          "Notification Handlers"
-        ],
-        "operationId": "addChannelConfigurationToNotificationHandler",
-        "summary": "Add Channel Configuration To Notification Handler",
-        "parameters": [
-          {
-            "name": "projectId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "notificationHandlerId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Request was successful",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "required": [
-                    "status",
-                    "message",
-                    "data",
-                    "metaData",
-                    "error"
-                  ],
-                  "properties": {
-                    "status": {
-                      "type": "string",
-                      "enum": [
-                        "success"
-                      ]
-                    },
-                    "message": {
-                      "type": "string"
-                    },
-                    "data": {
-                      "type": "object",
-                      "required": [
-                        "id"
-                      ],
-                      "properties": {
-                        "id": {
-                          "type": "string"
-                        }
-                      }
-                    },
-                    "metaData": {
-                      "type": "null"
-                    },
-                    "error": {
-                      "type": "null"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string",
-                      "enum": [
-                        "error"
-                      ]
-                    },
-                    "message": {
-                      "type": "string"
-                    },
-                    "data": {},
-                    "metaData": {},
-                    "error": {}
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string",
-                      "enum": [
-                        "error"
-                      ]
-                    },
-                    "message": {
-                      "type": "string"
-                    },
-                    "data": {},
-                    "metaData": {},
-                    "error": {}
-                  }
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string",
-                      "enum": [
-                        "error"
-                      ]
-                    },
-                    "message": {
-                      "type": "string"
-                    },
-                    "data": {},
-                    "metaData": {},
-                    "error": {}
-                  }
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal Server Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string",
-                      "enum": [
-                        "error"
-                      ]
-                    },
-                    "message": {
-                      "type": "string"
-                    },
-                    "data": {},
-                    "metaData": {},
-                    "error": {}
-                  }
-                }
-              }
-            }
-          }
-        },
-        "description": "Add a channel configuration to a notification handler.",
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "additionalProperties": false,
-                "type": "object",
-                "required": [
-                  "channelType",
-                  "channelIntegrationProviders"
-                ],
-                "properties": {
-                  "channelType": {
-                    "type": "string",
-                    "enum": [
-                      "in_app",
-                      "email",
-                      "sms",
-                      "chat",
-                      "push",
-                      "whatsApp"
-                    ]
-                  },
-                  "channelIntegrationProviders": {
-                    "type": "array",
-                    "items": {
-                      "type": "string"
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/nudge/projects/{projectId}/notification-handlers/{notificationHandlerId}/channel-configurations/{channelConfigurationId}/manage": {
       "patch": {
         "tags": [
@@ -3022,1731 +2266,6 @@
                     "enum": [
                       "restore",
                       "disable"
-                    ]
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/nudge/projects/{projectId}/notification-handlers/{notificationHandlerId}/channel-configurations/{channelConfigurationId}/integrations/manage": {
-      "patch": {
-        "tags": [
-          "Notification Handlers"
-        ],
-        "operationId": "manageIntegrationProvider",
-        "summary": "Manage Integration Provider",
-        "parameters": [
-          {
-            "name": "projectId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "notificationHandlerId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "channelConfigurationId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Request was successful",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "required": [
-                    "status",
-                    "message",
-                    "data",
-                    "metaData",
-                    "error"
-                  ],
-                  "properties": {
-                    "status": {
-                      "type": "string",
-                      "enum": [
-                        "success"
-                      ]
-                    },
-                    "message": {
-                      "type": "string"
-                    },
-                    "data": {
-                      "type": "object",
-                      "required": [
-                        "id"
-                      ],
-                      "properties": {
-                        "id": {
-                          "type": "string"
-                        }
-                      }
-                    },
-                    "metaData": {
-                      "type": "null"
-                    },
-                    "error": {
-                      "type": "null"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string",
-                      "enum": [
-                        "error"
-                      ]
-                    },
-                    "message": {
-                      "type": "string"
-                    },
-                    "data": {},
-                    "metaData": {},
-                    "error": {}
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string",
-                      "enum": [
-                        "error"
-                      ]
-                    },
-                    "message": {
-                      "type": "string"
-                    },
-                    "data": {},
-                    "metaData": {},
-                    "error": {}
-                  }
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string",
-                      "enum": [
-                        "error"
-                      ]
-                    },
-                    "message": {
-                      "type": "string"
-                    },
-                    "data": {},
-                    "metaData": {},
-                    "error": {}
-                  }
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal Server Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string",
-                      "enum": [
-                        "error"
-                      ]
-                    },
-                    "message": {
-                      "type": "string"
-                    },
-                    "data": {},
-                    "metaData": {},
-                    "error": {}
-                  }
-                }
-              }
-            }
-          }
-        },
-        "description": "Manage channel integration providers for a notification handler.",
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "additionalProperties": false,
-                "type": "object",
-                "required": [
-                  "integrationIds"
-                ],
-                "properties": {
-                  "integrationIds": {
-                    "type": "array",
-                    "items": {
-                      "type": "string"
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/nudge/projects/{projectId}/notification-handlers/{notificationHandlerId}/channel-configurations/{channelConfigurationId}/templates": {
-      "post": {
-        "tags": [
-          "Notification Handlers"
-        ],
-        "operationId": "addTemplateToNotificationChannel",
-        "summary": "Add Template To Notification Channel",
-        "parameters": [
-          {
-            "name": "projectId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "notificationHandlerId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "channelConfigurationId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Request was successful",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "required": [
-                    "status",
-                    "message",
-                    "data",
-                    "metaData",
-                    "error"
-                  ],
-                  "properties": {
-                    "status": {
-                      "type": "string",
-                      "enum": [
-                        "success"
-                      ]
-                    },
-                    "message": {
-                      "type": "string"
-                    },
-                    "data": {
-                      "type": "object",
-                      "required": [
-                        "id"
-                      ],
-                      "properties": {
-                        "id": {
-                          "type": "string"
-                        }
-                      }
-                    },
-                    "metaData": {
-                      "type": "null"
-                    },
-                    "error": {
-                      "type": "null"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string",
-                      "enum": [
-                        "error"
-                      ]
-                    },
-                    "message": {
-                      "type": "string"
-                    },
-                    "data": {},
-                    "metaData": {},
-                    "error": {}
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string",
-                      "enum": [
-                        "error"
-                      ]
-                    },
-                    "message": {
-                      "type": "string"
-                    },
-                    "data": {},
-                    "metaData": {},
-                    "error": {}
-                  }
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string",
-                      "enum": [
-                        "error"
-                      ]
-                    },
-                    "message": {
-                      "type": "string"
-                    },
-                    "data": {},
-                    "metaData": {},
-                    "error": {}
-                  }
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal Server Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string",
-                      "enum": [
-                        "error"
-                      ]
-                    },
-                    "message": {
-                      "type": "string"
-                    },
-                    "data": {},
-                    "metaData": {},
-                    "error": {}
-                  }
-                }
-              }
-            }
-          }
-        },
-        "description": "Add a template to a notification handler channel.",
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "additionalProperties": false,
-                "type": "object",
-                "required": [
-                  "name",
-                  "channelType"
-                ],
-                "properties": {
-                  "name": {
-                    "type": "string"
-                  },
-                  "appVariables": {
-                    "type": "array",
-                    "items": {
-                      "type": "string"
-                    }
-                  },
-                  "customVariables": {
-                    "type": "array",
-                    "items": {
-                      "type": "string"
-                    }
-                  },
-                  "dynamicVariables": {},
-                  "templateVariables": {},
-                  "channelType": {
-                    "type": "string",
-                    "enum": [
-                      "in_app",
-                      "email",
-                      "sms",
-                      "chat",
-                      "push",
-                      "whatsApp"
-                    ]
-                  },
-                  "templateData": {
-                    "type": "object",
-                    "required": [
-                      "channelType",
-                      "templateDataType"
-                    ],
-                    "properties": {
-                      "content": {
-                        "anyOf": [
-                          {
-                            "type": "object",
-                            "required": [
-                              "subject",
-                              "data"
-                            ],
-                            "properties": {
-                              "subject": {
-                                "type": "string"
-                              },
-                              "data": {},
-                              "attachments": {
-                                "type": "string"
-                              }
-                            }
-                          },
-                          {
-                            "type": "object",
-                            "required": [
-                              "title",
-                              "body"
-                            ],
-                            "properties": {
-                              "title": {
-                                "type": "string"
-                              },
-                              "subTitle": {
-                                "type": "string"
-                              },
-                              "body": {
-                                "type": "string"
-                              },
-                              "avatar": {
-                                "type": "array",
-                                "items": {
-                                  "type": "object",
-                                  "required": [
-                                    "iconURL"
-                                  ],
-                                  "properties": {
-                                    "iconURL": {
-                                      "type": "string"
-                                    },
-                                    "fallBackName": {
-                                      "type": "string"
-                                    },
-                                    "iconRedirectURL": {
-                                      "type": "string"
-                                    }
-                                  }
-                                }
-                              },
-                              "attachmentsImage": {
-                                "type": "array",
-                                "items": {
-                                  "type": "object",
-                                  "required": [
-                                    "iconURL"
-                                  ],
-                                  "properties": {
-                                    "iconURL": {
-                                      "type": "string"
-                                    },
-                                    "fallBackName": {
-                                      "type": "string"
-                                    },
-                                    "iconRedirectURL": {
-                                      "type": "string"
-                                    }
-                                  }
-                                }
-                              },
-                              "attachments": {
-                                "type": "array",
-                                "items": {
-                                  "type": "object",
-                                  "required": [
-                                    "type"
-                                  ],
-                                  "properties": {
-                                    "type": {
-                                      "type": "string",
-                                      "enum": [
-                                        "pdf",
-                                        "image",
-                                        "csv"
-                                      ]
-                                    },
-                                    "fileName": {
-                                      "minLength": 1,
-                                      "type": "string"
-                                    },
-                                    "url": {
-                                      "maxLength": 2048,
-                                      "pattern": "^(https?:\\/\\/)[^\\s/$.?#].[^\\s]*$",
-                                      "type": "string"
-                                    }
-                                  }
-                                }
-                              },
-                              "itemRedirect": {
-                                "type": "string"
-                              },
-                              "tags": {
-                                "type": "array",
-                                "items": {
-                                  "type": "object",
-                                  "required": [
-                                    "tagName"
-                                  ],
-                                  "properties": {
-                                    "tagName": {
-                                      "maxLength": 120,
-                                      "type": "string"
-                                    },
-                                    "url": {
-                                      "type": "string"
-                                    },
-                                    "icon": {
-                                      "type": "string"
-                                    }
-                                  }
-                                }
-                              },
-                              "actionButtons": {
-                                "type": "object",
-                                "properties": {
-                                  "primary": {
-                                    "anyOf": [
-                                      {
-                                        "additionalProperties": false,
-                                        "type": "object",
-                                        "required": [
-                                          "name"
-                                        ],
-                                        "properties": {
-                                          "name": {
-                                            "maxLength": 80,
-                                            "type": "string"
-                                          },
-                                          "url": {
-                                            "maxLength": 2048,
-                                            "pattern": "^(https?:\\/\\/)[^\\s/$.?#].[^\\s]*$",
-                                            "type": "string"
-                                          },
-                                          "onclickAction": {
-                                            "const": "navigate",
-                                            "type": "string"
-                                          }
-                                        }
-                                      },
-                                      {
-                                        "type": "null"
-                                      }
-                                    ]
-                                  },
-                                  "secondary": {
-                                    "anyOf": [
-                                      {
-                                        "additionalProperties": false,
-                                        "type": "object",
-                                        "required": [
-                                          "name"
-                                        ],
-                                        "properties": {
-                                          "name": {
-                                            "maxLength": 80,
-                                            "type": "string"
-                                          },
-                                          "url": {
-                                            "maxLength": 2048,
-                                            "pattern": "^(https?:\\/\\/)[^\\s/$.?#].[^\\s]*$",
-                                            "type": "string"
-                                          },
-                                          "onclickAction": {
-                                            "const": "navigate",
-                                            "type": "string"
-                                          }
-                                        }
-                                      },
-                                      {
-                                        "type": "null"
-                                      }
-                                    ]
-                                  },
-                                  "tertiary": {
-                                    "anyOf": [
-                                      {
-                                        "additionalProperties": false,
-                                        "type": "object",
-                                        "required": [
-                                          "name"
-                                        ],
-                                        "properties": {
-                                          "name": {
-                                            "maxLength": 80,
-                                            "type": "string"
-                                          },
-                                          "url": {
-                                            "maxLength": 2048,
-                                            "pattern": "^(https?:\\/\\/)[^\\s/$.?#].[^\\s]*$",
-                                            "type": "string"
-                                          },
-                                          "onclickAction": {
-                                            "const": "navigate",
-                                            "type": "string"
-                                          }
-                                        }
-                                      },
-                                      {
-                                        "type": "null"
-                                      }
-                                    ]
-                                  }
-                                }
-                              }
-                            }
-                          },
-                          {
-                            "type": "object",
-                            "required": [
-                              "text"
-                            ],
-                            "properties": {
-                              "text": {
-                                "type": "string"
-                              }
-                            }
-                          },
-                          {
-                            "type": "object",
-                            "required": [
-                              "title",
-                              "body",
-                              "clickAction"
-                            ],
-                            "properties": {
-                              "title": {
-                                "type": "string"
-                              },
-                              "body": {
-                                "type": "string"
-                              },
-                              "clickAction": {
-                                "type": "string"
-                              },
-                              "badge": {
-                                "type": "string"
-                              },
-                              "subtitle": {
-                                "type": "string"
-                              },
-                              "image": {
-                                "type": "string"
-                              },
-                              "payload": {
-                                "type": "object",
-                                "patternProperties": {
-                                  "^(.*)$": {}
-                                }
-                              }
-                            }
-                          },
-                          {
-                            "type": "object",
-                            "required": [
-                              "type"
-                            ],
-                            "properties": {
-                              "type": {
-                                "const": "template",
-                                "type": "string"
-                              },
-                              "template": {
-                                "type": "object",
-                                "required": [
-                                  "name",
-                                  "category",
-                                  "language",
-                                  "body"
-                                ],
-                                "properties": {
-                                  "name": {
-                                    "type": "string"
-                                  },
-                                  "category": {
-                                    "type": "string",
-                                    "enum": [
-                                      "marketing",
-                                      "utility",
-                                      "authentication"
-                                    ]
-                                  },
-                                  "language": {
-                                    "type": "object",
-                                    "required": [
-                                      "code"
-                                    ],
-                                    "properties": {
-                                      "code": {
-                                        "type": "string"
-                                      }
-                                    }
-                                  },
-                                  "header": {
-                                    "type": "object",
-                                    "required": [
-                                      "text"
-                                    ],
-                                    "properties": {
-                                      "text": {
-                                        "type": "string"
-                                      }
-                                    }
-                                  },
-                                  "body": {
-                                    "type": "object",
-                                    "required": [
-                                      "text"
-                                    ],
-                                    "properties": {
-                                      "text": {
-                                        "type": "string"
-                                      }
-                                    }
-                                  },
-                                  "footer": {
-                                    "type": "object",
-                                    "required": [
-                                      "text"
-                                    ],
-                                    "properties": {
-                                      "text": {
-                                        "maxLength": 60,
-                                        "type": "string"
-                                      }
-                                    }
-                                  },
-                                  "buttons": {
-                                    "type": "array",
-                                    "items": {
-                                      "type": "object",
-                                      "required": [
-                                        "type",
-                                        "label"
-                                      ],
-                                      "properties": {
-                                        "type": {
-                                          "type": "string",
-                                          "enum": [
-                                            "quick_reply",
-                                            "call_phone",
-                                            "copy_coupon_code",
-                                            "visit_website"
-                                          ]
-                                        },
-                                        "label": {
-                                          "maxLength": 25,
-                                          "type": "string"
-                                        },
-                                        "phoneNumber": {
-                                          "type": "string"
-                                        },
-                                        "couponCode": {
-                                          "type": "string"
-                                        },
-                                        "url": {
-                                          "type": "string"
-                                        }
-                                      }
-                                    }
-                                  }
-                                }
-                              }
-                            }
-                          }
-                        ]
-                      },
-                      "channelType": {
-                        "type": "string",
-                        "enum": [
-                          "in_app",
-                          "email",
-                          "sms",
-                          "chat",
-                          "push",
-                          "whatsApp"
-                        ]
-                      },
-                      "templateDataType": {
-                        "type": "string",
-                        "enum": [
-                          "external",
-                          "internal"
-                        ]
-                      },
-                      "externalTemplates": {
-                        "anyOf": [
-                          {
-                            "type": "null"
-                          },
-                          {
-                            "type": "object",
-                            "patternProperties": {
-                              "^(.*)$": {
-                                "anyOf": [
-                                  {
-                                    "type": "string"
-                                  },
-                                  {
-                                    "type": "null"
-                                  }
-                                ]
-                              }
-                            }
-                          }
-                        ]
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/nudge/projects/{projectId}/notification-handlers/{notificationHandlerId}/channel-configurations/{channelConfigurationId}/templates/{templateId}": {
-      "put": {
-        "tags": [
-          "Notification Handlers"
-        ],
-        "operationId": "saveTemplateToNotificationChannel",
-        "summary": "Save Template To Notification Channel",
-        "parameters": [
-          {
-            "name": "projectId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "notificationHandlerId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "channelConfigurationId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "templateId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Request was successful",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "required": [
-                    "status",
-                    "message",
-                    "data",
-                    "metaData",
-                    "error"
-                  ],
-                  "properties": {
-                    "status": {
-                      "type": "string",
-                      "enum": [
-                        "success"
-                      ]
-                    },
-                    "message": {
-                      "type": "string"
-                    },
-                    "data": {
-                      "type": "object",
-                      "required": [
-                        "id"
-                      ],
-                      "properties": {
-                        "id": {
-                          "type": "string"
-                        }
-                      }
-                    },
-                    "metaData": {
-                      "type": "null"
-                    },
-                    "error": {
-                      "type": "null"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string",
-                      "enum": [
-                        "error"
-                      ]
-                    },
-                    "message": {
-                      "type": "string"
-                    },
-                    "data": {},
-                    "metaData": {},
-                    "error": {}
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string",
-                      "enum": [
-                        "error"
-                      ]
-                    },
-                    "message": {
-                      "type": "string"
-                    },
-                    "data": {},
-                    "metaData": {},
-                    "error": {}
-                  }
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string",
-                      "enum": [
-                        "error"
-                      ]
-                    },
-                    "message": {
-                      "type": "string"
-                    },
-                    "data": {},
-                    "metaData": {},
-                    "error": {}
-                  }
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal Server Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string",
-                      "enum": [
-                        "error"
-                      ]
-                    },
-                    "message": {
-                      "type": "string"
-                    },
-                    "data": {},
-                    "metaData": {},
-                    "error": {}
-                  }
-                }
-              }
-            }
-          }
-        },
-        "description": "Update a template in a notification handler channel.",
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "additionalProperties": false,
-                "type": "object",
-                "required": [
-                  "name",
-                  "channelType"
-                ],
-                "properties": {
-                  "name": {
-                    "type": "string"
-                  },
-                  "appVariables": {
-                    "type": "array",
-                    "items": {
-                      "type": "string"
-                    }
-                  },
-                  "customVariables": {
-                    "type": "array",
-                    "items": {
-                      "type": "string"
-                    }
-                  },
-                  "dynamicVariables": {},
-                  "templateVariables": {},
-                  "channelType": {
-                    "type": "string",
-                    "enum": [
-                      "in_app",
-                      "email",
-                      "sms",
-                      "chat",
-                      "push",
-                      "whatsApp"
-                    ]
-                  },
-                  "templateData": {
-                    "type": "object",
-                    "required": [
-                      "channelType",
-                      "templateDataType"
-                    ],
-                    "properties": {
-                      "content": {
-                        "anyOf": [
-                          {
-                            "type": "object",
-                            "required": [
-                              "subject",
-                              "data"
-                            ],
-                            "properties": {
-                              "subject": {
-                                "type": "string"
-                              },
-                              "data": {},
-                              "attachments": {
-                                "type": "string"
-                              }
-                            }
-                          },
-                          {
-                            "type": "object",
-                            "required": [
-                              "title",
-                              "body"
-                            ],
-                            "properties": {
-                              "title": {
-                                "type": "string"
-                              },
-                              "subTitle": {
-                                "type": "string"
-                              },
-                              "body": {
-                                "type": "string"
-                              },
-                              "avatar": {
-                                "type": "array",
-                                "items": {
-                                  "type": "object",
-                                  "required": [
-                                    "iconURL"
-                                  ],
-                                  "properties": {
-                                    "iconURL": {
-                                      "type": "string"
-                                    },
-                                    "fallBackName": {
-                                      "type": "string"
-                                    },
-                                    "iconRedirectURL": {
-                                      "type": "string"
-                                    }
-                                  }
-                                }
-                              },
-                              "attachmentsImage": {
-                                "type": "array",
-                                "items": {
-                                  "type": "object",
-                                  "required": [
-                                    "iconURL"
-                                  ],
-                                  "properties": {
-                                    "iconURL": {
-                                      "type": "string"
-                                    },
-                                    "fallBackName": {
-                                      "type": "string"
-                                    },
-                                    "iconRedirectURL": {
-                                      "type": "string"
-                                    }
-                                  }
-                                }
-                              },
-                              "attachments": {
-                                "type": "array",
-                                "items": {
-                                  "type": "object",
-                                  "required": [
-                                    "type"
-                                  ],
-                                  "properties": {
-                                    "type": {
-                                      "type": "string",
-                                      "enum": [
-                                        "pdf",
-                                        "image",
-                                        "csv"
-                                      ]
-                                    },
-                                    "fileName": {
-                                      "minLength": 1,
-                                      "type": "string"
-                                    },
-                                    "url": {
-                                      "maxLength": 2048,
-                                      "pattern": "^(https?:\\/\\/)[^\\s/$.?#].[^\\s]*$",
-                                      "type": "string"
-                                    }
-                                  }
-                                }
-                              },
-                              "itemRedirect": {
-                                "type": "string"
-                              },
-                              "tags": {
-                                "type": "array",
-                                "items": {
-                                  "type": "object",
-                                  "required": [
-                                    "tagName"
-                                  ],
-                                  "properties": {
-                                    "tagName": {
-                                      "maxLength": 120,
-                                      "type": "string"
-                                    },
-                                    "url": {
-                                      "type": "string"
-                                    },
-                                    "icon": {
-                                      "type": "string"
-                                    }
-                                  }
-                                }
-                              },
-                              "actionButtons": {
-                                "type": "object",
-                                "properties": {
-                                  "primary": {
-                                    "anyOf": [
-                                      {
-                                        "additionalProperties": false,
-                                        "type": "object",
-                                        "required": [
-                                          "name"
-                                        ],
-                                        "properties": {
-                                          "name": {
-                                            "maxLength": 80,
-                                            "type": "string"
-                                          },
-                                          "url": {
-                                            "maxLength": 2048,
-                                            "pattern": "^(https?:\\/\\/)[^\\s/$.?#].[^\\s]*$",
-                                            "type": "string"
-                                          },
-                                          "onclickAction": {
-                                            "const": "navigate",
-                                            "type": "string"
-                                          }
-                                        }
-                                      },
-                                      {
-                                        "type": "null"
-                                      }
-                                    ]
-                                  },
-                                  "secondary": {
-                                    "anyOf": [
-                                      {
-                                        "additionalProperties": false,
-                                        "type": "object",
-                                        "required": [
-                                          "name"
-                                        ],
-                                        "properties": {
-                                          "name": {
-                                            "maxLength": 80,
-                                            "type": "string"
-                                          },
-                                          "url": {
-                                            "maxLength": 2048,
-                                            "pattern": "^(https?:\\/\\/)[^\\s/$.?#].[^\\s]*$",
-                                            "type": "string"
-                                          },
-                                          "onclickAction": {
-                                            "const": "navigate",
-                                            "type": "string"
-                                          }
-                                        }
-                                      },
-                                      {
-                                        "type": "null"
-                                      }
-                                    ]
-                                  },
-                                  "tertiary": {
-                                    "anyOf": [
-                                      {
-                                        "additionalProperties": false,
-                                        "type": "object",
-                                        "required": [
-                                          "name"
-                                        ],
-                                        "properties": {
-                                          "name": {
-                                            "maxLength": 80,
-                                            "type": "string"
-                                          },
-                                          "url": {
-                                            "maxLength": 2048,
-                                            "pattern": "^(https?:\\/\\/)[^\\s/$.?#].[^\\s]*$",
-                                            "type": "string"
-                                          },
-                                          "onclickAction": {
-                                            "const": "navigate",
-                                            "type": "string"
-                                          }
-                                        }
-                                      },
-                                      {
-                                        "type": "null"
-                                      }
-                                    ]
-                                  }
-                                }
-                              }
-                            }
-                          },
-                          {
-                            "type": "object",
-                            "required": [
-                              "text"
-                            ],
-                            "properties": {
-                              "text": {
-                                "type": "string"
-                              }
-                            }
-                          },
-                          {
-                            "type": "object",
-                            "required": [
-                              "title",
-                              "body",
-                              "clickAction"
-                            ],
-                            "properties": {
-                              "title": {
-                                "type": "string"
-                              },
-                              "body": {
-                                "type": "string"
-                              },
-                              "clickAction": {
-                                "type": "string"
-                              },
-                              "badge": {
-                                "type": "string"
-                              },
-                              "subtitle": {
-                                "type": "string"
-                              },
-                              "image": {
-                                "type": "string"
-                              },
-                              "payload": {
-                                "type": "object",
-                                "patternProperties": {
-                                  "^(.*)$": {}
-                                }
-                              }
-                            }
-                          },
-                          {
-                            "type": "object",
-                            "required": [
-                              "type"
-                            ],
-                            "properties": {
-                              "type": {
-                                "const": "template",
-                                "type": "string"
-                              },
-                              "template": {
-                                "type": "object",
-                                "required": [
-                                  "name",
-                                  "category",
-                                  "language",
-                                  "body"
-                                ],
-                                "properties": {
-                                  "name": {
-                                    "type": "string"
-                                  },
-                                  "category": {
-                                    "type": "string",
-                                    "enum": [
-                                      "marketing",
-                                      "utility",
-                                      "authentication"
-                                    ]
-                                  },
-                                  "language": {
-                                    "type": "object",
-                                    "required": [
-                                      "code"
-                                    ],
-                                    "properties": {
-                                      "code": {
-                                        "type": "string"
-                                      }
-                                    }
-                                  },
-                                  "header": {
-                                    "type": "object",
-                                    "required": [
-                                      "text"
-                                    ],
-                                    "properties": {
-                                      "text": {
-                                        "type": "string"
-                                      }
-                                    }
-                                  },
-                                  "body": {
-                                    "type": "object",
-                                    "required": [
-                                      "text"
-                                    ],
-                                    "properties": {
-                                      "text": {
-                                        "type": "string"
-                                      }
-                                    }
-                                  },
-                                  "footer": {
-                                    "type": "object",
-                                    "required": [
-                                      "text"
-                                    ],
-                                    "properties": {
-                                      "text": {
-                                        "maxLength": 60,
-                                        "type": "string"
-                                      }
-                                    }
-                                  },
-                                  "buttons": {
-                                    "type": "array",
-                                    "items": {
-                                      "type": "object",
-                                      "required": [
-                                        "type",
-                                        "label"
-                                      ],
-                                      "properties": {
-                                        "type": {
-                                          "type": "string",
-                                          "enum": [
-                                            "quick_reply",
-                                            "call_phone",
-                                            "copy_coupon_code",
-                                            "visit_website"
-                                          ]
-                                        },
-                                        "label": {
-                                          "maxLength": 25,
-                                          "type": "string"
-                                        },
-                                        "phoneNumber": {
-                                          "type": "string"
-                                        },
-                                        "couponCode": {
-                                          "type": "string"
-                                        },
-                                        "url": {
-                                          "type": "string"
-                                        }
-                                      }
-                                    }
-                                  }
-                                }
-                              }
-                            }
-                          }
-                        ]
-                      },
-                      "channelType": {
-                        "type": "string",
-                        "enum": [
-                          "in_app",
-                          "email",
-                          "sms",
-                          "chat",
-                          "push",
-                          "whatsApp"
-                        ]
-                      },
-                      "templateDataType": {
-                        "type": "string",
-                        "enum": [
-                          "external",
-                          "internal"
-                        ]
-                      },
-                      "externalTemplates": {
-                        "anyOf": [
-                          {
-                            "type": "null"
-                          },
-                          {
-                            "type": "object",
-                            "patternProperties": {
-                              "^(.*)$": {
-                                "anyOf": [
-                                  {
-                                    "type": "string"
-                                  },
-                                  {
-                                    "type": "null"
-                                  }
-                                ]
-                              }
-                            }
-                          }
-                        ]
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/nudge/projects/{projectId}/notification-handlers/{notificationHandlerId}/channel-configurations/{channelConfigurationId}/templates/{templateId}/publishing-status": {
-      "patch": {
-        "tags": [
-          "Notification Handlers"
-        ],
-        "operationId": "changeChannelTemplatePublishingStatus",
-        "summary": "Change Channel Template Publishing Status",
-        "parameters": [
-          {
-            "name": "notificationHandlerId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "channelConfigurationId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "templateId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "projectId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Request was successful",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "required": [
-                    "status",
-                    "message",
-                    "data",
-                    "metaData",
-                    "error"
-                  ],
-                  "properties": {
-                    "status": {
-                      "type": "string",
-                      "enum": [
-                        "success"
-                      ]
-                    },
-                    "message": {
-                      "type": "string"
-                    },
-                    "data": {
-                      "type": "object",
-                      "required": [
-                        "templateId"
-                      ],
-                      "properties": {
-                        "templateId": {
-                          "type": "string"
-                        }
-                      }
-                    },
-                    "metaData": {
-                      "type": "null"
-                    },
-                    "error": {
-                      "type": "null"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string",
-                      "enum": [
-                        "error"
-                      ]
-                    },
-                    "message": {
-                      "type": "string"
-                    },
-                    "data": {},
-                    "metaData": {},
-                    "error": {}
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string",
-                      "enum": [
-                        "error"
-                      ]
-                    },
-                    "message": {
-                      "type": "string"
-                    },
-                    "data": {},
-                    "metaData": {},
-                    "error": {}
-                  }
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string",
-                      "enum": [
-                        "error"
-                      ]
-                    },
-                    "message": {
-                      "type": "string"
-                    },
-                    "data": {},
-                    "metaData": {},
-                    "error": {}
-                  }
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal Server Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string",
-                      "enum": [
-                        "error"
-                      ]
-                    },
-                    "message": {
-                      "type": "string"
-                    },
-                    "data": {},
-                    "metaData": {},
-                    "error": {}
-                  }
-                }
-              }
-            }
-          }
-        },
-        "description": "Publish or unpublish a channel template.",
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "additionalProperties": false,
-                "type": "object",
-                "required": [
-                  "action"
-                ],
-                "properties": {
-                  "action": {
-                    "type": "string",
-                    "enum": [
-                      "publish",
-                      "unpublish"
                     ]
                   }
                 }
@@ -5210,8 +2729,8 @@
         "tags": [
           "Notification Handlers"
         ],
-        "operationId": "publishNotificationHandler",
-        "summary": "Publish Notification Handler",
+        "operationId": "changeNotificationHandlerStatus",
+        "summary": "Change Notification Handler Status",
         "parameters": [
           {
             "name": "projectId",
@@ -5373,7 +2892,7 @@
             }
           }
         },
-        "description": "Publish, unpublish, or move a handler live.",
+        "description": "Change a notification handler status between draft, validated, and live.",
         "requestBody": {
           "required": true,
           "content": {
@@ -6013,6 +3532,344 @@
         }
       }
     },
+    "/nudge/projects/{projectId}/notification-handlers/": {
+      "get": {
+        "tags": [
+          "Notification Handlers"
+        ],
+        "operationId": "getAllNotificationHandlersInProject",
+        "summary": "List Notification Handlers",
+        "parameters": [
+          {
+            "name": "projectId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "default": "1",
+              "pattern": "^[0-9]+$",
+              "type": "string"
+            }
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "default": "25",
+              "pattern": "^[0-9]+$",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Request was successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "status",
+                    "message",
+                    "data",
+                    "metaData",
+                    "error"
+                  ],
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "success"
+                      ]
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "required": [
+                          "id",
+                          "handlerId",
+                          "name",
+                          "description",
+                          "isRealTime",
+                          "handlerStatus",
+                          "recipientType",
+                          "notificationType",
+                          "isPublished",
+                          "channels",
+                          "createdBy",
+                          "customerPool"
+                        ],
+                        "properties": {
+                          "id": {
+                            "type": "string"
+                          },
+                          "handlerId": {
+                            "type": "string"
+                          },
+                          "name": {
+                            "type": "string"
+                          },
+                          "description": {
+                            "type": "string"
+                          },
+                          "isRealTime": {
+                            "type": "boolean"
+                          },
+                          "handlerStatus": {
+                            "type": "string",
+                            "enum": [
+                              "draft",
+                              "validated",
+                              "live"
+                            ]
+                          },
+                          "recipientType": {
+                            "anyOf": [
+                              {
+                                "type": "string",
+                                "enum": [
+                                  "Payload",
+                                  "Target Audience List",
+                                  "Cohort Segment"
+                                ]
+                              },
+                              {
+                                "type": "null"
+                              }
+                            ]
+                          },
+                          "notificationType": {
+                            "type": "object",
+                            "required": [
+                              "id",
+                              "name"
+                            ],
+                            "properties": {
+                              "id": {
+                                "type": "string"
+                              },
+                              "name": {
+                                "type": "string",
+                                "enum": [
+                                  "TRANSACTIONAL",
+                                  "SERVICE",
+                                  "MARKETING"
+                                ]
+                              }
+                            }
+                          },
+                          "isPublished": {
+                            "type": "boolean"
+                          },
+                          "channels": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "required": [
+                                "channelName",
+                                "isActive"
+                              ],
+                              "properties": {
+                                "channelName": {
+                                  "type": "string",
+                                  "enum": [
+                                    "in_app",
+                                    "email",
+                                    "sms",
+                                    "chat",
+                                    "push",
+                                    "whatsApp"
+                                  ]
+                                },
+                                "isActive": {
+                                  "type": "boolean"
+                                }
+                              }
+                            }
+                          },
+                          "createdBy": {
+                            "type": "string"
+                          },
+                          "customerPool": {
+                            "type": "object",
+                            "required": [
+                              "id",
+                              "name",
+                              "description"
+                            ],
+                            "properties": {
+                              "id": {
+                                "type": "string"
+                              },
+                              "name": {
+                                "type": "string"
+                              },
+                              "description": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "metaData": {
+                      "type": "object",
+                      "required": [
+                        "page",
+                        "hasMore",
+                        "pageSize",
+                        "count"
+                      ],
+                      "properties": {
+                        "page": {
+                          "type": "number"
+                        },
+                        "hasMore": {
+                          "type": "boolean"
+                        },
+                        "pageSize": {
+                          "type": "number"
+                        },
+                        "count": {
+                          "anyOf": [
+                            {
+                              "type": "number"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        }
+                      }
+                    },
+                    "error": {
+                      "type": "null"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "error"
+                      ]
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "data": {},
+                    "metaData": {},
+                    "error": {}
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "error"
+                      ]
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "data": {},
+                    "metaData": {},
+                    "error": {}
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "error"
+                      ]
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "data": {},
+                    "metaData": {},
+                    "error": {}
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "error"
+                      ]
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "data": {},
+                    "metaData": {},
+                    "error": {}
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "Get all notification handlers in the current project."
+      }
+    },
     "/nudge/projects/{projectId}/notification-handlers/{notificationHandlerId}": {
       "get": {
         "tags": [
@@ -6062,7 +3919,504 @@
                     "message": {
                       "type": "string"
                     },
-                    "data": {},
+                    "data": {
+                      "type": "object",
+                      "required": [
+                        "id",
+                        "notificationHandlerId",
+                        "basicDetails",
+                        "notificationType",
+                        "notificationSubtype",
+                        "priority",
+                        "channelAndTemplateDetails",
+                        "publishedTemplateAttributes",
+                        "customerPreference",
+                        "notificationHandlerRecipient",
+                        "notificationHandlerScheduleId",
+                        "isPublished"
+                      ],
+                      "properties": {
+                        "id": {
+                          "type": "string"
+                        },
+                        "notificationHandlerId": {
+                          "type": "string"
+                        },
+                        "basicDetails": {
+                          "type": "object",
+                          "required": [
+                            "name",
+                            "description",
+                            "isRealTime",
+                            "isComplete",
+                            "handlerStatus",
+                            "projectId",
+                            "organizationId",
+                            "customerPool",
+                            "notificationType",
+                            "notificationSubtype"
+                          ],
+                          "properties": {
+                            "name": {
+                              "type": "string"
+                            },
+                            "description": {
+                              "type": "string"
+                            },
+                            "isRealTime": {
+                              "type": "boolean"
+                            },
+                            "isComplete": {
+                              "type": "boolean"
+                            },
+                            "handlerStatus": {
+                              "type": "string",
+                              "enum": [
+                                "draft",
+                                "validated",
+                                "live"
+                              ]
+                            },
+                            "projectId": {
+                              "type": "string"
+                            },
+                            "organizationId": {
+                              "type": "string"
+                            },
+                            "customerPool": {
+                              "type": "object",
+                              "required": [
+                                "id",
+                                "name",
+                                "description"
+                              ],
+                              "properties": {
+                                "id": {
+                                  "type": "string"
+                                },
+                                "name": {
+                                  "type": "string"
+                                },
+                                "description": {
+                                  "type": "string"
+                                }
+                              }
+                            },
+                            "notificationType": {
+                              "type": "object",
+                              "required": [
+                                "id",
+                                "name"
+                              ],
+                              "properties": {
+                                "id": {
+                                  "type": "string"
+                                },
+                                "name": {
+                                  "type": "string"
+                                }
+                              }
+                            },
+                            "notificationSubtype": {
+                              "anyOf": [
+                                {
+                                  "type": "object",
+                                  "required": [
+                                    "id",
+                                    "name"
+                                  ],
+                                  "properties": {
+                                    "id": {
+                                      "type": "string"
+                                    },
+                                    "name": {
+                                      "type": "string"
+                                    }
+                                  }
+                                },
+                                {
+                                  "type": "null"
+                                }
+                              ]
+                            }
+                          }
+                        },
+                        "notificationType": {
+                          "type": "object",
+                          "required": [
+                            "id",
+                            "name"
+                          ],
+                          "properties": {
+                            "id": {
+                              "type": "string"
+                            },
+                            "name": {
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "notificationSubtype": {
+                          "anyOf": [
+                            {
+                              "type": "object",
+                              "required": [
+                                "id",
+                                "name"
+                              ],
+                              "properties": {
+                                "id": {
+                                  "type": "string"
+                                },
+                                "name": {
+                                  "type": "string"
+                                }
+                              }
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        },
+                        "priority": {
+                          "type": "number"
+                        },
+                        "channelAndTemplateDetails": {
+                          "anyOf": [
+                            {
+                              "type": "object",
+                              "required": [
+                                "in_app",
+                                "email",
+                                "sms",
+                                "chat",
+                                "push",
+                                "whatsApp"
+                              ],
+                              "properties": {
+                                "in_app": {
+                                  "anyOf": [
+                                    {
+                                      "type": "object",
+                                      "properties": {}
+                                    },
+                                    {
+                                      "type": "null"
+                                    }
+                                  ]
+                                },
+                                "email": {
+                                  "anyOf": [
+                                    {
+                                      "type": "object",
+                                      "properties": {}
+                                    },
+                                    {
+                                      "type": "null"
+                                    }
+                                  ]
+                                },
+                                "sms": {
+                                  "anyOf": [
+                                    {
+                                      "type": "object",
+                                      "properties": {}
+                                    },
+                                    {
+                                      "type": "null"
+                                    }
+                                  ]
+                                },
+                                "chat": {
+                                  "anyOf": [
+                                    {
+                                      "type": "object",
+                                      "properties": {}
+                                    },
+                                    {
+                                      "type": "null"
+                                    }
+                                  ]
+                                },
+                                "push": {
+                                  "anyOf": [
+                                    {
+                                      "type": "object",
+                                      "properties": {}
+                                    },
+                                    {
+                                      "type": "null"
+                                    }
+                                  ]
+                                },
+                                "whatsApp": {
+                                  "anyOf": [
+                                    {
+                                      "type": "object",
+                                      "properties": {}
+                                    },
+                                    {
+                                      "type": "null"
+                                    }
+                                  ]
+                                }
+                              }
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        },
+                        "publishedTemplateAttributes": {
+                          "type": "object",
+                          "properties": {
+                            "template": {
+                              "type": "object",
+                              "properties": {
+                                "sms": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "string"
+                                  }
+                                },
+                                "in_app": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "string"
+                                  }
+                                },
+                                "email": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "string"
+                                  }
+                                },
+                                "chat": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "string"
+                                  }
+                                },
+                                "push": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "string"
+                                  }
+                                },
+                                "whatsApp": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "string"
+                                  }
+                                }
+                              }
+                            },
+                            "personalized": {
+                              "type": "object",
+                              "properties": {
+                                "sms": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "string"
+                                  }
+                                },
+                                "in_app": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "string"
+                                  }
+                                },
+                                "email": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "string"
+                                  }
+                                },
+                                "chat": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "string"
+                                  }
+                                },
+                                "push": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "string"
+                                  }
+                                },
+                                "whatsApp": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "string"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "customerPreference": {
+                          "anyOf": [
+                            {
+                              "type": "object",
+                              "required": [
+                                "customerPreferenceGroup",
+                                "customerPreferenceTopic"
+                              ],
+                              "properties": {
+                                "customerPreferenceGroup": {
+                                  "anyOf": [
+                                    {
+                                      "type": "object",
+                                      "required": [
+                                        "id",
+                                        "name",
+                                        "description",
+                                        "channels"
+                                      ],
+                                      "properties": {
+                                        "id": {
+                                          "type": "string"
+                                        },
+                                        "name": {
+                                          "type": "string"
+                                        },
+                                        "description": {
+                                          "type": "string"
+                                        },
+                                        "channels": {
+                                          "type": "array",
+                                          "items": {
+                                            "type": "string",
+                                            "enum": [
+                                              "in_app",
+                                              "email",
+                                              "sms",
+                                              "chat",
+                                              "push",
+                                              "whatsApp"
+                                            ]
+                                          }
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "type": "null"
+                                    }
+                                  ]
+                                },
+                                "customerPreferenceTopic": {
+                                  "anyOf": [
+                                    {
+                                      "type": "object",
+                                      "required": [
+                                        "id",
+                                        "name",
+                                        "description",
+                                        "channels"
+                                      ],
+                                      "properties": {
+                                        "id": {
+                                          "type": "string"
+                                        },
+                                        "name": {
+                                          "type": "string"
+                                        },
+                                        "description": {
+                                          "type": "string"
+                                        },
+                                        "channels": {
+                                          "type": "array",
+                                          "items": {
+                                            "type": "string",
+                                            "enum": [
+                                              "in_app",
+                                              "email",
+                                              "sms",
+                                              "chat",
+                                              "push",
+                                              "whatsApp"
+                                            ]
+                                          }
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "type": "null"
+                                    }
+                                  ]
+                                }
+                              }
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        },
+                        "notificationHandlerRecipient": {
+                          "anyOf": [
+                            {
+                              "type": "object",
+                              "required": [
+                                "recipientSourceType",
+                                "recipientSource"
+                              ],
+                              "properties": {
+                                "recipientSourceType": {
+                                  "type": "string",
+                                  "enum": [
+                                    "payload_based",
+                                    "target_audience_list",
+                                    "cohort_segment"
+                                  ]
+                                },
+                                "recipientSource": {
+                                  "anyOf": [
+                                    {
+                                      "type": "object",
+                                      "required": [
+                                        "id",
+                                        "name",
+                                        "description"
+                                      ],
+                                      "properties": {
+                                        "id": {
+                                          "type": "string"
+                                        },
+                                        "name": {
+                                          "type": "string"
+                                        },
+                                        "description": {
+                                          "type": "string"
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "type": "null"
+                                    }
+                                  ]
+                                }
+                              }
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        },
+                        "notificationHandlerScheduleId": {
+                          "anyOf": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        },
+                        "isPublished": {
+                          "type": "boolean"
+                        }
+                      }
+                    },
                     "metaData": {
                       "type": "null"
                     },
@@ -6174,7 +4528,7 @@
         "description": "Get a notification handler by id."
       }
     },
-    "/nudge/projects/{projectId}/notification-handlers/{notificationHandlerId}/channel-configurations/{channelConfigurationId}/channel-templates/{templateId}": {
+    "/nudge/projects/{projectId}/notification-handlers/{notificationHandlerId}/channel-templates/{templateId}": {
       "get": {
         "tags": [
           "Notification Handlers"
@@ -6192,14 +4546,6 @@
           },
           {
             "name": "notificationHandlerId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "channelConfigurationId",
             "in": "path",
             "required": true,
             "schema": {
@@ -6853,421 +5199,6 @@
           }
         },
         "description": "Get a channel template by id."
-      }
-    },
-    "/nudge/projects/{projectId}/notification-handlers/{notificationHandlerId}/channel-configurations/{channelConfigurationId}/channel-templates/{templateId}/submit-meta-whatsapp-template": {
-      "post": {
-        "tags": [
-          "Notification Handlers"
-        ],
-        "operationId": "whatsAppMetaTemplateManagement",
-        "summary": "WhatsApp Meta Template Management",
-        "parameters": [
-          {
-            "name": "notificationHandlerId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "projectId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "channelConfigurationId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "templateId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Request was successful",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "required": [
-                    "status",
-                    "message",
-                    "data",
-                    "metaData",
-                    "error"
-                  ],
-                  "properties": {
-                    "status": {
-                      "type": "string",
-                      "enum": [
-                        "success"
-                      ]
-                    },
-                    "message": {
-                      "type": "string"
-                    },
-                    "data": {
-                      "type": "object",
-                      "required": [
-                        "id",
-                        "status"
-                      ],
-                      "properties": {
-                        "id": {
-                          "type": "string"
-                        },
-                        "status": {
-                          "type": "string"
-                        }
-                      }
-                    },
-                    "metaData": {
-                      "type": "null"
-                    },
-                    "error": {
-                      "type": "null"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string",
-                      "enum": [
-                        "error"
-                      ]
-                    },
-                    "message": {
-                      "type": "string"
-                    },
-                    "data": {},
-                    "metaData": {},
-                    "error": {}
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string",
-                      "enum": [
-                        "error"
-                      ]
-                    },
-                    "message": {
-                      "type": "string"
-                    },
-                    "data": {},
-                    "metaData": {},
-                    "error": {}
-                  }
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string",
-                      "enum": [
-                        "error"
-                      ]
-                    },
-                    "message": {
-                      "type": "string"
-                    },
-                    "data": {},
-                    "metaData": {},
-                    "error": {}
-                  }
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal Server Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string",
-                      "enum": [
-                        "error"
-                      ]
-                    },
-                    "message": {
-                      "type": "string"
-                    },
-                    "data": {},
-                    "metaData": {},
-                    "error": {}
-                  }
-                }
-              }
-            }
-          }
-        },
-        "description": "Manage a WhatsApp Meta template for a channel template.",
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "required": [
-                  "integrationId",
-                  "metaTemplateCategory"
-                ],
-                "properties": {
-                  "integrationId": {
-                    "type": "string"
-                  },
-                  "metaTemplateCategory": {
-                    "type": "string",
-                    "enum": [
-                      "marketing",
-                      "utility",
-                      "authentication"
-                    ]
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/nudge/projects/{projectId}/notification-handlers/{notificationHandlerId}/channel-configurations/{channelConfigurationId}/channel-templates/{templateId}/sync-update-whatsapp-meta-template": {
-      "post": {
-        "tags": [
-          "Notification Handlers"
-        ],
-        "operationId": "syncUpdateWhatsappMetaTemplate",
-        "summary": "Sync Update WhatsApp Meta Template",
-        "parameters": [
-          {
-            "name": "notificationHandlerId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "projectId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "channelConfigurationId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "templateId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Request was successful",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "required": [
-                    "status",
-                    "message",
-                    "data",
-                    "metaData",
-                    "error"
-                  ],
-                  "properties": {
-                    "status": {
-                      "type": "string",
-                      "enum": [
-                        "success"
-                      ]
-                    },
-                    "message": {
-                      "type": "string"
-                    },
-                    "data": {
-                      "type": "object",
-                      "required": [
-                        "id",
-                        "status"
-                      ],
-                      "properties": {
-                        "id": {
-                          "type": "string"
-                        },
-                        "status": {
-                          "type": "string",
-                          "enum": [
-                            "draft",
-                            "pending",
-                            "approved",
-                            "rejected"
-                          ]
-                        }
-                      }
-                    },
-                    "metaData": {
-                      "type": "null"
-                    },
-                    "error": {
-                      "type": "null"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string",
-                      "enum": [
-                        "error"
-                      ]
-                    },
-                    "message": {
-                      "type": "string"
-                    },
-                    "data": {},
-                    "metaData": {},
-                    "error": {}
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string",
-                      "enum": [
-                        "error"
-                      ]
-                    },
-                    "message": {
-                      "type": "string"
-                    },
-                    "data": {},
-                    "metaData": {},
-                    "error": {}
-                  }
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string",
-                      "enum": [
-                        "error"
-                      ]
-                    },
-                    "message": {
-                      "type": "string"
-                    },
-                    "data": {},
-                    "metaData": {},
-                    "error": {}
-                  }
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal Server Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string",
-                      "enum": [
-                        "error"
-                      ]
-                    },
-                    "message": {
-                      "type": "string"
-                    },
-                    "data": {},
-                    "metaData": {},
-                    "error": {}
-                  }
-                }
-              }
-            }
-          }
-        },
-        "description": "Sync a WhatsApp Meta template from the provider."
       }
     },
     "/opm/projects/{projectId}": {
