@@ -1857,6 +1857,601 @@
         "description": "Get organization details by organization id."
       }
     },
+    "/opm/product-spaces/": {
+      "post": {
+        "tags": [
+          "Product Spaces"
+        ],
+        "operationId": "createProductSpace",
+        "summary": "Create Product Space",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Request was successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "status",
+                    "message",
+                    "data",
+                    "metaData",
+                    "error"
+                  ],
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "success"
+                      ]
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "required": [
+                        "id",
+                        "name",
+                        "orgId",
+                        "code"
+                      ],
+                      "properties": {
+                        "id": {
+                          "type": "string"
+                        },
+                        "name": {
+                          "type": "string"
+                        },
+                        "description": {
+                          "type": "string"
+                        },
+                        "orgId": {
+                          "type": "string"
+                        },
+                        "code": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "metaData": {
+                      "type": "null"
+                    },
+                    "error": {
+                      "type": "null"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "error"
+                      ]
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "data": {},
+                    "metaData": {},
+                    "error": {}
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "error"
+                      ]
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "data": {},
+                    "metaData": {},
+                    "error": {}
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "error"
+                      ]
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "data": {},
+                    "metaData": {},
+                    "error": {}
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "error"
+                      ]
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "data": {},
+                    "metaData": {},
+                    "error": {}
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "Create a product space in the organization.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "additionalProperties": false,
+                "type": "object",
+                "required": [
+                  "name"
+                ],
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Product Spaces"
+        ],
+        "operationId": "getProductSpaceList",
+        "summary": "Get Product Space List",
+        "parameters": [
+          {
+            "name": "search",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "default": "1",
+              "pattern": "^[0-9]+$",
+              "type": "string"
+            }
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "default": "25",
+              "pattern": "^[0-9]+$",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Request was successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "status",
+                    "message",
+                    "data",
+                    "metaData",
+                    "error"
+                  ],
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "success"
+                      ]
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "required": [
+                          "id",
+                          "name",
+                          "orgId",
+                          "code"
+                        ],
+                        "properties": {
+                          "id": {
+                            "type": "string"
+                          },
+                          "name": {
+                            "type": "string"
+                          },
+                          "description": {
+                            "type": "string"
+                          },
+                          "orgId": {
+                            "type": "string"
+                          },
+                          "code": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    },
+                    "metaData": {
+                      "type": "object",
+                      "required": [
+                        "page",
+                        "hasMore",
+                        "pageSize",
+                        "count"
+                      ],
+                      "properties": {
+                        "page": {
+                          "type": "number"
+                        },
+                        "hasMore": {
+                          "type": "boolean"
+                        },
+                        "pageSize": {
+                          "type": "number"
+                        },
+                        "count": {
+                          "anyOf": [
+                            {
+                              "type": "number"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        }
+                      }
+                    },
+                    "error": {
+                      "type": "null"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "error"
+                      ]
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "data": {},
+                    "metaData": {},
+                    "error": {}
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "error"
+                      ]
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "data": {},
+                    "metaData": {},
+                    "error": {}
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "error"
+                      ]
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "data": {},
+                    "metaData": {},
+                    "error": {}
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "error"
+                      ]
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "data": {},
+                    "metaData": {},
+                    "error": {}
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "Get product spaces in the organization."
+      }
+    },
+    "/opm/product-spaces/{productSpaceId}": {
+      "get": {
+        "tags": [
+          "Product Spaces"
+        ],
+        "operationId": "getProductSpaceById",
+        "summary": "Get Product Space By Id",
+        "parameters": [
+          {
+            "name": "productSpaceId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Request was successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "status",
+                    "message",
+                    "data",
+                    "metaData",
+                    "error"
+                  ],
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "success"
+                      ]
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "required": [
+                        "id",
+                        "name",
+                        "orgId",
+                        "code"
+                      ],
+                      "properties": {
+                        "id": {
+                          "type": "string"
+                        },
+                        "name": {
+                          "type": "string"
+                        },
+                        "description": {
+                          "type": "string"
+                        },
+                        "orgId": {
+                          "type": "string"
+                        },
+                        "code": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "metaData": {
+                      "type": "null"
+                    },
+                    "error": {
+                      "type": "null"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "error"
+                      ]
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "data": {},
+                    "metaData": {},
+                    "error": {}
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "error"
+                      ]
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "data": {},
+                    "metaData": {},
+                    "error": {}
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "error"
+                      ]
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "data": {},
+                    "metaData": {},
+                    "error": {}
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "error"
+                      ]
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "data": {},
+                    "metaData": {},
+                    "error": {}
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "Get a product space by id."
+      }
+    },
     "/nudge/projects/{projectId}/notification-handlers/{notificationHandlerId}/info": {
       "put": {
         "tags": [
@@ -7085,312 +7680,6 @@
           }
         },
         "description": "Get a notification provider integration by id."
-      }
-    },
-    "/customer/customer-pools/": {
-      "get": {
-        "tags": [
-          "Customer Pools"
-        ],
-        "operationId": "getCustomerPoolInOrganization",
-        "summary": "List Organization Customer Pools",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "Request was successful",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "required": [
-                    "status",
-                    "message",
-                    "data",
-                    "metaData",
-                    "error"
-                  ],
-                  "properties": {
-                    "status": {
-                      "type": "string",
-                      "enum": [
-                        "success"
-                      ]
-                    },
-                    "message": {
-                      "type": "string"
-                    },
-                    "data": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "required": [
-                          "id",
-                          "name",
-                          "description",
-                          "poolLevel",
-                          "globalAccess",
-                          "organizationId",
-                          "createdById",
-                          "createdDate",
-                          "modifiedById",
-                          "modifiedDate",
-                          "isActive",
-                          "isDeleted"
-                        ],
-                        "properties": {
-                          "id": {
-                            "type": "string"
-                          },
-                          "name": {
-                            "type": "string"
-                          },
-                          "description": {
-                            "type": "string"
-                          },
-                          "customerPoolProjectSetting": {
-                            "type": "array",
-                            "items": {
-                              "type": "object",
-                              "required": [
-                                "projectId",
-                                "customerPoolId",
-                                "accessLevel",
-                                "isOwner",
-                                "createdById",
-                                "createdDate",
-                                "modifiedById",
-                                "modifiedDate",
-                                "isActive",
-                                "isDeleted",
-                                "projectName"
-                              ],
-                              "properties": {
-                                "projectId": {
-                                  "type": "string"
-                                },
-                                "customerPoolId": {
-                                  "type": "string"
-                                },
-                                "accessLevel": {
-                                  "type": "string",
-                                  "enum": [
-                                    "no_access",
-                                    "read",
-                                    "write",
-                                    "export"
-                                  ]
-                                },
-                                "isOwner": {
-                                  "type": "boolean"
-                                },
-                                "createdById": {
-                                  "type": "string"
-                                },
-                                "createdDate": {
-                                  "type": "string",
-                                  "format": "date-time"
-                                },
-                                "modifiedById": {
-                                  "type": "string"
-                                },
-                                "modifiedDate": {
-                                  "type": "string",
-                                  "format": "date-time"
-                                },
-                                "isActive": {
-                                  "type": "boolean"
-                                },
-                                "isDeleted": {
-                                  "type": "boolean"
-                                },
-                                "projectName": {
-                                  "type": "string"
-                                }
-                              }
-                            }
-                          },
-                          "poolLevel": {
-                            "type": "string",
-                            "enum": [
-                              "organization",
-                              "project"
-                            ]
-                          },
-                          "globalAccess": {
-                            "type": "boolean"
-                          },
-                          "projectId": {
-                            "anyOf": [
-                              {
-                                "type": "string"
-                              },
-                              {
-                                "type": "null"
-                              }
-                            ]
-                          },
-                          "organizationId": {
-                            "type": "string"
-                          },
-                          "createdById": {
-                            "type": "string"
-                          },
-                          "createdDate": {
-                            "type": "string",
-                            "format": "date-time"
-                          },
-                          "modifiedById": {
-                            "type": "string"
-                          },
-                          "modifiedDate": {
-                            "type": "string",
-                            "format": "date-time"
-                          },
-                          "isActive": {
-                            "type": "boolean"
-                          },
-                          "isDeleted": {
-                            "type": "boolean"
-                          }
-                        }
-                      }
-                    },
-                    "metaData": {
-                      "type": "object",
-                      "required": [
-                        "page",
-                        "hasMore",
-                        "pageSize",
-                        "count"
-                      ],
-                      "properties": {
-                        "page": {
-                          "type": "number"
-                        },
-                        "hasMore": {
-                          "type": "boolean"
-                        },
-                        "pageSize": {
-                          "type": "number"
-                        },
-                        "count": {
-                          "anyOf": [
-                            {
-                              "type": "number"
-                            },
-                            {
-                              "type": "null"
-                            }
-                          ]
-                        }
-                      }
-                    },
-                    "error": {
-                      "type": "null"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string",
-                      "enum": [
-                        "error"
-                      ]
-                    },
-                    "message": {
-                      "type": "string"
-                    },
-                    "data": {},
-                    "metaData": {},
-                    "error": {}
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string",
-                      "enum": [
-                        "error"
-                      ]
-                    },
-                    "message": {
-                      "type": "string"
-                    },
-                    "data": {},
-                    "metaData": {},
-                    "error": {}
-                  }
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string",
-                      "enum": [
-                        "error"
-                      ]
-                    },
-                    "message": {
-                      "type": "string"
-                    },
-                    "data": {},
-                    "metaData": {},
-                    "error": {}
-                  }
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal Server Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string",
-                      "enum": [
-                        "error"
-                      ]
-                    },
-                    "message": {
-                      "type": "string"
-                    },
-                    "data": {},
-                    "metaData": {},
-                    "error": {}
-                  }
-                }
-              }
-            }
-          }
-        },
-        "description": "Get customer pools in the organization."
       }
     },
     "/customer/projects/{projectId}/customer-pools/{customerPoolId}/customers": {
@@ -15955,372 +16244,363 @@
           "content": {
             "application/json": {
               "schema": {
-                "additionalProperties": false,
+                "$id": "assignCohortQueryToCohortSegment_request_T0",
                 "type": "object",
                 "required": [
-                  "query"
+                  "combinator",
+                  "rules"
                 ],
                 "properties": {
-                  "query": {
-                    "$id": "assignCohortQueryToCohortSegment_request_T0",
-                    "type": "object",
-                    "required": [
-                      "combinator",
-                      "rules"
-                    ],
-                    "properties": {
-                      "combinator": {
-                        "type": "string",
-                        "enum": [
-                          "AND",
-                          "or",
-                          "and",
-                          "OR"
-                        ]
-                      },
-                      "rules": {
-                        "type": "array",
-                        "items": {
-                          "anyOf": [
-                            {
-                              "type": "object",
-                              "required": [
-                                "id",
-                                "field",
-                                "attributeId",
-                                "operator",
-                                "value"
-                              ],
-                              "properties": {
-                                "id": {
-                                  "minLength": 1,
+                  "combinator": {
+                    "type": "string",
+                    "enum": [
+                      "AND",
+                      "or",
+                      "and",
+                      "OR"
+                    ]
+                  },
+                  "rules": {
+                    "type": "array",
+                    "items": {
+                      "anyOf": [
+                        {
+                          "type": "object",
+                          "required": [
+                            "id",
+                            "field",
+                            "attributeId",
+                            "operator",
+                            "value"
+                          ],
+                          "properties": {
+                            "id": {
+                              "minLength": 1,
+                              "type": "string"
+                            },
+                            "field": {
+                              "minLength": 1,
+                              "type": "string"
+                            },
+                            "attributeId": {
+                              "minLength": 1,
+                              "type": "string"
+                            },
+                            "operator": {
+                              "type": "string",
+                              "enum": [
+                                ">",
+                                "<",
+                                ">=",
+                                "<=",
+                                "=",
+                                "!=",
+                                "between",
+                                "notBetween",
+                                "contains",
+                                "doesNotContain",
+                                "endsWith",
+                                "doesNotEndWith",
+                                "beginsWith",
+                                "doesNotBeginWith",
+                                "in",
+                                "notIn"
+                              ]
+                            },
+                            "value": {
+                              "anyOf": [
+                                {
                                   "type": "string"
                                 },
-                                "field": {
-                                  "minLength": 1,
-                                  "type": "string"
+                                {
+                                  "type": "number"
                                 },
-                                "attributeId": {
-                                  "minLength": 1,
-                                  "type": "string"
+                                {
+                                  "type": "boolean"
                                 },
-                                "operator": {
-                                  "type": "string",
-                                  "enum": [
-                                    ">",
-                                    "<",
-                                    ">=",
-                                    "<=",
-                                    "=",
-                                    "!=",
-                                    "between",
-                                    "notBetween",
-                                    "contains",
-                                    "doesNotContain",
-                                    "endsWith",
-                                    "doesNotEndWith",
-                                    "beginsWith",
-                                    "doesNotBeginWith",
-                                    "in",
-                                    "notIn"
-                                  ]
+                                {
+                                  "type": "array",
+                                  "items": {
+                                    "anyOf": [
+                                      {
+                                        "type": "string"
+                                      },
+                                      {
+                                        "type": "number"
+                                      }
+                                    ]
+                                  }
                                 },
-                                "value": {
+                                {
                                   "anyOf": [
                                     {
-                                      "type": "string"
-                                    },
-                                    {
-                                      "type": "number"
-                                    },
-                                    {
-                                      "type": "boolean"
-                                    },
-                                    {
-                                      "type": "array",
-                                      "items": {
-                                        "anyOf": [
-                                          {
-                                            "type": "string"
-                                          },
-                                          {
-                                            "type": "number"
-                                          }
-                                        ]
+                                      "type": "object",
+                                      "required": [
+                                        "mode",
+                                        "value"
+                                      ],
+                                      "properties": {
+                                        "mode": {
+                                          "const": "absolute",
+                                          "type": "string"
+                                        },
+                                        "value": {
+                                          "anyOf": [
+                                            {
+                                              "const": "current",
+                                              "type": "string"
+                                            },
+                                            {
+                                              "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+                                              "type": "string"
+                                            }
+                                          ]
+                                        }
                                       }
                                     },
                                     {
                                       "anyOf": [
                                         {
+                                          "additionalProperties": false,
                                           "type": "object",
                                           "required": [
                                             "mode",
-                                            "value"
+                                            "base",
+                                            "direction",
+                                            "amount",
+                                            "unit"
                                           ],
                                           "properties": {
                                             "mode": {
-                                              "const": "absolute",
+                                              "const": "relative",
                                               "type": "string"
                                             },
-                                            "value": {
-                                              "anyOf": [
-                                                {
-                                                  "const": "current",
-                                                  "type": "string"
-                                                },
-                                                {
-                                                  "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
-                                                  "type": "string"
-                                                }
+                                            "base": {
+                                              "const": "current",
+                                              "type": "string"
+                                            },
+                                            "direction": {
+                                              "type": "string",
+                                              "enum": [
+                                                "+",
+                                                "-"
+                                              ]
+                                            },
+                                            "amount": {
+                                              "minimum": 0,
+                                              "type": "integer"
+                                            },
+                                            "unit": {
+                                              "type": "string",
+                                              "enum": [
+                                                "days",
+                                                "weeks",
+                                                "months"
                                               ]
                                             }
                                           }
                                         },
                                         {
-                                          "anyOf": [
-                                            {
-                                              "additionalProperties": false,
-                                              "type": "object",
-                                              "required": [
-                                                "mode",
-                                                "base",
-                                                "direction",
-                                                "amount",
-                                                "unit"
-                                              ],
-                                              "properties": {
-                                                "mode": {
-                                                  "const": "relative",
-                                                  "type": "string"
-                                                },
-                                                "base": {
-                                                  "const": "current",
-                                                  "type": "string"
-                                                },
-                                                "direction": {
-                                                  "type": "string",
-                                                  "enum": [
-                                                    "+",
-                                                    "-"
-                                                  ]
-                                                },
-                                                "amount": {
-                                                  "minimum": 0,
-                                                  "type": "integer"
-                                                },
-                                                "unit": {
-                                                  "type": "string",
-                                                  "enum": [
-                                                    "days",
-                                                    "weeks",
-                                                    "months"
-                                                  ]
-                                                }
-                                              }
+                                          "additionalProperties": false,
+                                          "type": "object",
+                                          "required": [
+                                            "mode",
+                                            "base",
+                                            "baseDate",
+                                            "direction",
+                                            "amount",
+                                            "unit"
+                                          ],
+                                          "properties": {
+                                            "mode": {
+                                              "const": "relative",
+                                              "type": "string"
                                             },
-                                            {
-                                              "additionalProperties": false,
-                                              "type": "object",
-                                              "required": [
-                                                "mode",
-                                                "base",
-                                                "baseDate",
-                                                "direction",
-                                                "amount",
-                                                "unit"
-                                              ],
-                                              "properties": {
-                                                "mode": {
-                                                  "const": "relative",
-                                                  "type": "string"
-                                                },
-                                                "base": {
-                                                  "const": "date",
-                                                  "type": "string"
-                                                },
-                                                "baseDate": {
-                                                  "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
-                                                  "type": "string"
-                                                },
-                                                "direction": {
-                                                  "type": "string",
-                                                  "enum": [
-                                                    "+",
-                                                    "-"
-                                                  ]
-                                                },
-                                                "amount": {
-                                                  "minimum": 0,
-                                                  "type": "integer"
-                                                },
-                                                "unit": {
-                                                  "type": "string",
-                                                  "enum": [
-                                                    "days",
-                                                    "weeks",
-                                                    "months"
-                                                  ]
-                                                }
-                                              }
+                                            "base": {
+                                              "const": "date",
+                                              "type": "string"
+                                            },
+                                            "baseDate": {
+                                              "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+                                              "type": "string"
+                                            },
+                                            "direction": {
+                                              "type": "string",
+                                              "enum": [
+                                                "+",
+                                                "-"
+                                              ]
+                                            },
+                                            "amount": {
+                                              "minimum": 0,
+                                              "type": "integer"
+                                            },
+                                            "unit": {
+                                              "type": "string",
+                                              "enum": [
+                                                "days",
+                                                "weeks",
+                                                "months"
+                                              ]
                                             }
-                                          ]
+                                          }
                                         }
                                       ]
-                                    },
-                                    {
-                                      "minItems": 2,
-                                      "maxItems": 2,
-                                      "type": "array",
-                                      "items": {
+                                    }
+                                  ]
+                                },
+                                {
+                                  "minItems": 2,
+                                  "maxItems": 2,
+                                  "type": "array",
+                                  "items": {
+                                    "anyOf": [
+                                      {
+                                        "type": "string"
+                                      },
+                                      {
+                                        "type": "number"
+                                      },
+                                      {
                                         "anyOf": [
                                           {
-                                            "type": "string"
-                                          },
-                                          {
-                                            "type": "number"
+                                            "type": "object",
+                                            "required": [
+                                              "mode",
+                                              "value"
+                                            ],
+                                            "properties": {
+                                              "mode": {
+                                                "const": "absolute",
+                                                "type": "string"
+                                              },
+                                              "value": {
+                                                "anyOf": [
+                                                  {
+                                                    "const": "current",
+                                                    "type": "string"
+                                                  },
+                                                  {
+                                                    "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+                                                    "type": "string"
+                                                  }
+                                                ]
+                                              }
+                                            }
                                           },
                                           {
                                             "anyOf": [
                                               {
+                                                "additionalProperties": false,
                                                 "type": "object",
                                                 "required": [
                                                   "mode",
-                                                  "value"
+                                                  "base",
+                                                  "direction",
+                                                  "amount",
+                                                  "unit"
                                                 ],
                                                 "properties": {
                                                   "mode": {
-                                                    "const": "absolute",
+                                                    "const": "relative",
                                                     "type": "string"
                                                   },
-                                                  "value": {
-                                                    "anyOf": [
-                                                      {
-                                                        "const": "current",
-                                                        "type": "string"
-                                                      },
-                                                      {
-                                                        "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
-                                                        "type": "string"
-                                                      }
+                                                  "base": {
+                                                    "const": "current",
+                                                    "type": "string"
+                                                  },
+                                                  "direction": {
+                                                    "type": "string",
+                                                    "enum": [
+                                                      "+",
+                                                      "-"
+                                                    ]
+                                                  },
+                                                  "amount": {
+                                                    "minimum": 0,
+                                                    "type": "integer"
+                                                  },
+                                                  "unit": {
+                                                    "type": "string",
+                                                    "enum": [
+                                                      "days",
+                                                      "weeks",
+                                                      "months"
                                                     ]
                                                   }
                                                 }
                                               },
                                               {
-                                                "anyOf": [
-                                                  {
-                                                    "additionalProperties": false,
-                                                    "type": "object",
-                                                    "required": [
-                                                      "mode",
-                                                      "base",
-                                                      "direction",
-                                                      "amount",
-                                                      "unit"
-                                                    ],
-                                                    "properties": {
-                                                      "mode": {
-                                                        "const": "relative",
-                                                        "type": "string"
-                                                      },
-                                                      "base": {
-                                                        "const": "current",
-                                                        "type": "string"
-                                                      },
-                                                      "direction": {
-                                                        "type": "string",
-                                                        "enum": [
-                                                          "+",
-                                                          "-"
-                                                        ]
-                                                      },
-                                                      "amount": {
-                                                        "minimum": 0,
-                                                        "type": "integer"
-                                                      },
-                                                      "unit": {
-                                                        "type": "string",
-                                                        "enum": [
-                                                          "days",
-                                                          "weeks",
-                                                          "months"
-                                                        ]
-                                                      }
-                                                    }
+                                                "additionalProperties": false,
+                                                "type": "object",
+                                                "required": [
+                                                  "mode",
+                                                  "base",
+                                                  "baseDate",
+                                                  "direction",
+                                                  "amount",
+                                                  "unit"
+                                                ],
+                                                "properties": {
+                                                  "mode": {
+                                                    "const": "relative",
+                                                    "type": "string"
                                                   },
-                                                  {
-                                                    "additionalProperties": false,
-                                                    "type": "object",
-                                                    "required": [
-                                                      "mode",
-                                                      "base",
-                                                      "baseDate",
-                                                      "direction",
-                                                      "amount",
-                                                      "unit"
-                                                    ],
-                                                    "properties": {
-                                                      "mode": {
-                                                        "const": "relative",
-                                                        "type": "string"
-                                                      },
-                                                      "base": {
-                                                        "const": "date",
-                                                        "type": "string"
-                                                      },
-                                                      "baseDate": {
-                                                        "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
-                                                        "type": "string"
-                                                      },
-                                                      "direction": {
-                                                        "type": "string",
-                                                        "enum": [
-                                                          "+",
-                                                          "-"
-                                                        ]
-                                                      },
-                                                      "amount": {
-                                                        "minimum": 0,
-                                                        "type": "integer"
-                                                      },
-                                                      "unit": {
-                                                        "type": "string",
-                                                        "enum": [
-                                                          "days",
-                                                          "weeks",
-                                                          "months"
-                                                        ]
-                                                      }
-                                                    }
+                                                  "base": {
+                                                    "const": "date",
+                                                    "type": "string"
+                                                  },
+                                                  "baseDate": {
+                                                    "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+                                                    "type": "string"
+                                                  },
+                                                  "direction": {
+                                                    "type": "string",
+                                                    "enum": [
+                                                      "+",
+                                                      "-"
+                                                    ]
+                                                  },
+                                                  "amount": {
+                                                    "minimum": 0,
+                                                    "type": "integer"
+                                                  },
+                                                  "unit": {
+                                                    "type": "string",
+                                                    "enum": [
+                                                      "days",
+                                                      "weeks",
+                                                      "months"
+                                                    ]
                                                   }
-                                                ]
+                                                }
                                               }
                                             ]
                                           }
                                         ]
                                       }
-                                    }
-                                  ]
-                                },
-                                "valueSource": {
-                                  "type": "string",
-                                  "enum": [
-                                    "field",
-                                    "value"
-                                  ]
+                                    ]
+                                  }
                                 }
-                              }
+                              ]
                             },
-                            {
-                              "$ref": "#/components/schemas/assignCohortQueryToCohortSegment_request_T0"
+                            "valueSource": {
+                              "type": "string",
+                              "enum": [
+                                "field",
+                                "value"
+                              ]
                             }
-                          ]
+                          }
+                        },
+                        {
+                          "$ref": "#/components/schemas/assignCohortQueryToCohortSegment_request_T0"
                         }
-                      },
-                      "not": {
-                        "type": "boolean"
-                      }
+                      ]
                     }
+                  },
+                  "not": {
+                    "type": "boolean"
                   }
                 }
               }
