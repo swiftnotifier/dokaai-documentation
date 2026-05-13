@@ -15760,7 +15760,7 @@
         "description": "Get a notification group by id."
       }
     },
-    "/nudge/projects/{projectId}/customer-preferences/customer/{customerId}": {
+    "/nudge/customer-preferences/customer/{uniqueCustomerId}": {
       "get": {
         "tags": [
           "Customer Preferences"
@@ -15769,7 +15769,7 @@
         "summary": "Get Customer Preferences",
         "parameters": [
           {
-            "name": "customerId",
+            "name": "uniqueCustomerId",
             "in": "path",
             "required": true,
             "schema": {
@@ -15777,8 +15777,8 @@
             }
           },
           {
-            "name": "projectId",
-            "in": "path",
+            "name": "x-product-space-id",
+            "in": "header",
             "required": true,
             "schema": {
               "type": "string"
@@ -16023,7 +16023,7 @@
         "description": "Get customer notification preferences."
       }
     },
-    "/nudge/projects/{projectId}/customer-preferences/customer/{customerId}/save-topic-preference/{notificationTopicId}": {
+    "/nudge/customer-preferences/customer/{uniqueCustomerId}/save-topic-preference/{notificationTopicId}": {
       "post": {
         "tags": [
           "Customer Preferences"
@@ -16040,15 +16040,7 @@
             }
           },
           {
-            "name": "customerId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "projectId",
+            "name": "uniqueCustomerId",
             "in": "path",
             "required": true,
             "schema": {
@@ -16296,7 +16288,7 @@
         }
       }
     },
-    "/nudge/projects/{projectId}/customer-preferences/customer/{customerId}/save-group-preference/{notificationGroupId}": {
+    "/nudge/customer-preferences/customer/{uniqueCustomerId}/save-group-preference/{notificationGroupId}": {
       "post": {
         "tags": [
           "Customer Preferences"
@@ -16313,15 +16305,7 @@
             }
           },
           {
-            "name": "customerId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "projectId",
+            "name": "uniqueCustomerId",
             "in": "path",
             "required": true,
             "schema": {
@@ -20515,16 +20499,16 @@
         "description": "Generate a signed download url for the current project."
       }
     },
-    "/nudge/in-app-notifications/customer/{customerId}": {
+    "/nudge/in-app-notifications/customer/{uniqueCustomerId}": {
       "get": {
         "tags": [
           "In App Notifications"
         ],
-        "operationId": "getAllInAppNotificationByCustomerId",
-        "summary": "List In App Notifications",
+        "operationId": "getCustomerInAppNotifications",
+        "summary": "Get Customer In-App Notifications",
         "parameters": [
           {
-            "name": "customerId",
+            "name": "uniqueCustomerId",
             "in": "path",
             "required": true,
             "schema": {
@@ -20562,6 +20546,14 @@
               "pattern": "^[0-9]+$",
               "type": "string"
             }
+          },
+          {
+            "name": "x-product-space-id",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -20597,7 +20589,8 @@
                           "payload",
                           "createdDate",
                           "isRead",
-                          "customerId"
+                          "productSpaceId",
+                          "uniqueCustomerId"
                         ],
                         "properties": {
                           "id": {
@@ -20812,7 +20805,10 @@
                           "isRead": {
                             "type": "boolean"
                           },
-                          "customerId": {
+                          "productSpaceId": {
+                            "type": "string"
+                          },
+                          "uniqueCustomerId": {
                             "type": "string"
                           }
                         }
@@ -20953,20 +20949,28 @@
             }
           }
         },
-        "description": "Get all in-app notifications for a customer."
+        "description": "Get in-app notifications for a customer in a product space."
       }
     },
-    "/nudge/in-app-notifications/customer/{customerId}/unread-count": {
+    "/nudge/in-app-notifications/customer/{uniqueCustomerId}/unread-count": {
       "get": {
         "tags": [
           "In App Notifications"
         ],
         "operationId": "getUnreadInAppNotificationCount",
-        "summary": "Get Unread In App Notification Count",
+        "summary": "Get Unread In-App Notification Count",
         "parameters": [
           {
-            "name": "customerId",
+            "name": "uniqueCustomerId",
             "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-product-space-id",
+            "in": "header",
             "required": true,
             "schema": {
               "type": "string"
@@ -21116,19 +21120,19 @@
             }
           }
         },
-        "description": "Get unread in-app notification count for a customer."
+        "description": "Get the unread in-app notification count for a customer in a product space."
       }
     },
-    "/nudge/in-app-notifications/{inAppNotificationId}/customer/{customerId}": {
+    "/nudge/in-app-notifications/{inAppNotificationId}/customer/{uniqueCustomerId}": {
       "get": {
         "tags": [
           "In App Notifications"
         ],
-        "operationId": "getInAppNotificationByNotificationId",
-        "summary": "Get In App Notification by Id",
+        "operationId": "getInAppNotificationById",
+        "summary": "Get In-App Notification By Id",
         "parameters": [
           {
-            "name": "customerId",
+            "name": "uniqueCustomerId",
             "in": "path",
             "required": true,
             "schema": {
@@ -21138,6 +21142,14 @@
           {
             "name": "inAppNotificationId",
             "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-product-space-id",
+            "in": "header",
             "required": true,
             "schema": {
               "type": "string"
@@ -21175,7 +21187,8 @@
                         "payload",
                         "createdDate",
                         "isRead",
-                        "customerId"
+                        "productSpaceId",
+                        "uniqueCustomerId"
                       ],
                       "properties": {
                         "id": {
@@ -21390,7 +21403,10 @@
                         "isRead": {
                           "type": "boolean"
                         },
-                        "customerId": {
+                        "productSpaceId": {
+                          "type": "string"
+                        },
+                        "uniqueCustomerId": {
                           "type": "string"
                         }
                       }
@@ -21503,17 +21519,17 @@
             }
           }
         },
-        "description": "Get an in-app notification by id for a customer."
+        "description": "Get an in-app notification by id for a customer in a product space."
       },
       "put": {
         "tags": [
           "In App Notifications"
         ],
-        "operationId": "setInAppNotificationByIDRead",
-        "summary": "Mark In App Notification as Read",
+        "operationId": "setInAppNotificationAsRead",
+        "summary": "Set In-App Notification As Read",
         "parameters": [
           {
-            "name": "customerId",
+            "name": "uniqueCustomerId",
             "in": "path",
             "required": true,
             "schema": {
@@ -21523,6 +21539,14 @@
           {
             "name": "inAppNotificationId",
             "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-product-space-id",
+            "in": "header",
             "required": true,
             "schema": {
               "type": "string"
@@ -21672,20 +21696,28 @@
             }
           }
         },
-        "description": "Mark an in-app notification as read for a customer."
+        "description": "Mark an in-app notification as read for a customer in a product space."
       }
     },
-    "/nudge/in-app-notifications/customer/{customerId}/read-all": {
+    "/nudge/in-app-notifications/customer/{uniqueCustomerId}/read-all": {
       "put": {
         "tags": [
           "In App Notifications"
         ],
-        "operationId": "setAllInAppNotificationRead",
-        "summary": "Mark All In App Notifications as Read",
+        "operationId": "setAllInAppNotificationsAsRead",
+        "summary": "Set All In-App Notifications As Read",
         "parameters": [
           {
-            "name": "customerId",
+            "name": "uniqueCustomerId",
             "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-product-space-id",
+            "in": "header",
             "required": true,
             "schema": {
               "type": "string"
@@ -21832,7 +21864,7 @@
             }
           }
         },
-        "description": "Mark all in-app notifications as read for a customer."
+        "description": "Mark all in-app notifications as read for a customer in a product space."
       }
     },
     "/nudge/projects/{projectId}/jobs/": {

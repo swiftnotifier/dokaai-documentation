@@ -6,6 +6,14 @@ import { openapi } from '../lib/openapi';
 const OUTPUT_DIR = './content/api-reference';
 const PRESERVED_FILES = new Set(['meta.json', 'index.mdx', 'authentication.mdx']);
 
+function toKebabCase(value: string) {
+  return value
+    .replace(/([a-z0-9])([A-Z])/g, '$1-$2')
+    .replace(/[_\s]+/g, '-')
+    .replace(/-+/g, '-')
+    .toLowerCase();
+}
+
 function cleanGeneratedApiReferenceContent() {
   mkdirSync(OUTPUT_DIR, { recursive: true });
 
@@ -32,6 +40,23 @@ async function main() {
     output: OUTPUT_DIR,
     per: 'operation',
     groupBy: 'tag',
+    name(result, document) {
+      if (result.type === 'operation') {
+        const operation = document.paths?.[result.item.path]?.[result.item.method];
+
+        if (operation?.operationId) {
+          return toKebabCase(operation.operationId);
+        }
+
+        return join(
+          this.routePathToFilePath(result.item.path),
+          result.item.method.toLowerCase(),
+        );
+      }
+
+      const hook = document.webhooks?.[result.item.name]?.[result.item.method];
+      return toKebabCase(hook?.operationId ?? result.item.name);
+    },
     meta: false,
     includeDescription: true,
   });
