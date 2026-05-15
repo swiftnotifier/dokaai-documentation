@@ -15760,31 +15760,14 @@
         "description": "Get a notification group by id."
       }
     },
-    "/nudge/customer-preferences/customer/{uniqueCustomerId}": {
+    "/nudge/customer-preferences/": {
       "get": {
         "tags": [
           "Customer Preferences"
         ],
         "operationId": "getCustomerPreferences",
         "summary": "Get Customer Preferences",
-        "parameters": [
-          {
-            "name": "uniqueCustomerId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "x-product-space-id",
-            "in": "header",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
+        "parameters": [],
         "responses": {
           "200": {
             "description": "Request was successful",
@@ -16020,10 +16003,10 @@
             }
           }
         },
-        "description": "Get customer notification preferences."
+        "description": "Get notification preferences for the authenticated customer."
       }
     },
-    "/nudge/customer-preferences/customer/{uniqueCustomerId}/save-topic-preference/{notificationTopicId}": {
+    "/nudge/customer-preferences/notification-topics/{notificationTopicId}": {
       "post": {
         "tags": [
           "Customer Preferences"
@@ -16033,14 +16016,6 @@
         "parameters": [
           {
             "name": "notificationTopicId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "uniqueCustomerId",
             "in": "path",
             "required": true,
             "schema": {
@@ -16191,7 +16166,7 @@
             }
           }
         },
-        "description": "Save customer preference for a notification topic.",
+        "description": "Save preference for a notification topic for the authenticated customer.",
         "requestBody": {
           "required": true,
           "content": {
@@ -16288,7 +16263,7 @@
         }
       }
     },
-    "/nudge/customer-preferences/customer/{uniqueCustomerId}/save-group-preference/{notificationGroupId}": {
+    "/nudge/customer-preferences/notification-groups/{notificationGroupId}": {
       "post": {
         "tags": [
           "Customer Preferences"
@@ -16298,14 +16273,6 @@
         "parameters": [
           {
             "name": "notificationGroupId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "uniqueCustomerId",
             "in": "path",
             "required": true,
             "schema": {
@@ -16456,7 +16423,7 @@
             }
           }
         },
-        "description": "Save customer preference for a notification group.",
+        "description": "Save preference for a notification group for the authenticated customer.",
         "requestBody": {
           "required": true,
           "content": {
@@ -20499,7 +20466,7 @@
         "description": "Generate a signed download url for the current project."
       }
     },
-    "/nudge/in-app-notifications/customer/{uniqueCustomerId}": {
+    "/nudge/in-app-notifications/": {
       "get": {
         "tags": [
           "In App Notifications"
@@ -20507,14 +20474,6 @@
         "operationId": "getCustomerInAppNotifications",
         "summary": "Get Customer In-App Notifications",
         "parameters": [
-          {
-            "name": "uniqueCustomerId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
           {
             "name": "isRead",
             "in": "query",
@@ -20544,14 +20503,6 @@
             "schema": {
               "default": "25",
               "pattern": "^[0-9]+$",
-              "type": "string"
-            }
-          },
-          {
-            "name": "x-product-space-id",
-            "in": "header",
-            "required": true,
-            "schema": {
               "type": "string"
             }
           }
@@ -20949,34 +20900,394 @@
             }
           }
         },
-        "description": "Get in-app notifications for a customer in a product space."
+        "description": "Get in-app notifications for the authenticated customer."
+      },
+      "post": {
+        "tags": [
+          "In App Notifications"
+        ],
+        "operationId": "createInAppNotification",
+        "summary": "Create In-App Notification",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Request was successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "status",
+                    "message",
+                    "data",
+                    "metaData",
+                    "error"
+                  ],
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "success"
+                      ]
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "required": [
+                        "id"
+                      ],
+                      "properties": {
+                        "id": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "metaData": {
+                      "type": "null"
+                    },
+                    "error": {
+                      "type": "null"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "error"
+                      ]
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "data": {},
+                    "metaData": {},
+                    "error": {}
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "error"
+                      ]
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "data": {},
+                    "metaData": {},
+                    "error": {}
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "error"
+                      ]
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "data": {},
+                    "metaData": {},
+                    "error": {}
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "error"
+                      ]
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "data": {},
+                    "metaData": {},
+                    "error": {}
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "Create an in-app notification for the authenticated customer.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "payload",
+                  "handlerChannelTemplateId",
+                  "notificationHandlerId"
+                ],
+                "properties": {
+                  "payload": {
+                    "type": "object",
+                    "required": [
+                      "title",
+                      "body"
+                    ],
+                    "properties": {
+                      "title": {
+                        "type": "string"
+                      },
+                      "subTitle": {
+                        "type": "string"
+                      },
+                      "body": {
+                        "type": "string"
+                      },
+                      "avatar": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "required": [
+                            "iconURL"
+                          ],
+                          "properties": {
+                            "iconURL": {
+                              "type": "string"
+                            },
+                            "fallBackName": {
+                              "type": "string"
+                            },
+                            "iconRedirectURL": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      },
+                      "attachmentsImage": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "required": [
+                            "iconURL"
+                          ],
+                          "properties": {
+                            "iconURL": {
+                              "type": "string"
+                            },
+                            "fallBackName": {
+                              "type": "string"
+                            },
+                            "iconRedirectURL": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      },
+                      "attachments": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "required": [
+                            "type"
+                          ],
+                          "properties": {
+                            "type": {
+                              "type": "string",
+                              "enum": [
+                                "pdf",
+                                "image",
+                                "csv"
+                              ]
+                            },
+                            "fileName": {
+                              "minLength": 1,
+                              "type": "string"
+                            },
+                            "url": {
+                              "maxLength": 2048,
+                              "pattern": "^(https?:\\/\\/)[^\\s/$.?#].[^\\s]*$",
+                              "type": "string"
+                            }
+                          }
+                        }
+                      },
+                      "itemRedirect": {
+                        "type": "string"
+                      },
+                      "tags": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "required": [
+                            "tagName"
+                          ],
+                          "properties": {
+                            "tagName": {
+                              "maxLength": 120,
+                              "type": "string"
+                            },
+                            "url": {
+                              "type": "string"
+                            },
+                            "icon": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      },
+                      "actionButtons": {
+                        "type": "object",
+                        "properties": {
+                          "primary": {
+                            "anyOf": [
+                              {
+                                "additionalProperties": false,
+                                "type": "object",
+                                "required": [
+                                  "name"
+                                ],
+                                "properties": {
+                                  "name": {
+                                    "maxLength": 80,
+                                    "type": "string"
+                                  },
+                                  "url": {
+                                    "maxLength": 2048,
+                                    "pattern": "^(https?:\\/\\/)[^\\s/$.?#].[^\\s]*$",
+                                    "type": "string"
+                                  },
+                                  "onclickAction": {
+                                    "const": "navigate",
+                                    "type": "string"
+                                  }
+                                }
+                              },
+                              {
+                                "type": "null"
+                              }
+                            ]
+                          },
+                          "secondary": {
+                            "anyOf": [
+                              {
+                                "additionalProperties": false,
+                                "type": "object",
+                                "required": [
+                                  "name"
+                                ],
+                                "properties": {
+                                  "name": {
+                                    "maxLength": 80,
+                                    "type": "string"
+                                  },
+                                  "url": {
+                                    "maxLength": 2048,
+                                    "pattern": "^(https?:\\/\\/)[^\\s/$.?#].[^\\s]*$",
+                                    "type": "string"
+                                  },
+                                  "onclickAction": {
+                                    "const": "navigate",
+                                    "type": "string"
+                                  }
+                                }
+                              },
+                              {
+                                "type": "null"
+                              }
+                            ]
+                          },
+                          "tertiary": {
+                            "anyOf": [
+                              {
+                                "additionalProperties": false,
+                                "type": "object",
+                                "required": [
+                                  "name"
+                                ],
+                                "properties": {
+                                  "name": {
+                                    "maxLength": 80,
+                                    "type": "string"
+                                  },
+                                  "url": {
+                                    "maxLength": 2048,
+                                    "pattern": "^(https?:\\/\\/)[^\\s/$.?#].[^\\s]*$",
+                                    "type": "string"
+                                  },
+                                  "onclickAction": {
+                                    "const": "navigate",
+                                    "type": "string"
+                                  }
+                                }
+                              },
+                              {
+                                "type": "null"
+                              }
+                            ]
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "handlerChannelTemplateId": {
+                    "type": "string"
+                  },
+                  "notificationHandlerId": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     },
-    "/nudge/in-app-notifications/customer/{uniqueCustomerId}/unread-count": {
+    "/nudge/in-app-notifications/unread-count": {
       "get": {
         "tags": [
           "In App Notifications"
         ],
         "operationId": "getUnreadInAppNotificationCount",
         "summary": "Get Unread In-App Notification Count",
-        "parameters": [
-          {
-            "name": "uniqueCustomerId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "x-product-space-id",
-            "in": "header",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
+        "parameters": [],
         "responses": {
           "200": {
             "description": "Request was successful",
@@ -21120,10 +21431,10 @@
             }
           }
         },
-        "description": "Get the unread in-app notification count for a customer in a product space."
+        "description": "Get the unread in-app notification count for the authenticated customer."
       }
     },
-    "/nudge/in-app-notifications/{inAppNotificationId}/customer/{uniqueCustomerId}": {
+    "/nudge/in-app-notifications/{inAppNotificationId}": {
       "get": {
         "tags": [
           "In App Notifications"
@@ -21132,24 +21443,8 @@
         "summary": "Get In-App Notification By Id",
         "parameters": [
           {
-            "name": "uniqueCustomerId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "inAppNotificationId",
             "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "x-product-space-id",
-            "in": "header",
             "required": true,
             "schema": {
               "type": "string"
@@ -21519,8 +21814,10 @@
             }
           }
         },
-        "description": "Get an in-app notification by id for a customer in a product space."
-      },
+        "description": "Get an in-app notification by id for the authenticated customer."
+      }
+    },
+    "/nudge/in-app-notifications/{inAppNotificationId}/read": {
       "put": {
         "tags": [
           "In App Notifications"
@@ -21529,24 +21826,8 @@
         "summary": "Set In-App Notification As Read",
         "parameters": [
           {
-            "name": "uniqueCustomerId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "inAppNotificationId",
             "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "x-product-space-id",
-            "in": "header",
             "required": true,
             "schema": {
               "type": "string"
@@ -21696,34 +21977,17 @@
             }
           }
         },
-        "description": "Mark an in-app notification as read for a customer in a product space."
+        "description": "Mark an in-app notification as read for the authenticated customer."
       }
     },
-    "/nudge/in-app-notifications/customer/{uniqueCustomerId}/read-all": {
+    "/nudge/in-app-notifications/read-all": {
       "put": {
         "tags": [
           "In App Notifications"
         ],
         "operationId": "setAllInAppNotificationsAsRead",
         "summary": "Set All In-App Notifications As Read",
-        "parameters": [
-          {
-            "name": "uniqueCustomerId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "x-product-space-id",
-            "in": "header",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
+        "parameters": [],
         "responses": {
           "200": {
             "description": "Request was successful",
@@ -21864,7 +22128,19 @@
             }
           }
         },
-        "description": "Mark all in-app notifications as read for a customer in a product space."
+        "description": "Mark all in-app notifications as read for the authenticated customer.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "additionalProperties": false,
+                "type": "object",
+                "properties": {}
+              }
+            }
+          }
+        }
       }
     },
     "/nudge/projects/{projectId}/jobs/": {
