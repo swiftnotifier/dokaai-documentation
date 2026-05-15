@@ -731,17 +731,23 @@
       }
     },
     "securitySchemes": {
-      "clientIdentifierHeader": {
+      "clientKeyHeader": {
         "type": "apiKey",
         "in": "header",
-        "name": "x-client-id",
-        "description": "Client API key identifier header."
+        "name": "x-client-key",
+        "description": "Client API key header."
       },
-      "clientTokenHeader": {
+      "clientSecretHeader": {
         "type": "apiKey",
         "in": "header",
-        "name": "x-client-token",
-        "description": "Client API token header."
+        "name": "x-client-secret",
+        "description": "Client API secret header."
+      },
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT",
+        "description": "JWT Bearer token authentication."
       }
     }
   },
@@ -16003,7 +16009,12 @@
             }
           }
         },
-        "description": "Get notification preferences for the authenticated customer."
+        "description": "Get notification preferences for the authenticated customer.",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
     "/nudge/customer-preferences/notification-topics/{notificationTopicId}": {
@@ -16167,6 +16178,11 @@
           }
         },
         "description": "Save preference for a notification topic for the authenticated customer.",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -16424,6 +16440,11 @@
           }
         },
         "description": "Save preference for a notification group for the authenticated customer.",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -20900,7 +20921,12 @@
             }
           }
         },
-        "description": "Get in-app notifications for the authenticated customer."
+        "description": "Get in-app notifications for the authenticated customer.",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       },
       "post": {
         "tags": [
@@ -21053,6 +21079,11 @@
           }
         },
         "description": "Create an in-app notification for the authenticated customer.",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -21431,7 +21462,12 @@
             }
           }
         },
-        "description": "Get the unread in-app notification count for the authenticated customer."
+        "description": "Get the unread in-app notification count for the authenticated customer.",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
     "/nudge/in-app-notifications/{inAppNotificationId}": {
@@ -21814,7 +21850,12 @@
             }
           }
         },
-        "description": "Get an in-app notification by id for the authenticated customer."
+        "description": "Get an in-app notification by id for the authenticated customer.",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
     "/nudge/in-app-notifications/{inAppNotificationId}/read": {
@@ -21977,7 +22018,12 @@
             }
           }
         },
-        "description": "Mark an in-app notification as read for the authenticated customer."
+        "description": "Mark an in-app notification as read for the authenticated customer.",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
     "/nudge/in-app-notifications/read-all": {
@@ -22129,6 +22175,11 @@
           }
         },
         "description": "Mark all in-app notifications as read for the authenticated customer.",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -23004,8 +23055,8 @@
   },
   "security": [
     {
-      "clientIdentifierHeader": [],
-      "clientTokenHeader": []
+      "clientKeyHeader": [],
+      "clientSecretHeader": []
     }
   ],
   "servers": [
