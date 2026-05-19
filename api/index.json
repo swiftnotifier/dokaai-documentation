@@ -870,6 +870,39 @@
                           },
                           "isMember": {
                             "type": "boolean"
+                          },
+                          "productSpace": {
+                            "anyOf": [
+                              {
+                                "type": "object",
+                                "required": [
+                                  "id",
+                                  "orgId",
+                                  "code",
+                                  "name"
+                                ],
+                                "properties": {
+                                  "id": {
+                                    "type": "string"
+                                  },
+                                  "orgId": {
+                                    "type": "string"
+                                  },
+                                  "code": {
+                                    "type": "string"
+                                  },
+                                  "name": {
+                                    "type": "string"
+                                  },
+                                  "description": {
+                                    "type": "string"
+                                  }
+                                }
+                              },
+                              {
+                                "type": "null"
+                              }
+                            ]
                           }
                         }
                       }
@@ -1958,11 +1991,19 @@
                           {
                             "type": "object",
                             "required": [
+                              "productSpaceCode",
+                              "workspaceId",
                               "productSpaceName",
                               "createdBy",
                               "modifiedBy"
                             ],
                             "properties": {
+                              "productSpaceCode": {
+                                "type": "string"
+                              },
+                              "workspaceId": {
+                                "type": "string"
+                              },
                               "productSpaceName": {
                                 "type": "string"
                               },
@@ -2526,10 +2567,18 @@
                         {
                           "type": "object",
                           "required": [
+                            "productSpaceCode",
+                            "workspaceId",
                             "privateKey",
                             "warning"
                           ],
                           "properties": {
+                            "productSpaceCode": {
+                              "type": "string"
+                            },
+                            "workspaceId": {
+                              "type": "string"
+                            },
                             "privateKey": {
                               "type": "string"
                             },
@@ -6515,6 +6564,14 @@
                                                     }
                                                   }
                                                 },
+                                                "attributeValueExamples": {
+                                                  "type": "object",
+                                                  "patternProperties": {
+                                                    "^(.*)$": {
+                                                      "type": "string"
+                                                    }
+                                                  }
+                                                },
                                                 "header": {
                                                   "type": "object",
                                                   "required": [
@@ -6647,7 +6704,8 @@
                                 "draft",
                                 "pending",
                                 "approved",
-                                "rejected"
+                                "rejected",
+                                "stale"
                               ]
                             }
                           }
@@ -7033,6 +7091,39 @@
                                   "type": "string"
                                 }
                               }
+                            },
+                            "productSpace": {
+                              "anyOf": [
+                                {
+                                  "type": "object",
+                                  "required": [
+                                    "id",
+                                    "orgId",
+                                    "code",
+                                    "name"
+                                  ],
+                                  "properties": {
+                                    "id": {
+                                      "type": "string"
+                                    },
+                                    "orgId": {
+                                      "type": "string"
+                                    },
+                                    "code": {
+                                      "type": "string"
+                                    },
+                                    "name": {
+                                      "type": "string"
+                                    },
+                                    "description": {
+                                      "type": "string"
+                                    }
+                                  }
+                                },
+                                {
+                                  "type": "null"
+                                }
+                              ]
                             }
                           }
                         }
@@ -8708,6 +8799,9 @@
                               "type": "string"
                             },
                             "phoneNumberIdentification": {
+                              "type": "string"
+                            },
+                            "wabaId": {
                               "type": "string"
                             }
                           }
@@ -16758,6 +16852,14 @@
           },
           {
             "name": "search",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "assignedPoolId",
             "in": "query",
             "required": false,
             "schema": {

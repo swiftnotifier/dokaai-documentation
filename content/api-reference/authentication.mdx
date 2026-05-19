@@ -146,6 +146,50 @@ If your API client provides a bearer token field, provide only the raw JWT value
 
 ---
 
+# WebSocket Connection Example
+
+For websocket-based customer features such as in-app live notification delivery, use the same bearer-style token through the Socket.IO `auth.token` field.
+
+## Socket.IO Authentication Format
+
+```ts
+auth: {
+  token: 'Bearer <jwt>'
+}
+```
+
+## JavaScript Example
+
+```ts
+import { io } from 'socket.io-client';
+
+const socket = io('http://localhost:3000', {
+  path: '/api/v1/wss/socket.io',
+  transports: ['websocket'],
+  auth: {
+    token: `Bearer ${token}`
+  }
+});
+
+socket.on('connect', () => {
+  console.log('Connected:', socket.id);
+});
+
+socket.on('inAppMessage', (message) => {
+  console.log('Received in-app message:', message);
+});
+
+socket.on('connect_error', (error) => {
+  console.error('WebSocket connection failed:', error.message);
+});
+
+socket.on('disconnect', (reason) => {
+  console.log('Disconnected:', reason);
+});
+```
+
+---
+
 # Best Practices
 
 * Keep JWT expiration short-lived
