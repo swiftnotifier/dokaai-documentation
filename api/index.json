@@ -6141,6 +6141,936 @@
         "description": "Get a notification handler by id."
       }
     },
+    "/nudge/projects/{projectId}/notification-handlers/{notificationHandlerId}/events": {
+      "get": {
+        "tags": [
+          "Notification Handlers"
+        ],
+        "operationId": "getNotificationHandlerEventsByHandlerId",
+        "summary": "List Notification Handler Events",
+        "parameters": [
+          {
+            "name": "projectId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "notificationHandlerId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "default": "1",
+              "pattern": "^[0-9]+$",
+              "type": "string"
+            }
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "default": "25",
+              "pattern": "^[0-9]+$",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Request was successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "status",
+                    "message",
+                    "data",
+                    "metaData",
+                    "error"
+                  ],
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "success"
+                      ]
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "required": [
+                          "id",
+                          "organizationId",
+                          "notificationHandlerId",
+                          "idempotencyKey",
+                          "snapshotVersion",
+                          "notificationHandlerEventStatus",
+                          "mode",
+                          "notificationHandler",
+                          "notificationHandlerEventExecution"
+                        ],
+                        "properties": {
+                          "id": {
+                            "type": "string"
+                          },
+                          "organizationId": {
+                            "type": "string"
+                          },
+                          "notificationHandlerId": {
+                            "type": "string"
+                          },
+                          "idempotencyKey": {
+                            "type": "string"
+                          },
+                          "overrideOptions": {
+                            "anyOf": [
+                              {
+                                "additionalProperties": false,
+                                "type": "object",
+                                "required": [
+                                  "recipients"
+                                ],
+                                "properties": {
+                                  "recipients": {
+                                    "minItems": 1,
+                                    "type": "array",
+                                    "items": {
+                                      "allOf": [
+                                        {
+                                          "additionalProperties": true,
+                                          "type": "object",
+                                          "properties": {
+                                            "uniqueCustomerId": {
+                                              "anyOf": [
+                                                {
+                                                  "type": "string"
+                                                },
+                                                {
+                                                  "type": "null"
+                                                }
+                                              ]
+                                            },
+                                            "emailId": {
+                                              "anyOf": [
+                                                {
+                                                  "type": "string"
+                                                },
+                                                {
+                                                  "type": "null"
+                                                }
+                                              ]
+                                            },
+                                            "phoneNumber": {
+                                              "anyOf": [
+                                                {
+                                                  "type": "string"
+                                                },
+                                                {
+                                                  "type": "null"
+                                                }
+                                              ]
+                                            },
+                                            "iosDeviceTokens": {
+                                              "anyOf": [
+                                                {
+                                                  "type": "array",
+                                                  "items": {
+                                                    "minLength": 1,
+                                                    "pattern": "^(?!\\s*$)[^,]+$",
+                                                    "type": "string"
+                                                  }
+                                                },
+                                                {
+                                                  "type": "null"
+                                                }
+                                              ]
+                                            },
+                                            "androidDeviceTokens": {
+                                              "anyOf": [
+                                                {
+                                                  "type": "array",
+                                                  "items": {
+                                                    "minLength": 1,
+                                                    "pattern": "^(?!\\s*$)[^,]+$",
+                                                    "type": "string"
+                                                  }
+                                                },
+                                                {
+                                                  "type": "null"
+                                                }
+                                              ]
+                                            }
+                                          }
+                                        },
+                                        {
+                                          "anyOf": [
+                                            {
+                                              "type": "object",
+                                              "required": [
+                                                "uniqueCustomerId"
+                                              ],
+                                              "properties": {
+                                                "uniqueCustomerId": {
+                                                  "type": "string"
+                                                }
+                                              }
+                                            },
+                                            {
+                                              "type": "object",
+                                              "required": [
+                                                "emailId"
+                                              ],
+                                              "properties": {
+                                                "emailId": {
+                                                  "type": "string"
+                                                }
+                                              }
+                                            },
+                                            {
+                                              "type": "object",
+                                              "required": [
+                                                "phoneNumber"
+                                              ],
+                                              "properties": {
+                                                "phoneNumber": {
+                                                  "type": "string"
+                                                }
+                                              }
+                                            },
+                                            {
+                                              "type": "object",
+                                              "required": [
+                                                "iosDeviceTokens"
+                                              ],
+                                              "properties": {
+                                                "iosDeviceTokens": {
+                                                  "type": "array",
+                                                  "items": {
+                                                    "minLength": 1,
+                                                    "pattern": "^(?!\\s*$)[^,]+$",
+                                                    "type": "string"
+                                                  }
+                                                }
+                                              }
+                                            },
+                                            {
+                                              "type": "object",
+                                              "required": [
+                                                "androidDeviceTokens"
+                                              ],
+                                              "properties": {
+                                                "androidDeviceTokens": {
+                                                  "type": "array",
+                                                  "items": {
+                                                    "minLength": 1,
+                                                    "pattern": "^(?!\\s*$)[^,]+$",
+                                                    "type": "string"
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "templateData": {
+                                    "additionalProperties": true,
+                                    "type": "object",
+                                    "properties": {}
+                                  },
+                                  "enabledOnlyChannels": {
+                                    "type": "array",
+                                    "items": {
+                                      "type": "string",
+                                      "enum": [
+                                        "in_app",
+                                        "email",
+                                        "sms",
+                                        "chat",
+                                        "push",
+                                        "whatsApp"
+                                      ]
+                                    }
+                                  },
+                                  "metadata": {
+                                    "additionalProperties": false,
+                                    "type": "object",
+                                    "properties": {
+                                      "eventName": {
+                                        "type": "string"
+                                      },
+                                      "tags": {
+                                        "type": "array",
+                                        "items": {
+                                          "type": "string"
+                                        }
+                                      },
+                                      "utm": {
+                                        "type": "object",
+                                        "required": [
+                                          "source",
+                                          "medium",
+                                          "campaign",
+                                          "term"
+                                        ],
+                                        "properties": {
+                                          "source": {
+                                            "type": "string"
+                                          },
+                                          "medium": {
+                                            "type": "string"
+                                          },
+                                          "campaign": {
+                                            "type": "string"
+                                          },
+                                          "term": {
+                                            "type": "string"
+                                          }
+                                        }
+                                      },
+                                      "traceId": {
+                                        "type": "string"
+                                      }
+                                    }
+                                  },
+                                  "channelOverrides": {
+                                    "additionalProperties": false,
+                                    "type": "object",
+                                    "properties": {
+                                      "email": {
+                                        "additionalProperties": false,
+                                        "type": "object",
+                                        "properties": {
+                                          "from": {
+                                            "minLength": 1,
+                                            "type": "string"
+                                          },
+                                          "senderName": {
+                                            "minLength": 1,
+                                            "type": "string"
+                                          },
+                                          "replyTo": {
+                                            "minLength": 1,
+                                            "type": "string"
+                                          },
+                                          "bcc": {
+                                            "minItems": 1,
+                                            "type": "array",
+                                            "items": {
+                                              "minLength": 1,
+                                              "type": "string"
+                                            }
+                                          },
+                                          "providerOptions": {
+                                            "additionalProperties": true,
+                                            "type": "object",
+                                            "properties": {}
+                                          }
+                                        }
+                                      },
+                                      "sms": {
+                                        "additionalProperties": false,
+                                        "type": "object",
+                                        "properties": {
+                                          "from": {
+                                            "minLength": 1,
+                                            "type": "string"
+                                          },
+                                          "providerOptions": {
+                                            "additionalProperties": true,
+                                            "type": "object",
+                                            "properties": {}
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              },
+                              {
+                                "additionalProperties": false,
+                                "type": "object",
+                                "required": [
+                                  "recipientCriteria"
+                                ],
+                                "properties": {
+                                  "recipientCriteria": {
+                                    "additionalProperties": false,
+                                    "type": "object",
+                                    "properties": {
+                                      "targetListId": {
+                                        "type": "string"
+                                      },
+                                      "cohortId": {
+                                        "type": "string"
+                                      }
+                                    }
+                                  },
+                                  "templateData": {
+                                    "additionalProperties": true,
+                                    "type": "object",
+                                    "properties": {}
+                                  },
+                                  "enabledOnlyChannels": {
+                                    "type": "array",
+                                    "items": {
+                                      "type": "string",
+                                      "enum": [
+                                        "in_app",
+                                        "email",
+                                        "sms",
+                                        "chat",
+                                        "push",
+                                        "whatsApp"
+                                      ]
+                                    }
+                                  },
+                                  "metadata": {
+                                    "additionalProperties": false,
+                                    "type": "object",
+                                    "properties": {
+                                      "eventName": {
+                                        "type": "string"
+                                      },
+                                      "tags": {
+                                        "type": "array",
+                                        "items": {
+                                          "type": "string"
+                                        }
+                                      },
+                                      "utm": {
+                                        "type": "object",
+                                        "required": [
+                                          "source",
+                                          "medium",
+                                          "campaign",
+                                          "term"
+                                        ],
+                                        "properties": {
+                                          "source": {
+                                            "type": "string"
+                                          },
+                                          "medium": {
+                                            "type": "string"
+                                          },
+                                          "campaign": {
+                                            "type": "string"
+                                          },
+                                          "term": {
+                                            "type": "string"
+                                          }
+                                        }
+                                      },
+                                      "traceId": {
+                                        "type": "string"
+                                      }
+                                    }
+                                  },
+                                  "channelOverrides": {
+                                    "additionalProperties": false,
+                                    "type": "object",
+                                    "properties": {
+                                      "email": {
+                                        "additionalProperties": false,
+                                        "type": "object",
+                                        "properties": {
+                                          "from": {
+                                            "minLength": 1,
+                                            "type": "string"
+                                          },
+                                          "senderName": {
+                                            "minLength": 1,
+                                            "type": "string"
+                                          },
+                                          "replyTo": {
+                                            "minLength": 1,
+                                            "type": "string"
+                                          },
+                                          "bcc": {
+                                            "minItems": 1,
+                                            "type": "array",
+                                            "items": {
+                                              "minLength": 1,
+                                              "type": "string"
+                                            }
+                                          },
+                                          "providerOptions": {
+                                            "additionalProperties": true,
+                                            "type": "object",
+                                            "properties": {}
+                                          }
+                                        }
+                                      },
+                                      "sms": {
+                                        "additionalProperties": false,
+                                        "type": "object",
+                                        "properties": {
+                                          "from": {
+                                            "minLength": 1,
+                                            "type": "string"
+                                          },
+                                          "providerOptions": {
+                                            "additionalProperties": true,
+                                            "type": "object",
+                                            "properties": {}
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            ]
+                          },
+                          "handlerExecutionSnapshot": {
+                            "additionalProperties": false,
+                            "type": "object",
+                            "required": [
+                              "id",
+                              "handlerId",
+                              "name",
+                              "notificationTypeKind",
+                              "customerPreference",
+                              "channels",
+                              "recipientCriteria"
+                            ],
+                            "properties": {
+                              "id": {
+                                "type": "string"
+                              },
+                              "handlerId": {
+                                "type": "string"
+                              },
+                              "name": {
+                                "type": "string"
+                              },
+                              "notificationTypeKind": {
+                                "type": "string",
+                                "enum": [
+                                  "TRANSACTIONAL",
+                                  "SERVICE",
+                                  "MARKETING"
+                                ]
+                              },
+                              "customerPreference": {
+                                "additionalProperties": false,
+                                "type": "object",
+                                "required": [
+                                  "type",
+                                  "group",
+                                  "topic"
+                                ],
+                                "properties": {
+                                  "type": {
+                                    "type": "string",
+                                    "enum": [
+                                      "topic",
+                                      "group",
+                                      "no_preference"
+                                    ]
+                                  },
+                                  "group": {
+                                    "additionalProperties": false,
+                                    "type": "object",
+                                    "required": [
+                                      "id",
+                                      "channels"
+                                    ],
+                                    "properties": {
+                                      "id": {
+                                        "type": "string"
+                                      },
+                                      "channels": {
+                                        "type": "array",
+                                        "items": {
+                                          "type": "string",
+                                          "enum": [
+                                            "in_app",
+                                            "email",
+                                            "sms",
+                                            "chat",
+                                            "push",
+                                            "whatsApp"
+                                          ]
+                                        }
+                                      }
+                                    }
+                                  },
+                                  "topic": {
+                                    "additionalProperties": false,
+                                    "type": "object",
+                                    "required": [
+                                      "id",
+                                      "channels"
+                                    ],
+                                    "properties": {
+                                      "id": {
+                                        "type": "string"
+                                      },
+                                      "channels": {
+                                        "type": "array",
+                                        "items": {
+                                          "type": "string",
+                                          "enum": [
+                                            "in_app",
+                                            "email",
+                                            "sms",
+                                            "chat",
+                                            "push",
+                                            "whatsApp"
+                                          ]
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              },
+                              "channels": {
+                                "type": "array",
+                                "items": {
+                                  "additionalProperties": false,
+                                  "type": "object",
+                                  "required": [
+                                    "id",
+                                    "channelType",
+                                    "isUserPreferenceRequired"
+                                  ],
+                                  "properties": {
+                                    "id": {
+                                      "type": "string"
+                                    },
+                                    "channelType": {
+                                      "type": "string",
+                                      "enum": [
+                                        "in_app",
+                                        "email",
+                                        "sms",
+                                        "chat",
+                                        "push",
+                                        "whatsApp"
+                                      ]
+                                    },
+                                    "isUserPreferenceRequired": {
+                                      "type": "boolean"
+                                    }
+                                  }
+                                }
+                              },
+                              "recipientCriteria": {
+                                "additionalProperties": false,
+                                "type": "object",
+                                "required": [
+                                  "sourceType",
+                                  "isOverrideApplied"
+                                ],
+                                "properties": {
+                                  "sourceType": {
+                                    "type": "string",
+                                    "enum": [
+                                      "payload_based",
+                                      "target_audience_list",
+                                      "cohort_segment"
+                                    ]
+                                  },
+                                  "cohortSegmentId": {
+                                    "type": "string"
+                                  },
+                                  "targetAudienceListId": {
+                                    "type": "string"
+                                  },
+                                  "isOverrideApplied": {
+                                    "type": "boolean"
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "snapshotVersion": {
+                            "type": "number"
+                          },
+                          "notificationHandlerEventStatus": {
+                            "type": "string",
+                            "enum": [
+                              "pending",
+                              "in_progress",
+                              "completed",
+                              "failed"
+                            ]
+                          },
+                          "mode": {
+                            "type": "string",
+                            "enum": [
+                              "live",
+                              "test"
+                            ]
+                          },
+                          "createdDate": {
+                            "format": "date-time",
+                            "type": "string"
+                          },
+                          "modifiedDate": {
+                            "format": "date-time",
+                            "type": "string"
+                          },
+                          "isActive": {
+                            "type": "boolean"
+                          },
+                          "isDeleted": {
+                            "type": "boolean"
+                          },
+                          "notificationHandler": {
+                            "type": "object",
+                            "required": [
+                              "id",
+                              "name",
+                              "description"
+                            ],
+                            "properties": {
+                              "id": {
+                                "type": "string"
+                              },
+                              "name": {
+                                "type": "string"
+                              },
+                              "description": {
+                                "type": "string"
+                              }
+                            }
+                          },
+                          "notificationHandlerEventExecution": {
+                            "anyOf": [
+                              {
+                                "type": "object",
+                                "required": [
+                                  "id",
+                                  "handlerEventId",
+                                  "organizationId",
+                                  "projectId",
+                                  "status",
+                                  "lastErrorClass",
+                                  "lastErrorCode",
+                                  "lastErrorMessage",
+                                  "startedAt",
+                                  "completedAt"
+                                ],
+                                "properties": {
+                                  "id": {
+                                    "type": "string"
+                                  },
+                                  "handlerEventId": {
+                                    "type": "string"
+                                  },
+                                  "organizationId": {
+                                    "type": "string"
+                                  },
+                                  "projectId": {
+                                    "type": "string"
+                                  },
+                                  "status": {
+                                    "type": "string"
+                                  },
+                                  "executionSummary": {},
+                                  "lastErrorClass": {
+                                    "anyOf": [
+                                      {
+                                        "type": "string"
+                                      },
+                                      {
+                                        "type": "null"
+                                      }
+                                    ]
+                                  },
+                                  "lastErrorCode": {
+                                    "anyOf": [
+                                      {
+                                        "type": "string"
+                                      },
+                                      {
+                                        "type": "null"
+                                      }
+                                    ]
+                                  },
+                                  "lastErrorMessage": {
+                                    "anyOf": [
+                                      {
+                                        "type": "string"
+                                      },
+                                      {
+                                        "type": "null"
+                                      }
+                                    ]
+                                  },
+                                  "startedAt": {
+                                    "type": "string"
+                                  },
+                                  "completedAt": {
+                                    "type": "string"
+                                  }
+                                }
+                              },
+                              {
+                                "type": "null"
+                              }
+                            ]
+                          }
+                        }
+                      }
+                    },
+                    "metaData": {
+                      "type": "object",
+                      "required": [
+                        "page",
+                        "hasMore",
+                        "pageSize",
+                        "count"
+                      ],
+                      "properties": {
+                        "page": {
+                          "type": "number"
+                        },
+                        "hasMore": {
+                          "type": "boolean"
+                        },
+                        "pageSize": {
+                          "type": "number"
+                        },
+                        "count": {
+                          "anyOf": [
+                            {
+                              "type": "number"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        }
+                      }
+                    },
+                    "error": {
+                      "type": "null"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "error"
+                      ]
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "data": {},
+                    "metaData": {},
+                    "error": {}
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "error"
+                      ]
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "data": {},
+                    "metaData": {},
+                    "error": {}
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "error"
+                      ]
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "data": {},
+                    "metaData": {},
+                    "error": {}
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "error"
+                      ]
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "data": {},
+                    "metaData": {},
+                    "error": {}
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "Get all notification handler events by notification handler id."
+      }
+    },
     "/nudge/projects/{projectId}/notification-handlers/{notificationHandlerId}/channel-templates/{templateId}": {
       "get": {
         "tags": [
